@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+    <title>demo</title>
+
+    <link rel="shortcut icon" href=""/>
+
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap-theme.css">
+
+    <link rel="stylesheet" href="fonts/font-awesome-4.4.0/css/font-awesome.css">
+
+    <link rel="stylesheet" href="assets/adminlte/AdminLTE.css">
+    <link rel="stylesheet" href="assets/adminlte/skins/_all-skins.css">
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap-theme.min.css">-->
+
+
+</head>
+<body class="hold-transition skin-blue-light sidebar-mini">
+
+<!--header-->
+<header class="main-header"></header>
+<!--/header-->
+
+<!--sider-->
+<aside class="main-sidebar"></aside>
+<!--/sider-->
+
+<!--mainContent-->
+<article></article>
+<!--/mainContent-->
+
+<!--footer-->
+<footer></footer>
+<!--/footer-->
+
+<script src="assets/jquery/jquery-3.1.0.js"></script>
+<script src="assets/bootstrap/js/bootstrap.js"></script>
+
+<!--<script src="assets/jquery/jquery-3.1.0.min.js"></script>
+<script src="assets/bootstrap/js/bootstrap.min.js"></script>-->
+
+<script src="assets/seajs/sea.js"></script>
+
+<script>
+    seajs.config({
+        base: '/app/'
+    })
+
+    seajs.use('index/main', function(main){
+        main.init();
+    })
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,11 @@
+@font-face {
+    /* font-properties */
+    font-family: openSans;
+    src: url('../fonts/opensans.ttf');
+}
+body{
+    background-color: #fff;
+    color: #666;
+    font-family: openSans, "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
