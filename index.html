@@ -17,13 +17,8 @@
 
     <link rel="stylesheet" href="css/style.css">
 
-    <!-- <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
-     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap-theme.min.css">-->
-
-
 </head>
 <body class="hold-transition skin-blue-light sidebar-mini">
-
 <!--header-->
 <header class="main-header"></header>
 <!--/header-->
@@ -40,11 +35,18 @@
 <footer></footer>
 <!--/footer-->
 
+<!--control-sidebar-->
+<aside class="control-sidebar control-sidebar-dark">
+    <div class="tab-content">
+        <div class="tab-pane" id="control-sidebar-home-tab">
+        </div>
+    </div>
+</aside>
+<!--/control-sidebar-->
+
 <script src="assets/jquery/jquery-3.1.0.js"></script>
 <script src="assets/bootstrap/js/bootstrap.js"></script>
-
-<!--<script src="assets/jquery/jquery-3.1.0.min.js"></script>
-<script src="assets/bootstrap/js/bootstrap.min.js"></script>-->
+<script src="assets/slimScroll/jquery.slimscroll.js"></script>
 
 <script src="assets/seajs/sea.js"></script>
 
@@ -53,7 +55,7 @@
         base: '/app/'
     })
 
-    seajs.use('index/main', function(main){
+    seajs.use('index/main', function (main) {
         main.init();
     })
 

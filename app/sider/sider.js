@@ -7,7 +7,6 @@ define(function(require, exports, module) {
     //================================
     //
     //================================
-    Sider.prototype.init = function() { 
-        alert('haha');
+    Sider.prototype.init = function() {
     }
 });

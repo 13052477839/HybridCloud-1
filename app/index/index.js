@@ -7,7 +7,8 @@ define(function(require, exports, module) {
     // init
     //====================================
     Index.prototype.init = function() {
-        $('header').load('app/header/header.html');
-        $('aside').load('app/sider/sider.html');
+        $('header.main-header').load('app/header/header.html');
+        $('aside.main-sidebar').load('app/sider/sider.html');
+        //$('footer.main-footer').load('app/footer/footer.html');
     }
 });
