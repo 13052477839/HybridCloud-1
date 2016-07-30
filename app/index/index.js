@@ -10,5 +10,6 @@ define(function(require, exports, module) {
         $('header.main-header').load('app/header/header.html');
         $('aside.main-sidebar').load('app/sider/sider.html');
         //$('footer.main-footer').load('app/footer/footer.html');
+        $('div.content-wrapper').load('app/home/home.html');
     }
 });
