@@ -55,9 +55,16 @@
 
 <script src="assets/seajs/sea.js"></script>
 <script>
+    var version = new Date().getTime();
+
     seajs.config({
-        base: '/app/'
-    })
+        base: '/app/',
+        map: [
+            ['.js', '.js?v=' + version],
+            ['.css', '.css?v=' + version]
+        ]
+
+    });
 
     seajs.use('index/main', function (main) {
         main.init();
