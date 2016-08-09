@@ -32,3 +32,20 @@ body {
 .open > .dropdown-toggle.btn-weichat {
     background-image: none;
 }
+
+.skin-blue .wrapper, .skin-blue .main-sidebar, .skin-blue .left-side {
+    background-color: #293038;
+}
+
+.skin-blue .sidebar-menu > li.header {
+    color: #b8c7ce;
+}
+.skin-blue .sidebar a {
+    color: #fff;
+}
+.skin-blue .sidebar a:hover {
+    background-color: #37424f;
+}
+.skin-blue .treeview-menu > li > a {
+    color: #fff;
+}
