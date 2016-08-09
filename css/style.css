@@ -4,3 +4,31 @@ body {
     font-family: 'Helvetica Neue', 'Luxi Sans', 'DejaVu Sans', Tahoma, 'Hiragino Sans GB', STHeiti, 'Microsoft YaHei';
 }
 
+.btn-weichat {
+    color: #ffffff;
+    background-color: #609700;
+    border-color: rgba(0, 0, 0, 0.2);
+}
+.btn-weichat:focus,
+.btn-weichat.focus {
+    color: #ffffff;
+    background-color: #348903;
+    border-color: rgba(0, 0, 0, 0.2);
+}
+.btn-weichat:hover {
+    color: #ffffff;
+    background-color: #348903;
+    border-color: rgba(0, 0, 0, 0.2);
+}
+.btn-weichat:active,
+.btn-weichat.active,
+.open > .dropdown-toggle.btn-weichat {
+    color: #ffffff;
+    background-color: #348903;
+    border-color: rgba(0, 0, 0, 0.2);
+}
+.btn-weichat:active,
+.btn-weichat.active,
+.open > .dropdown-toggle.btn-weichat {
+    background-image: none;
+}

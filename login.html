@@ -16,6 +16,8 @@
     <link rel="stylesheet" href="assets/adminlte/AdminLTE.css">
     <link rel="stylesheet" href="assets/iCheck/square/blue.css">
 
+    <link rel="stylesheet" href="css/style.css">
+
 </head>
 <body class="hold-transition login-page">
 <div class="login-box">
@@ -27,47 +29,47 @@
     <div class="login-box-body">
         <p class="login-box-msg">为 驰骋云端 而生</p>
 
-        <form action="../../index2.html" method="post">
+        <form>
             <div class="form-group has-feedback">
-                <input type="email" class="form-control" placeholder="Email">
+                <input type="email" class="form-control" placeholder="邮箱">
                 <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
             </div>
             <div class="form-group has-feedback">
-                <input type="password" class="form-control" placeholder="Password">
+                <input type="password" class="form-control" placeholder="密码">
                 <span class="glyphicon glyphicon-lock form-control-feedback"></span>
             </div>
             <div class="row">
                 <div class="col-xs-8">
                     <div class="checkbox icheck">
                         <label>
-                            <input type="checkbox"> Remember Me
+                            <input type="checkbox">
+                            记住我的登录信息
                         </label>
                     </div>
                 </div>
-                <!-- /.col -->
                 <div class="col-xs-4">
-                    <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
+                    <button type="submit" class="btn btn-primary btn-block btn-flat">登录</button>
                 </div>
-                <!-- /.col -->
             </div>
         </form>
 
         <div class="social-auth-links text-center">
-            <p>- OR -</p>
-            <a href="#" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i> Sign in
-                using
-                Facebook</a>
-            <a href="#" class="btn btn-block btn-social btn-google btn-flat"><i class="fa fa-google-plus"></i> Sign in
-                using
-                Google+</a>
+            <p>- 或者使用 -</p>
+            <a href="javascript:void(0)" class="btn btn-block btn-social btn-weichat btn-flat">
+                <i class="fa fa-wechat"></i>
+                微信登录
+            </a>
+            <a href="javascript:void(0)" class="btn btn-block btn-social btn-google btn-flat">
+                <i class="fa fa-weibo"></i>
+                微博登录
+            </a>
         </div>
-        <!-- /.social-auth-links -->
 
-        <a href="#">I forgot my password</a><br>
-        <a href="register.html" class="text-center">Register a new membership</a>
+        <a href="javascript:void(0)">忘记密码</a>
+        <br>
+        <a href="register.html" class="text-center">注册</a>
 
     </div>
-    <!-- /.login-box-body -->
 </div>
 
 <script src="assets/jquery/jquery-3.1.0.js"></script>
@@ -79,7 +81,7 @@
         $('input').iCheck({
             checkboxClass: 'icheckbox_square-blue',
             radioClass: 'iradio_square-blue',
-            increaseArea: '20%' // optional
+            increaseArea: '20%'
         });
     });
 </script>
