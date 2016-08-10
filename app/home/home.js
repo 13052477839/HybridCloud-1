@@ -17,12 +17,6 @@ define(function(require, exports, module){
             "info": true,
             "autoWidth": false
         });
-        Mock.mock('rest/test', 'get', {
-            res: {
-                id: 1,
-                name: 'yangkai'
-            }
-        });
         $.ajax({
             url: 'rest/test',
             type: 'get',
