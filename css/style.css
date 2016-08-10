@@ -49,3 +49,14 @@ body {
 .skin-blue .treeview-menu > li > a {
     color: #fff;
 }
+.login-bg {
+    background:#00243d url(../images/bg.jpg) center center no-repeat fixed;
+    -webkit-background-size:cover;
+    -moz-background-size:cover;
+    -o-background-size:cover;
+    background-size:cover;
+    -webkit-tap-highlight-color:transparent;
+}
+.login-logo a, .register-logo a {
+    color: #ddd;
+}
