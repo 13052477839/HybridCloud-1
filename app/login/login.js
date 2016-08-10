@@ -22,9 +22,9 @@ define(function(require, exports, module){
     Login.prototype.loginValid = function() {
         $('#loginForm').bootstrapValidator({
             feedbackIcons: {
-                valid: 'glyphicon glyphicon-ok',
-                invalid: 'glyphicon glyphicon-remove',
-                validating: 'glyphicon glyphicon-refresh'
+                valid: '',
+                invalid: '',
+                validating: ''
             },
             fields: {
               'email': {
