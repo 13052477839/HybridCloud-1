@@ -9,17 +9,20 @@ body {
     background-color: #609700;
     border-color: rgba(0, 0, 0, 0.2);
 }
+
 .btn-weichat:focus,
 .btn-weichat.focus {
     color: #ffffff;
     background-color: #348903;
     border-color: rgba(0, 0, 0, 0.2);
 }
+
 .btn-weichat:hover {
     color: #ffffff;
     background-color: #348903;
     border-color: rgba(0, 0, 0, 0.2);
 }
+
 .btn-weichat:active,
 .btn-weichat.active,
 .open > .dropdown-toggle.btn-weichat {
@@ -27,6 +30,7 @@ body {
     background-color: #348903;
     border-color: rgba(0, 0, 0, 0.2);
 }
+
 .btn-weichat:active,
 .btn-weichat.active,
 .open > .dropdown-toggle.btn-weichat {
@@ -40,23 +44,40 @@ body {
 .skin-blue .sidebar-menu > li.header {
     color: #b8c7ce;
 }
+
 .skin-blue .sidebar a {
     color: #fff;
 }
+
 .skin-blue .sidebar a:hover {
     background-color: #37424f;
 }
+
 .skin-blue .treeview-menu > li > a {
     color: #fff;
 }
+
 .login-bg {
-    background:#00243d url(../images/bg.jpg) center center no-repeat fixed;
-    -webkit-background-size:cover;
-    -moz-background-size:cover;
-    -o-background-size:cover;
-    background-size:cover;
-    -webkit-tap-highlight-color:transparent;
+    background: #00243d url(../images/bg.jpg) center center no-repeat fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    -webkit-tap-highlight-color: transparent;
 }
+
 .login-logo a, .register-logo a {
     color: #ddd;
+}
+
+.sidebar-menu > li > a {
+    padding-left: 35px;
+}
+
+.sidebar-menu .treeview-menu > li > a {
+    padding-left: 40px;
+}
+
+.sidebar-mini.sidebar-collapse .sidebar-menu > li > a {
+    padding-left: 15px;
 }
