@@ -1,6 +1,9 @@
 define(function(require, exports, module) {
 
-    function Sider(){}
+    require('../../assets/adminlte/app.min');
+    
+    function Sider(){
+    }
 
     module.exports = Sider;
 

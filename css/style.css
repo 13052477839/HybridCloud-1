@@ -69,6 +69,9 @@ body {
 .login-logo a, .register-logo a {
     color: #ddd;
 }
+.sidebar-toggle {
+    font-size: 14px;
+}
 /*
 
 .sidebar-menu > li > a {
