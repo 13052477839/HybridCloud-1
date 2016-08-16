@@ -1,6 +1,8 @@
 define(function(require, exports, module) {
 
-    function Index(){}
+    function Index(){
+        $.extend($.fn.bootstrapTable.defaults, $.fn.bootstrapTable.locales['zh-CN']);
+    }
     module.exports = Index;
 
     //====================================
