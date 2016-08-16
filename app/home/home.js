@@ -8,7 +8,7 @@ define(function(require, exports, module){
     // init
     //==============================
     Home.prototype.init = function () {
-        $("#table1").bootstrapTable({
+        /*$("#table1").bootstrapTable({
             url: 'api/rest/table1',
 
 
@@ -21,6 +21,6 @@ define(function(require, exports, module){
             success: function(result) {
                 console.log(result);
             }
-        })
+        })*/
     }
 });
