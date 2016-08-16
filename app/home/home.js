@@ -8,15 +8,12 @@ define(function(require, exports, module){
     // init
     //==============================
     Home.prototype.init = function () {
-        $("#example1").DataTable();
-        $('#example2').DataTable({
-            "paging": true,
-            "lengthChange": false,
-            "searching": false,
-            "ordering": true,
-            "info": true,
-            "autoWidth": false
+        $("#table1").bootstrapTable({
+            url: 'api/rest/table1',
+
+
         });
+
         $.ajax({
             url: 'rest/test',
             type: 'get',
