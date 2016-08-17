@@ -57,6 +57,10 @@ body {
     color: #fff;
 }
 
+.skin-blue .treeview-menu > li.active > a{
+    background-color: #1e282c;
+}
+
 .login-bg {
     background: #00243d url(../images/bg.jpg) center center no-repeat fixed;
     -webkit-background-size: cover;
@@ -69,19 +73,11 @@ body {
 .login-logo a, .register-logo a {
     color: #ddd;
 }
+
 .sidebar-toggle {
     font-size: 14px;
 }
-/*
-
-.sidebar-menu > li > a {
-    padding-left: 35px;
-}
 
 .sidebar-menu .treeview-menu > li > a {
-    padding-left: 40px;
+    font-size: 12px;
 }
-
-.sidebar-mini.sidebar-collapse .sidebar-menu > li > a {
-    padding-left: 15px;
-}*/
