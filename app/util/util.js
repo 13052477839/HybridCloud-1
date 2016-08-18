@@ -8,7 +8,6 @@ define(function (require) {
             var hash = $(a).attr('href');
             var path = hash.substr(2).split('/');
             var url;
-            console.log(path);
             if(path.length > 0) {
                 if(path.length == 1) {
                     url = 'app/' + path[0] + '/' + path[0] + '.html?v=' + version;
