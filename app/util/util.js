@@ -6,7 +6,7 @@ define(function (require) {
     var sidebarChange = function (a) {
         if (!$(a).parent().is('.treeview')) {
             var url = $(a).attr('href');
-            url = url.substring(2);
+            url = url.substr(2);
             $('div.content-wrapper').load('app/' + url + '/' + url + '.html?v=' + version, function () {
                 var $ul = $(a).parent().parent();
                 if ($ul.is('.treeview-menu')) {
