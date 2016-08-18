@@ -18,7 +18,30 @@ define(function (require) {
         }
     };
 
+    //==============================
+    // gridUtilOptions
+    //==============================
+    var gridUtilOptions = function () {
+        return {
+            strip: true,
+            pagination: true,
+            sidePagination: 'server',
+            pageNumber: 1,
+            pageSize: 10,
+            pageList: [10, 25, 50, 100],
+            sortable: true,
+            search: true,
+            strictSearch: false,
+            showRefresh: true,
+            showColumns: true,
+            paginationDetailHAlign: 'left',
+            paginationHAlign: 'right',
+            clickToSelect: true
+        }
+    };
+
     return {
-        sidebarChange: sidebarChange
+        sidebarChange: sidebarChange,
+        gridUtilOptions: gridUtilOptions
     }
 });

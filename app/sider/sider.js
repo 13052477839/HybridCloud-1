@@ -10,7 +10,7 @@ define(function (require, exports, module) {
     module.exports = Sider;
 
     //================================
-    //
+    // init
     //================================
     Sider.prototype.init = function () {
         $('.sidebar a').click(function () {
