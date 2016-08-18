@@ -13,13 +13,14 @@ define(function (require, exports, module) {
     // init
     //================================
     Sider.prototype.init = function () {
-        $('.sidebar a').click(function () {
-            Util.sidebarChange(this);
-        });
         window.addEventListener("hashchange", function(){
             Util.sidebarChange($('a[href="'+window.location.hash+'"]'));
         }, false);
-        window.location.hash = '#/home';
-        Util.sidebarChange($('a[href="'+window.location.hash+'"]'));
+        var hashNow = window.location.hash;
+        if(hashNow == '#/home') {
+            Util.sidebarChange($('a[href="'+window.location.hash+'"]'));
+        }else {
+            window.location.hash = '#/home';
+        }
     }
 });
