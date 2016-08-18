@@ -102,7 +102,96 @@ body {
     color: #000;
 }
 
-.skin-blue-light .sidebar-menu>li:hover>a, .skin-blue-light .sidebar-menu>li.active>a {
+.skin-blue-light .sidebar-menu > li:hover > a, .skin-blue-light .sidebar-menu > li.active > a {
     border-left-color: #09C;
 }
 
+.skin-blue-light .sidebar-menu > li.active > a {
+    font-weight: normal;
+}
+
+.skin-blue-light .sidebar-menu > li:hover > a {
+    color: #000;
+    background: #ecf0f5;
+}
+
+.skin-blue-light .sidebar-menu > li.active > a {
+    color: #fff;
+    background: #09C;
+}
+
+.sidebar-menu li.header {
+    padding: 20px 25px 10px 15px;
+}
+
+.sidebar-menu i {
+    display: inline-block;
+    background: url(../images/menu_icon.png) 0 0 no-repeat;
+    background-size: 1062px 40px;
+    height: 17px;
+    width: 17px;
+    margin-right: 12px;
+    vertical-align: middle;
+}
+.sidebar-menu i.instance {
+    background-position: -334px 1px;
+}
+
+.sidebar-menu li.active i.instance {
+    background-position: -334px -18px;
+}
+
+.sidebar-menu i.image {
+    background-position: -179px 0;
+}
+.sidebar-menu li.active i.image {
+    background-position: -179px -18px;
+}
+.sidebar-menu i.overview {
+    background-position: -103px 0;
+}
+.sidebar-menu li.active i.overview {
+    background-position: -103px -18px;
+}
+
+.sidebar-menu i.network{
+    background-position: -309px 0;
+}
+
+.sidebar-menu li.active i.network{
+    background-position: -309px -18px;
+}
+
+.sidebar-menu i.volume{
+    background-position: -51px 2px;
+}
+.sidebar-menu li.active i.volume{
+    background-position: -51px -18px;
+}
+
+.sidebar-menu i.public-ip{
+    background-position: -128px 0;
+}
+
+.sidebar-menu li.active i.public-ip{
+    background-position: -128px -18px;
+}
+
+.sidebar-menu i.security-group
+{
+    background-position: -25px 0;
+}
+
+.sidebar-menu li.active i.security-group
+{
+    background-position: -25px -18px;
+}
+.sidebar-menu i.user
+{
+    background-position: -645px 0;
+}
+
+.sidebar-menu li.active i.user
+{
+    background-position: -645px -18px;
+}

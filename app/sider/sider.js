@@ -17,10 +17,10 @@ define(function (require, exports, module) {
             Util.sidebarChange($('a[href="'+window.location.hash+'"]'));
         }, false);
         var hashNow = window.location.hash;
-        if(hashNow == '#/home') {
+        if(hashNow == '#/overview') {
             Util.sidebarChange($('a[href="'+window.location.hash+'"]'));
         }else {
-            window.location.hash = '#/home';
+            window.location.hash = '#/overview';
         }
     }
 });
