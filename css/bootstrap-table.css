@@ -217,6 +217,12 @@
     color: #bbbbbb;
 }
 
+.bootstrap-table .fixed-table-footerButtons button:active {
+    color: #ffffff;
+    background-color: #1898eb;
+    border-color: #1898eb;
+}
+
 .bootstrap-table .fixed-table-footerButtons button:not(:first-child) {
     margin-left: 12px;
 }
