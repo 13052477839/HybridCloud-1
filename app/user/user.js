@@ -20,6 +20,7 @@ define(function(require, exports, module){
         var $table = $('#userTable');
         $table.bootstrapTable($.extend(Util.gridUtilOptions(),{
             url: API_URL.USER,
+            toolbar: '#userTableToolbar',
             dataField: 'res',
             columns: [{
                 checkbox: true

@@ -199,3 +199,31 @@ button input {
 {
     background-position: -645px -18px;
 }
+
+input[type="checkbox"] {
+    -webkit-appearance: none;
+    background-size: 16px 16px;
+    background-color: #ffffff;
+    border: 1px solid #dddddd;
+    margin-right: 0;
+    height: 16px;
+    width: 16px;
+    outline: none;
+    vertical-align: bottom;
+}
+
+input[type="checkbox"]:hover {
+    background-image: url("../images/icon_select_normal.png");
+    outline: none;
+    border: none;
+}
+
+input[type="checkbox"]:focus {
+    outline: none;
+}
+
+input[type="checkbox"]:checked {
+    background-image: url("../images/icon_select_selected.png");
+    outline: none;
+    border: none;
+}
