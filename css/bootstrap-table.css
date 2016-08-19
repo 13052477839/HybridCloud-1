@@ -1,0 +1,190 @@
+.inputPrime {
+  border-radius: 2px;
+  padding-left: 6px;
+  height: 30px;
+  width: 240px;
+  font-size: 12px;
+  color: #666666;
+}
+.isPrimeForSpan,
+.bootstrap-table .search input + span {
+  position: absolute;
+  right: 20px;
+  top: 7px;
+  width: 16px;
+  height: 16px;
+}
+.bootstrap-table .fixed-table-container {
+  border: none;
+}
+.bootstrap-table .fixed-table-toolbar .bs-bars,
+.bootstrap-table .fixed-table-toolbar .columns,
+.bootstrap-table .fixed-table-toolbar .search {
+  margin: 0;
+  line-height: inherit;
+}
+.bootstrap-table .search input {
+  width: 240px;
+  border: 1px solid #dddddd;
+  background: #ffffff;
+  outline: none;
+  box-shadow: none;
+  margin-right: 12px;
+}
+.bootstrap-table .search input:focus {
+  border: 1px solid #1898eb;
+  outline: none;
+}
+.bootstrap-table .search input + span {
+  background: url("../images/icon_search_mirror.png") no-repeat right 0;
+  cursor: pointer;
+}
+.bootstrap-table .fixed-table-pagination {
+  float: right !important;
+}
+.bootstrap-table .fixed-table-pagination .page-list {
+  display: inline-block !important;
+}
+.bootstrap-table .fixed-table-pagination .page-list button {
+  width: 30px;
+  height: 20px;
+  cursor: pointer;
+  outline: none;
+  padding: 0;
+  text-align: center;
+  font-size: 12px;
+  font-weight: normal;
+  margin-top: -3px;
+}
+.bootstrap-table .fixed-table-pagination .page-list button:hover {
+  background-color: #ffffff;
+}
+.bootstrap-table .fixed-table-pagination .page-list .dropdown-menu {
+  padding: 3px 0;
+  border: 1px solid #ccc;
+  box-shadow: none;
+  border-radius: 2px;
+  font-size: 12px;
+  min-width: 30px;
+}
+.bootstrap-table .fixed-table-pagination .page-list .dropdown-menu > li > a {
+  padding: 0 0 0 3px;
+}
+.bootstrap-table .fixed-table-pagination .page-list .dropdown-menu > .active > a,
+.bootstrap-table .fixed-table-pagination .page-list .dropdown-menu > .active > a:focus,
+.bootstrap-table .fixed-table-pagination .page-list .dropdown-menu > .active > a:hover {
+  background-color: #1898eb;
+}
+.bootstrap-table .fixed-table-pagination .page-list .open > .dropdown-toggle.btn-default:focus,
+.bootstrap-table .fixed-table-pagination .page-list .open > .dropdown-toggle.btn-default:hover {
+  background-color: #ffffff;
+}
+.bootstrap-table .fixed-table-pagination .pagination-detail,
+.bootstrap-table .fixed-table-pagination div.pagination {
+  margin: 0;
+}
+.bootstrap-table .fixed-table-pagination div.pagination {
+  margin-top: 7px;
+}
+.bootstrap-table .fixed-table-pagination .pagination-detail {
+  margin-right: 12px;
+}
+.bootstrap-table .fixed-table-pagination .pagination a {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  outline: none;
+  padding: 0;
+  text-align: center;
+}
+.bootstrap-table .pagination > .active > a {
+  background-color: #1898eb;
+  border-color: #1898eb;
+}
+.bootstrap-table .table {
+  margin-top: 10px;
+  border-color: #ededed;
+  border-width: 1px 0 0 0;
+  border-collapse: separate;
+}
+.bootstrap-table .table tr {
+  height: 36px;
+}
+.bootstrap-table .table th {
+  background-color: #eeeeee;
+  color: #333333;
+  font-size: 12px;
+  font-weight: normal;
+  border: solid 1px #e6e6e6;
+  vertical-align: middle;
+  text-align: center;
+}
+.bootstrap-table .table td {
+  border-color: #e6e6e6;
+  border-style: solid;
+  border-width: 0px 1px 1px 0px;
+  color: #666666;
+  vertical-align: middle;
+  text-align: center;
+}
+.bootstrap-table .table tbody tr:hover {
+  background-color: #e7f6ff;
+}
+.bootstrap-table .table tbody tr:hover td {
+  border-top-width: 1px;
+  border-bottom-width: 1px;
+  border-color: #c9e6f2;
+}
+.bootstrap-table .table input[type="checkbox"] {
+  -webkit-appearance: none;
+  background-size: 16px 16px;
+  background-color: #ffffff;
+  border: 1px solid #dddddd;
+  margin-right: 0;
+  height: 16px;
+  width: 16px;
+  outline: none;
+}
+.bootstrap-table .table input[type="checkbox"]:hover {
+  background-image: url("../images/icon_select_normal.png");
+  outline: none;
+  border: none;
+}
+.bootstrap-table .table input[type="checkbox"]:focus {
+  outline: none;
+}
+.bootstrap-table .table input[type="checkbox"]:checked {
+  background-image: url("../images/icon_select_selected.png");
+  outline: none;
+  border: none;
+}
+.bootstrap-table .fixed-table-footerButtons {
+  float: left;
+  margin-top: 7px;
+}
+.bootstrap-table .fixed-table-footerButtons button {
+  font-size: 12px;
+  color: #333333;
+  border: 0;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  display: inline-block;
+  height: 24px;
+  min-width: 80px;
+  color: #1898eb;
+  background-color: #ffffff;
+  padding: 0 16px;
+  border: 1px solid #dddddd;
+}
+.bootstrap-table .fixed-table-footerButtons button:hover {
+  border-color: #1898eb;
+}
+.bootstrap-table .fixed-table-footerButtons button:disabled {
+  background-color: #f2f2f2;
+  border-color: #dddddd;
+  color: #bbbbbb;
+}
+.bootstrap-table .fixed-table-footerButtons button:not(:first-child) {
+  margin-left: 12px;
+}

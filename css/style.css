@@ -4,6 +4,10 @@ body {
     font-family: 'Helvetica Neue', 'Luxi Sans', 'DejaVu Sans', Tahoma, 'Hiragino Sans GB', STHeiti, 'Microsoft YaHei';
 }
 
+button input {
+    outline: 0;
+}
+
 .btn-weichat {
     color: #ffffff;
     background-color: #609700;

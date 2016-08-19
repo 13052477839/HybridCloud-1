@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="assets/adminlte/AdminLTE.min.css">
     <link rel="stylesheet" href="assets/adminlte/skins/_all-skins.min.css">
 
+    <link rel="stylesheet" href="css/bootstrap-table.css">
     <link rel="stylesheet" href="css/style.css">
 
 </head>
@@ -59,6 +60,12 @@
 <script src="assets/seajs/sea.js"></script>
 <script>
     var version = new Date().getTime();
+
+    var API_BASE_URL = 'api/v1.0/';
+    var API_URL = {
+        INSTANCE: API_BASE_URL + 'instance',
+        USER: API_BASE_URL + 'user'
+    };
 
     seajs.config({
         base: '/app/',

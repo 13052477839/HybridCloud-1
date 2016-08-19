@@ -50,6 +50,13 @@ define(function (require) {
         }
     };
 
+    //==============================
+    // ajax
+    //==============================
+    var ajax = function() {
+        
+    };
+
     return {
         sidebarChange: sidebarChange,
         gridUtilOptions: gridUtilOptions
