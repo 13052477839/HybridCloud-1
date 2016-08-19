@@ -14,11 +14,11 @@ define(function (require, exports, module) {
     //================================
     Sider.prototype.init = function () {
         window.addEventListener("hashchange", function(){
-            Util.sidebarChange($('a[href="'+window.location.hash+'"]'));
+            Util.hashChange(window.location.hash);
         }, false);
         var hashNow = window.location.hash;
         if(hashNow == '#/overview') {
-            Util.sidebarChange($('a[href="'+window.location.hash+'"]'));
+            Util.hashChange(window.location.hash);
         }else {
             window.location.hash = '#/overview';
         }
