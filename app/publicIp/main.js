@@ -1,10 +1,10 @@
 define(function(require){
-    var Overview = require('./overview');
+    var PublicIp = require('./publicIp');
     
     return {
         init: function () {
-            var overview = new Overview();
-            overview.init();
+            var publicIp = new PublicIp();
+            publicIp.init();
         }
     }
 });

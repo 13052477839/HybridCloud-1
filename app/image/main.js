@@ -1,10 +1,10 @@
 define(function(require){
-    var Overview = require('./overview');
+    var Image = require('./image');
     
     return {
         init: function () {
-            var overview = new Overview();
-            overview.init();
+            var image = new Image();
+            image.init();
         }
     }
 });

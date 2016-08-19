@@ -1,10 +1,10 @@
 define(function(require){
-    var Overview = require('./overview');
+    var Volume = require('./volume');
     
     return {
         init: function () {
-            var overview = new Overview();
-            overview.init();
+            var volume = new Volume();
+            volume.init();
         }
     }
 });

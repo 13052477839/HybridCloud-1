@@ -1,10 +1,10 @@
 define(function(require){
-    var Overview = require('./overview');
+    var SecurityGroup = require('./securityGroup');
     
     return {
         init: function () {
-            var overview = new Overview();
-            overview.init();
+            var securityGroup = new SecurityGroup();
+            securityGroup.init();
         }
     }
 });

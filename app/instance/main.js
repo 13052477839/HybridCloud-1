@@ -1,10 +1,10 @@
 define(function(require){
-    var Overview = require('./overview');
+    var Instance = require('./instance');
     
     return {
         init: function () {
-            var overview = new Overview();
-            overview.init();
+            var instance = new Instance();
+            instance.init();
         }
     }
 });

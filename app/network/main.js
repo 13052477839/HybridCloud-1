@@ -1,10 +1,10 @@
 define(function(require){
-    var Overview = require('./overview');
+    var Network = require('./network');
     
     return {
         init: function () {
-            var overview = new Overview();
-            overview.init();
+            var network = new Network();
+            network.init();
         }
     }
 });

@@ -1,13 +1,13 @@
 define(function(require, exports, module){
 
-    function Overview(){}
+    function Volume(){}
 
-    module.exports = Overview;
+    module.exports = Volume;
 
     //==============================
     // init
     //==============================
-    Overview.prototype.init = function () {
+    Volume.prototype.init = function () {
         /*$("#table1").bootstrapTable({
             url: 'api/rest/table1',
 
