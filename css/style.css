@@ -340,3 +340,7 @@ a.add-account:hover {
 .has-success .form-control-feedback {
     color: #00a65a;
 }
+
+label {
+    font-weight: normal;
+}
