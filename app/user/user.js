@@ -21,7 +21,7 @@ define(function (require, exports, module) {
     User.prototype.userTable = function () {
         var $table = $('#userTable');
         $table.bootstrapTable($.extend(Util.gridUtilOptions(), {
-            url: API_URL.USER,
+            url: API_URL.USERS,
             toolbar: '#userTableToolbar',
             dataField: 'res',
             columns: [{
