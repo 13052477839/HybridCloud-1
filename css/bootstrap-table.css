@@ -258,3 +258,6 @@
     background-color: #449644;
     box-shadow: none;
 }
+.fixed-table-loading {
+    top: 50px !important;
+}

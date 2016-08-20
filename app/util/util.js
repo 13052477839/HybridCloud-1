@@ -50,10 +50,10 @@ define(function (require) {
     };
 
     //==============================
-    // ajax
+    // ajaxSetup
     //==============================
-    var ajax = function() {
-        
+    var ajaxSetup = function() {
+        //$.ajaxSetup
     };
 
     return {

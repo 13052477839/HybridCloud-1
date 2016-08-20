@@ -40,7 +40,7 @@ define(function (require, exports, module) {
                 field: 'email'
             }]
         }));
-        $('.bootstrap-table .search input').attr('placeholder', '').attr('title', '模糊查询')
+        $('.bootstrap-table .search input').attr('placeholder', '')
             .parent().append('<span></span>');
         $('.fixed-table-container').append('<div class="fixed-table-footerButtons"><button disabled>删除</button></div>');
         $table.on('check.bs.table uncheck.bs.table ' +
