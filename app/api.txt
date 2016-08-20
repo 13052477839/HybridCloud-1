@@ -1,0 +1,116 @@
+GET  /api/v1.0/users      列表
+
+{
+    "success": true,
+    "object": [
+        {
+            "cellphone": "13913978541",
+            "email": "lez@zte.com.cn",
+            "id": "006d8878-1997-4b63-852c-2c83f20ca82f",
+            "name": "lez",
+            "password": "200000"
+        },
+        {
+            "cellphone": "13913978541",
+            "email": "lez@zte.com.cn",
+            "id": "006d8878-1997-4b63-852c-2c83f20ca82f",
+            "name": "lez",
+            "password": "200000"
+        }
+    ]
+}
+
+
+POST /api/v1.0/users      创建
+
+body:
+{
+    "email": "lez@zte.com.cn",
+    "password": "200000",
+    "cellphone": "13913978541",
+    "name": "lez",
+    "accounts": [
+        {
+            "id": "25552525",
+            "name": "awsaccount1",
+            "password": "ssssssss",
+            "type": "aws",
+            "awsAccessKeyId": "SSSEERERER",
+            "awsSecretAccessKey": "EEEEEEEEEE########"
+        }
+    ]
+}
+
+RSP:
+{
+    "success": true
+}
+
+
+GET /api/v1.0/users/{id}  详情
+
+RSP:
+{
+    "success": true,
+    "object": {
+		"id": "25552525",
+		"email": "lez@zte.com.cn",
+		"password": "200000",
+		"cellphone": "13913978541",
+		"name": "lez",
+		"accounts": [
+			{
+				"sequenceId": "25552525",
+				"id": "25552525",
+				"name": "awsaccount1",
+				"password": "ssssssss",
+				"type": "aws",
+				"awsAccessKeyId": "SSSEERERER",
+				"awsSecretAccessKey": "EEEEEEEEEE########"
+			}
+			{
+				"sequenceId": "25552525",
+				"id": "25552525",
+				"name": "awsaccount1",
+				"password": "ssssssss",
+				"type": "aws",
+				"awsAccessKeyId": "SSSEERERER",
+				"awsSecretAccessKey": "EEEEEEEEEE########"
+			}
+		]
+	}
+}
+
+
+PUT /api/v1.0/users/{id}  修改
+
+REQ:
+{
+    "id": "25552525",
+    "email": "lez@zte.com.cn",
+    "password": "200000",
+    "cellphone": "13913978541",
+    "name": "lez",
+    "accounts": [
+        {
+            "sequenceId": "25552525",    // 修改用户时，新增的账号没有此ID一定不要有值（空串或者不传都行），修改的账号一定传此ID。
+            "id": "25552525",
+            "name": "awsaccount1",
+            "password": "ssssssss",
+            "type": "aws",
+            "awsAccessKeyId": "SSSEERERER",
+            "awsSecretAccessKey": "EEEEEEEEEE########"
+        }
+    ]
+}
+
+RSP:
+{
+    "success": true
+}
+
+DELETE /api/v1.0/users/{id} 删除
+RSP:
+{
+    "success": true
+}
