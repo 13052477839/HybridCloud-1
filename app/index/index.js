@@ -2,6 +2,7 @@ define(function(require, exports, module) {
     var Util = require('util/util');
 
     function Index(){
+        Util._ajaxSetup();
         $.extend($.fn.bootstrapTable.defaults, $.fn.bootstrapTable.locales['zh-CN']);
     }
     module.exports = Index;

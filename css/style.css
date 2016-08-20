@@ -8,6 +8,10 @@ button, input {
     outline: 0;
 }
 
+button:active {
+    outline: 0;
+}
+
 .btn-weichat {
     color: #ffffff;
     background-color: #609700;
@@ -137,6 +141,7 @@ button, input {
     margin-right: 12px;
     vertical-align: middle;
 }
+
 .sidebar-menu i.instance {
     background-position: -334px 1px;
 }
@@ -148,55 +153,56 @@ button, input {
 .sidebar-menu i.image {
     background-position: -179px 0;
 }
+
 .sidebar-menu li.active i.image {
     background-position: -179px -18px;
 }
+
 .sidebar-menu i.overview {
     background-position: -103px 0;
 }
+
 .sidebar-menu li.active i.overview {
     background-position: -103px -18px;
 }
 
-.sidebar-menu i.network{
+.sidebar-menu i.network {
     background-position: -309px 0;
 }
 
-.sidebar-menu li.active i.network{
+.sidebar-menu li.active i.network {
     background-position: -309px -18px;
 }
 
-.sidebar-menu i.volume{
+.sidebar-menu i.volume {
     background-position: -51px 2px;
 }
-.sidebar-menu li.active i.volume{
+
+.sidebar-menu li.active i.volume {
     background-position: -51px -18px;
 }
 
-.sidebar-menu i.public-ip{
+.sidebar-menu i.public-ip {
     background-position: -128px 0;
 }
 
-.sidebar-menu li.active i.public-ip{
+.sidebar-menu li.active i.public-ip {
     background-position: -128px -18px;
 }
 
-.sidebar-menu i.security-group
-{
+.sidebar-menu i.security-group {
     background-position: -25px 0;
 }
 
-.sidebar-menu li.active i.security-group
-{
+.sidebar-menu li.active i.security-group {
     background-position: -25px -18px;
 }
-.sidebar-menu i.user
-{
+
+.sidebar-menu i.user {
     background-position: -645px 0;
 }
 
-.sidebar-menu li.active i.user
-{
+.sidebar-menu li.active i.user {
     background-position: -645px -18px;
 }
 
@@ -226,4 +232,111 @@ input[type="checkbox"]:checked {
     background-image: url("../images/icon_select_selected.png");
     outline: none;
     border: none;
+}
+
+.form-control:focus {
+    border-color: #1898eb;
+}
+
+.btn-normal {
+    border: 0;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    display: inline-block;
+    height: 30px;
+    min-width: 100px;
+    color: #ffffff;
+    background-color: #1898eb;
+    padding: 0 20px;
+}
+
+.btn-normal:hover {
+    background-color: #178fdd;
+    color: #fff;
+}
+
+.btn-normal:active {
+    background-color: #127dc2;
+    border: 0;
+}
+
+.btn-normal:focus {
+    color: #fff;
+}
+
+.btn-normal:disabled {
+    background-color: #e6e6e6;
+    color: #bbbbbb
+}
+
+.btn-cancel {
+    border: 0;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    display: inline-block;
+    height: 30px;
+    min-width: 100px;
+    color: #1898eb;
+    background-color: #ffffff;
+    padding: 6.5px 35px;
+}
+
+
+.btn-cancel:hover {
+    background-color: #eeeeee;
+}
+
+.btn-default {
+    background: none;
+}
+
+.btn:active {
+    box-shadow: none;
+}
+
+input[type="radio"] {
+    outline: 0;
+    margin: 2px 0 0;
+    background-color: #ffffff;
+}
+
+.accounts input:not([type="radio"]) {
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+}
+
+a.add-account {
+    cursor: pointer;
+    font-weight: 400;
+}
+
+a.add-account:hover {
+    text-decoration: underline;
+}
+
+.accounts .account-close-btn {
+    float: right;
+    font-size: 14px;
+    border: none;
+}
+
+.accounts h4 {
+    margin-left: 10px;
+    color: #1898eb;
+}
+
+.accounts .account-wrapper {
+    border: 1px solid #d2d6de;
+    margin-top: 10px;
+}
+
+.has-error .form-control-feedback {
+    color:#dd4b39;
+}
+
+.has-success .form-control-feedback {
+    color: #00a65a;
 }

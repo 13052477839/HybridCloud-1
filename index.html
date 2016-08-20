@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="fonts/font-awesome-4.4.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="assets/bootstrapTable/bootstrap-table.min.css">
+    <link rel="stylesheet" href="assets/bootstrapValidator/css/bootstrapValidator.min.css">
     <link rel="stylesheet" href="assets/adminlte/AdminLTE.min.css">
     <link rel="stylesheet" href="assets/adminlte/skins/_all-skins.min.css">
 
@@ -51,6 +52,7 @@
 <script src="assets/bootstrap/js/bootstrap.min.js"></script>
 <script src="assets/bootstrapTable/bootstrap-table.min.js"></script>
 <script src="assets/bootstrapTable/bootstrap-table-locale-all.min.js"></script>
+<script src="assets/bootstrapValidator/js/bootstrapValidator.min.js"></script>
 <script src="assets/slimScroll/jquery.slimscroll.min.js"></script>
 <script src="assets/fastclick/fastclick.min.js"></script>
 
@@ -61,6 +63,8 @@
 <script>
     var version = new Date().getTime();
 
+    var BASE = '/';// 替换为=> /hybridcloud/
+
     var API_BASE_URL = 'api/v1.0/';
     var API_URL = {
         INSTANCE: API_BASE_URL + 'instance',
@@ -68,7 +72,7 @@
     };
 
     seajs.config({
-        base: '/app/',
+        base: BASE + 'app/',
         map: [
             ['.js', '.js?v=' + version],
             ['.css', '.css?v=' + version]
