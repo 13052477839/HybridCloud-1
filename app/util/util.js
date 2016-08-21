@@ -63,6 +63,12 @@ define(function (require) {
             complete: function (xhr, status) {
                 // status: success, error, timeout
                 // xhr.status: 200, 404 500..., 0
+                if(xhr.status == 404 ) {
+                    $('.content-wrapper').load('app/util/404.html?v=' + version);
+                }
+                if(xhr.status == 500) {
+                    $('.content-wrapper').load('app/util/500.html?v=' + version);
+                }
                 var sessionStatus = xhr.getResponseHeader('sessionStatus');
                 if(sessionStatus === 'timeout') {
                     window.location.href = 'login.html';
@@ -71,9 +77,36 @@ define(function (require) {
         });
     };
 
+    //====================================================
+    // alertDialog
+    //====================================================
+    var alertDialog = function(text) {
+        $('#dialog-alert p').text(text);
+        $('#dialog-alert').modal({
+            backdrop : true,
+            keyboard : true,
+            show : true
+        });
+    };
+
+    //====================================================
+    // confrimDialog
+    //====================================================
+    var confirmDialog = function(text, callback) {
+        $('#dialog-confirm p').text(text);
+        $('#dialog-confirm').modal({
+            backdrop : true,
+            keyboard : true,
+            show : true
+        });
+        $('#dialog-confirm .btn-confirm').unbind().click(callback);
+    };
+
     return {
         hashChange: hashChange,
         gridUtilOptions: gridUtilOptions,
-        _ajaxSetup: _ajaxSetup
+        _ajaxSetup: _ajaxSetup,
+        alertDialog: alertDialog,
+        confirmDialog: confirmDialog
     }
 });

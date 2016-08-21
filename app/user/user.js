@@ -89,20 +89,9 @@ define(function (require, exports, module) {
         $('#btn-user-delete').click(function () {
             var selections = $('#userTable').bootstrapTable('getSelections');
             if (selections.length == 0) {
-                $('#dialog-alert p').text('未选择！');
-                $('#dialog-alert').modal({
-                    backdrop: true,
-                    keyboard: true,
-                    show: true
-                });
+                Util.alertDialog('未选择！');
             } else {
-                $('#dialog-confirm p').text('确认删除所选用户及其关联账号吗？');
-                $('#dialog-confirm').modal({
-                    backdrop: true,
-                    keyboard: true,
-                    show: true
-                });
-                $('#dialog-confirm .btn-confirm').unbind().click(function () {
+                Util.confirmDialog('确认删除所选用户及其关联账号吗？', function () {
                     var ids = '';
                     $.each(selections, function (i, v) {
                         ids += v.id + ',';
