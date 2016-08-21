@@ -25,6 +25,7 @@ define(function (require, exports, module) {
             url: API_URL.USERS,
             toolbar: '#userTableToolbar',
             dataField: 'object',
+            detailView: true,
             columns: [{
                 checkbox: true
             }, {
@@ -52,6 +53,33 @@ define(function (require, exports, module) {
             'check-all.bs.table uncheck-all.bs.table', function () {
             $('.fixed-table-footerButtons button').prop('disabled', !$table.bootstrapTable('getSelections').length);
         });
+        $table.on('expand-row.bs.table', function (e, index, row, $detail) {
+            $detail.html('<i class="fa fa-spinner fa-spin fa-2x fa-fw"></i>');
+            $.ajax({
+                url: API_URL.USERS + '/' + row.id,
+                type: 'get',
+                dataType: 'json',
+                success: function (result) {
+                    if (result.success && result.object.accounts.length > 0) {
+                        $detail.html('<div class="account-detail-wrapper"></div>');
+                        var accounts = result.object.accounts;
+                        $.each(accounts, function (i, v) {
+                            $account = $('<div class="col-sm-5 account-detail"></div>').appendTo('.account-detail-wrapper');
+                            $account.append('<h4>账号' + (i + 1) + '</h4>');
+                            $account.append('<span><b>type: </b>' + v.type + '</span><br>');
+                            $account.append('<span><b>id: </b>' + v.id + '</span><br>');
+                            $account.append('<span><b>name: </b>' + v.name + '</span><br>');
+                            $account.append('<span><b>password: </b>' + v.password + '</span><br>');
+                            $account.append('<span><b>AccessKeyId: </b>' + v.awsAccessKeyId + '</span><br>');
+                            $account.append('<span><b>SecretAccessKey: </b>' + v.awsSecretAccessKey + '</span><br>');
+                        });
+
+                    } else {
+                        $detail.html('无关联账号数据');
+                    }
+                }
+            })
+        });
     };
 
     //==============================
@@ -63,9 +91,9 @@ define(function (require, exports, module) {
             if (selections.length == 0) {
                 $('#dialog-alert p').text('未选择！');
                 $('#dialog-alert').modal({
-                    backdrop : true,
-                    keyboard : true,
-                    show : true
+                    backdrop: true,
+                    keyboard: true,
+                    show: true
                 });
             } else {
                 $('#dialog-confirm p').text('确认删除所选用户及其关联账号吗？');

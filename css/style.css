@@ -364,3 +364,15 @@ label {
     background-color: #1898eb !important;
     color: #ffffff !important;
 }
+
+.account-detail {
+    min-height: 30px;
+    border: 1px solid #d2d6de;
+    margin-left:10px;
+    margin-bottom:10px;
+    text-align: left;
+}
+
+.account-detail-wrapper {
+    padding: 0 10px;
+}
