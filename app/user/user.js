@@ -23,18 +23,22 @@ define(function (require, exports, module) {
         $table.bootstrapTable($.extend(Util.gridUtilOptions(), {
             url: API_URL.USERS,
             toolbar: '#userTableToolbar',
-            dataField: 'res',
+            dataField: 'object',
             columns: [{
                 checkbox: true
+            }, {
+                title: 'ID',
+                field: 'id',
+                visible: false
             }, {
                 title: '用户名',
                 field: 'name'
             }, {
-                title: '创建者',
-                field: 'creater'
+                title: '密码',
+                field: 'password'
             }, {
                 title: '电话',
-                field: 'phone'
+                field: 'cellphone'
             }, {
                 title: '邮箱',
                 field: 'email'
