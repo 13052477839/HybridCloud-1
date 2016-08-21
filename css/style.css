@@ -291,6 +291,7 @@ input[type="checkbox"]:checked {
 
 .btn-default {
     background: none;
+    text-shadow: none;
 }
 
 .btn:active {
@@ -352,4 +353,14 @@ label {
 
 .has-success .help-block, .has-success .control-label, .has-success .radio, .has-success .checkbox, .has-success .radio-inline, .has-success .checkbox-inline, .has-success.radio label, .has-success.checkbox label, .has-success.radio-inline label, .has-success.checkbox-inline label {
     color: #00a65a;
+}
+
+.btn-default:hover, .btn-default:focus {
+    background-color: #ffffff;
+    border-color: #1898eb;
+}
+
+.btn-default:active {
+    background-color: #1898eb !important;
+    color: #ffffff !important;
 }
