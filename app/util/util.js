@@ -24,6 +24,7 @@ define(function (require) {
                     $a.parent().addClass('active');
                 }
             });
+            //$('div.content-wrapper').css('min-height',$(window).height());
         }
     };
 
@@ -63,10 +64,10 @@ define(function (require) {
             complete: function (xhr, status) {
                 // status: success, error, timeout
                 // xhr.status: 200, 404 500..., 0
-                if(xhr.status == 404 ) {
+                if(xhr.status === 404 ) {
                     $('.content-wrapper').load('app/util/404.html?v=' + version);
                 }
-                if(xhr.status == 500) {
+                if(xhr.status === 500) {
                     $('.content-wrapper').load('app/util/500.html?v=' + version);
                 }
                 var sessionStatus = xhr.getResponseHeader('sessionStatus');
