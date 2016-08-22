@@ -14,7 +14,6 @@
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap-theme.css">
     <link rel="stylesheet" href="fonts/font-awesome-4.4.0/css/font-awesome.css">
     <link rel="stylesheet" href="assets/adminlte/AdminLTE.css">
-    <link rel="stylesheet" href="assets/iCheck/all.css">
     <link rel="stylesheet" href="assets/bootstrapValidator/css/bootstrapValidator.css">
 
     <link rel="stylesheet" href="css/style.css">
@@ -27,26 +26,28 @@
         <a href="javascript:void(0);"><b>Hybrid</b>Cloud</a>
     </div>
 
-    <div class="login-box-body">
-        <p class="login-box-msg">为 驰骋云端 而生</p>
+    <div class="login-box-body" style="min-height: 320px;">
+        <h3 class="login-box-msg">为 驰骋云端 而生</h3>
 
-        <form id="loginForm">
+        <form id="loginForm" style="margin-top:10px;">
             <div class="form-group has-feedback">
-                <input type="email" class="form-control" placeholder="邮箱" name="email">
-                <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+                <label for="name" class="control-label">登录名:</label>
+                <input type="text" class="form-control" placeholder="" id="name" name="name">
+                <span class="glyphicon glyphicon-user form-control-feedback"></span>
             </div>
             <div class="form-group has-feedback">
-                <input type="password" class="form-control" placeholder="密码" name="password">
+                <label for="password" class="control-label">密码:</label>
+                <input type="password" class="form-control" placeholder="" id="password" name="password">
                 <span class="glyphicon glyphicon-lock form-control-feedback"></span>
             </div>
             <div class="row">
                 <div class="col-xs-8">
-                    <div class="checkbox icheck">
+                    <!--<div class="checkbox icheck">
                         <label>
                             <input type="checkbox">
                             记住我的登录信息
                         </label>
-                    </div>
+                    </div>-->
                 </div>
                 <div class="col-xs-4">
                     <button type="submit" class="btn btn-primary btn-block btn-flat">登录</button>
@@ -54,7 +55,7 @@
             </div>
         </form>
 
-        <div class="social-auth-links text-center">
+        <!--<div class="social-auth-links text-center">
             <p>- 或者使用 -</p>
             <a href="javascript:void(0)" class="btn btn-block btn-social btn-weichat btn-flat">
                 <i class="fa fa-wechat"></i>
@@ -68,14 +69,13 @@
 
         <a href="javascript:void(0)">忘记密码</a>
         <br>
-        <a href="register.html" class="text-center">注册成为一名新用户</a>
+        <a href="register.html" class="text-center">注册成为一名新用户</a>-->
 
     </div>
 </div>
 
 <script src="assets/jquery/jquery-3.1.0.js"></script>
 <script src="assets/bootstrap/js/bootstrap.js"></script>
-<script src="assets/iCheck/icheck.js"></script>
 <script src="assets/bootstrapValidator/js/bootstrapValidator.js"></script>
 
 <script src="mock/mock.js"></script>
@@ -85,8 +85,14 @@
 <script>
     var version = new Date().getTime();
 
+    var BASE = '/';// 替换为=> /hybridcloud/
+
+    var API_BASE_URL = 'api/v1.0/';
+    var API_URL = {
+    };
+
     seajs.config({
-        base: '/app/',
+        base: BASE + 'app/',
         map: [
             ['.js', '.js?v=' + version],
             ['.css', '.css?v=' + version]
@@ -96,7 +102,7 @@
 
     seajs.use('login/main', function (main) {
         main.init();
-    })
+    });
 
 </script>
 

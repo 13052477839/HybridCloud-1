@@ -1,25 +1,22 @@
-define(function(require, exports, module){
-    function Login(){}
+define(function (require, exports, module) {
+    function Login() {
+    }
+
     module.exports = Login;
 
     //=========================
     // init
     //=========================
-    Login.prototype.init = function() {
+    Login.prototype.init = function () {
 
         this.loginValid();
 
-        $('input').iCheck({
-            checkboxClass: 'icheckbox_square-blue',
-            radioClass: 'iradio_square-blue',
-            increaseArea: '20%'
-        });
     };
 
     //=========================
     // login valid
     //=========================
-    Login.prototype.loginValid = function() {
+    Login.prototype.loginValid = function () {
         $('#loginForm').bootstrapValidator({
             feedbackIcons: {
                 valid: '',
@@ -27,18 +24,22 @@ define(function(require, exports, module){
                 validating: ''
             },
             fields: {
-              'email': {
-                  validators: {
-                      notEmpty: {
-                          message: '邮箱不能为空！'
-                      },
-                      emailAddress: {
-                          message: '邮箱格式不对！'
-                      }
-                  }
-              }
+                'name': {
+                    validators: {
+                        notEmpty: {
+                            message: '用户名不能为空！'
+                        }
+                    }
+                },
+                'password': {
+                    validators: {
+                        notEmpty: {
+                            message: '密码不能为空！'
+                        }
+                    }
+                }
             },
-            submitHandler: function(validator, form, submitButton) {
+            submitHandler: function (validator, form, submitButton) {
                 alert('haha');
             }
         });
