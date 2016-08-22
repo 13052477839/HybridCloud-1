@@ -64,7 +64,7 @@ define(function (require, exports, module) {
                         $detail.html('<div class="account-detail-wrapper"></div>');
                         var accounts = result.object.accounts;
                         $.each(accounts, function (i, v) {
-                            $account = $('<div class="col-sm-5 account-detail"></div>').appendTo('.account-detail-wrapper');
+                            $account = $('<div class="col-sm-5 account-detail"></div>').appendTo($detail.find('.account-detail-wrapper'));
                             $account.append('<h4>账号' + (i + 1) + '</h4>');
                             $account.append('<span><b>type: </b>' + v.type + '</span><br>');
                             $account.append('<span><b>id: </b>' + v.id + '</span><br>');
