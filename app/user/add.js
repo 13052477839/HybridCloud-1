@@ -1,4 +1,6 @@
 define(function (require, exports, module) {
+    var Util = require('util/util');
+
     function Add() {
         this.accountNumber = 0;
     }
@@ -158,6 +160,7 @@ define(function (require, exports, module) {
                     var account = {
                         type: $(v).find('input[name="accounts.type"]').val(),
                         id: $(v).find('input[name="accounts.id"]').val(),
+                        name: $(v).find('input[name="accounts.name"]').val(),
                         password: $(v).find('input[name="accounts.password"]').val(),
                         awsAccessKeyId: $(v).find('input[name="accounts.accessKeyId"]').val(),
                         awsSecretAccessKey: $(v).find('input[name="accounts.secretAccessKey"]').val()
@@ -168,9 +171,14 @@ define(function (require, exports, module) {
                     url: API_URL.USERS,
                     type: 'post',
                     dataType: 'json',
-                    data: data,
+                    data: JSON.stringify(data),
                     success: function(result){
-
+                        if(result.success){
+                            Util.notify('成功！','添加用户成功！','success');
+                            window.location.hash = '#/user';
+                        }else{
+                            Util.alertDialog('操作失败！');
+                        }
                     }
                 })
             }
