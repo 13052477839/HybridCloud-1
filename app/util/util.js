@@ -55,7 +55,7 @@ define(function (require) {
     //==============================
     var _ajaxSetup = function () {
         $.ajaxSetup({
-            timeout: 10000,
+            timeout: 5000,
             contentType: "application/json;charset=utf-8",
             beforeSend: function (xhr) {
                 var accessToken = window.localStorage.accessToken;
@@ -64,7 +64,7 @@ define(function (require) {
             complete: function (xhr, status) {
                 // status: success, error, timeout
                 // xhr.status: 200, 404 500..., 0
-                /*if(xhr.status === 404 ) {
+                if(xhr.status === 404 ) {
                     $('.content-wrapper').load('app/util/404.html?v=' + version);
                 }
                 if(xhr.status === 500) {
@@ -77,7 +77,7 @@ define(function (require) {
                 if(sessionStatus === 'timeout') {
                     alertDialog('登录超时，请重新登录！');
                     setTimeout(function(){window.location.href = 'login.html';},3000);
-                }*/
+                }
             }
         });
     };
