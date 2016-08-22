@@ -137,7 +137,7 @@ define(function (require, exports, module) {
     //==============================
     User.prototype.operateFormatter = function (value, row, index) {
         return [
-            '<a class="user-edit" href="javascript:void(0)" data-toggle="tooltip" title="编辑">',
+            '<a class="user-edit" href="#/user/edit" data-toggle="tooltip" title="编辑">',
             '<i class="glyphicon glyphicon-pencil"></i>',
             '</a>'
         ].join('');
