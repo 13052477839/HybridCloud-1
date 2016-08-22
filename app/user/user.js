@@ -51,7 +51,7 @@ define(function (require, exports, module) {
             }, {
                 title: '操作',
                 field: '',
-                events: operateEvents,
+                //events: operateEvents,
                 formatter: user.operateFormatter
             }]
         }));
@@ -137,7 +137,7 @@ define(function (require, exports, module) {
     //==============================
     User.prototype.operateFormatter = function (value, row, index) {
         return [
-            '<a class="user-edit" href="#/user/edit" data-toggle="tooltip" title="编辑">',
+            '<a class="user-edit" href="#/user/edit/'+row.id+'" data-toggle="tooltip" title="编辑">',
             '<i class="glyphicon glyphicon-pencil"></i>',
             '</a>'
         ].join('');
@@ -146,10 +146,10 @@ define(function (require, exports, module) {
     //==============================
     // operate events
     //==============================
-    window.operateEvents = {
+    /*window.operateEvents = {
         'click a.user-edit': function (e, value, row, index) {
             alert(row.name);
         }
-    };
+    };*/
 
 });

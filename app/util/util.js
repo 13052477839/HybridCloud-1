@@ -10,7 +10,7 @@ define(function (require) {
             if (path.length == 1) {
                 url = 'app/' + path[0] + '/' + path[0] + '.html?v=' + version;
             }
-            if (path.length == 2) {
+            if (path.length > 1) {
                 url = 'app/' + path[0] + '/' + path[1] + '.html?v=' + version;
             }
             $('div.content-wrapper').load(url, function () {

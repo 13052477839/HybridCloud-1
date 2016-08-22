@@ -1,4 +1,4 @@
-Mock.mock('api/v1.0/users?order=asc&offset=0&limit=10', 'get', {
+Mock.mock('api/v1.0/users?sort=name&order=asc&offset=0&limit=10', 'get', {
     object: [{
         id:1,
         name:'ceshi1',

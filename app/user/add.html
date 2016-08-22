@@ -18,9 +18,6 @@
     <div class="row">
         <div class="col-sm-12">
             <div class="box">
-                <!--<div class="box-header">
-                    <h3 class="box-title">用户</h3>
-                </div>-->
                 <div class="box-body">
                     <div class="row">
                         <div class="col-md-6">
@@ -84,7 +81,7 @@
 
 <script>
     seajs.use('user/add', function (Add) {
-        var add = new Add();
+        var add = new Add('add');
         add.init();
     })
 </script>
