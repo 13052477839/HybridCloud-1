@@ -114,3 +114,16 @@ RSP:
 {
     "success": true
 }
+
+public class GridQueryParams{
+    private int limit;//单页数量
+    private int offset;//本页起始
+    private String search;//输入的查询值，模糊查询
+    private String sort;//排序的值
+    private String order;//排序的类型，asc或desc
+}
+
+public class PadingResult{
+    private int total;
+    private Object list;
+}

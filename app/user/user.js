@@ -92,28 +92,32 @@ define(function (require, exports, module) {
                 Util.alertDialog('未选择！');
             } else {
                 Util.confirmDialog('确认删除所选用户及其关联账号吗？', function () {
-                    var ids = '';
-                    $.each(selections, function (i, v) {
-                        ids += v.id + ',';
-                    });
-                    ids = ids.substr(0, ids.length - 1);
                     $('#dialog-confirm').modal('hide');
-                    $.ajax({
-                        url: API_URL.USERS,
-                        data: {
-                            'ids': ids
-                        },
-                        type: 'delete',
-                        dataType: 'json',
-                        success: function (result) {
-                            if (result.success) {
-                                Util.notify('成功！','删除用户成功！','success');
-                                $('#userTable').bootstrapTable('refresh');
-                            } else {
-                                Util.alertDialog('删除失败');
+                    var delFlag = true;
+                    $.each(selections, function (i, v) {
+                        $.ajax({
+                            url: API_URL.USERS + '/' + v.id,
+                            type: 'delete',
+                            dataType: 'json',
+                            success: function (result) {
+                                if (result.success) {
+
+                                } else {
+                                    delFlag = false;
+                                    return false;
+                                }
                             }
-                        }
+                        });
                     });
+                    if(delFlag) {
+                        Util.notify('成功！','删除用户成功！','success');
+                        setTimeout(function(){
+                            $('#userTable').bootstrapTable('refresh');
+                        },2000);
+                    }else{
+                        Util.alertDialog('删除失败');
+                    }
+
                 });
             }
         });
