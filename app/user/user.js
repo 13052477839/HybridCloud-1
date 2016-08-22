@@ -20,12 +20,15 @@ define(function (require, exports, module) {
     // userTable
     //==============================
     User.prototype.userTable = function () {
+        var user = this;
         var $table = $('#userTable');
         $table.bootstrapTable($.extend(Util.gridUtilOptions(), {
             url: API_URL.USERS,
             toolbar: '#userTableToolbar',
             dataField: 'object',
             detailView: true,
+            sortName: 'name',
+            sortOrder: 'asc',
             columns: [{
                 checkbox: true
             }, {
@@ -34,7 +37,8 @@ define(function (require, exports, module) {
                 visible: false
             }, {
                 title: '用户名',
-                field: 'name'
+                field: 'name',
+                sortable: true
             }, {
                 title: '密码',
                 field: 'password'
@@ -44,6 +48,11 @@ define(function (require, exports, module) {
             }, {
                 title: '邮箱',
                 field: 'email'
+            }, {
+                title: '操作',
+                field: '',
+                events: operateEvents,
+                formatter: user.operateFormatter
             }]
         }));
         $('.bootstrap-table .search input').attr('placeholder', '')
@@ -109,17 +118,38 @@ define(function (require, exports, module) {
                             }
                         });
                     });
-                    if(delFlag) {
-                        Util.notify('成功！','删除用户成功！','success');
-                        setTimeout(function(){
+                    if (delFlag) {
+                        Util.notify('成功！', '删除用户成功！', 'success');
+                        setTimeout(function () {
                             $('#userTable').bootstrapTable('refresh');
-                        },2000);
-                    }else{
+                        }, 2000);
+                    } else {
                         Util.alertDialog('删除失败');
                     }
 
                 });
             }
         });
-    }
+    };
+
+    //==============================
+    // operate formatter
+    //==============================
+    User.prototype.operateFormatter = function (value, row, index) {
+        return [
+            '<a class="user-edit" href="javascript:void(0)" data-toggle="tooltip" title="编辑">',
+            '<i class="glyphicon glyphicon-pencil"></i>',
+            '</a>'
+        ].join('');
+    };
+
+    //==============================
+    // operate events
+    //==============================
+    window.operateEvents = {
+        'click a.user-edit': function (e, value, row, index) {
+            alert(row.name);
+        }
+    };
+
 });

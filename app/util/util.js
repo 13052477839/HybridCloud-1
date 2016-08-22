@@ -46,7 +46,7 @@ define(function (require) {
             showColumns: true,
             paginationDetailHAlign: 'left',
             paginationHAlign: 'right',
-            clickToSelect: true
+            clickToSelect: false
         }
     };
 
