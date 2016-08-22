@@ -55,7 +55,7 @@ define(function (require) {
     //==============================
     var _ajaxSetup = function () {
         $.ajaxSetup({
-            timeout: 5000,
+            timeout: 10000,
             contentType: "application/x-www-form-urlencoded;charset=utf-8",
             beforeSend: function (xhr) {
                 var accessToken = window.localStorage.accessToken;
@@ -70,9 +70,13 @@ define(function (require) {
                 if(xhr.status === 500) {
                     $('.content-wrapper').load('app/util/500.html?v=' + version);
                 }
+                if(status === 'timeout') {
+                    alertDialog('请求超时！');
+                }
                 var sessionStatus = xhr.getResponseHeader('sessionStatus');
                 if(sessionStatus === 'timeout') {
-                    window.location.href = 'login.html';
+                    alertDialog('登录超时，请重新登录！');
+                    setTimeout(function(){window.location.href = 'login.html';},3000);
                 }
             }
         });
@@ -103,11 +107,23 @@ define(function (require) {
         $('#dialog-confirm .btn-confirm').unbind().click(callback);
     };
 
+    //====================================================
+    // notify: default success info alert warning
+    //====================================================
+    var notify = function(title, content, type){
+        $.Notify({
+            caption: title,
+            content: content,
+            type: type
+        })
+    };
+
     return {
         hashChange: hashChange,
         gridUtilOptions: gridUtilOptions,
         _ajaxSetup: _ajaxSetup,
         alertDialog: alertDialog,
-        confirmDialog: confirmDialog
+        confirmDialog: confirmDialog,
+        notify: notify
     }
 });

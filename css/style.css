@@ -376,3 +376,7 @@ label {
 .account-detail-wrapper {
     padding: 0 10px;
 }
+
+.fixed-table-container thead th:first-child{
+    border-radius: 0;
+}

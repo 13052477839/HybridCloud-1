@@ -107,14 +107,10 @@ define(function (require, exports, module) {
                         dataType: 'json',
                         success: function (result) {
                             if (result.success) {
+                                Util.notify('成功！','删除用户成功！','success');
                                 $('#userTable').bootstrapTable('refresh');
                             } else {
-                                $('#dialog-confirm p').text('删除失败');
-                                $('#dialog-confirm').modal({
-                                    backdrop: true,
-                                    keyboard: true,
-                                    show: true
-                                });
+                                Util.alertDialog('删除失败');
                             }
                         }
                     });
