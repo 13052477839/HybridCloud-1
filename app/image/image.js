@@ -63,11 +63,11 @@ define(function(require, exports, module){
                 field: 'virtualizationType',
                 visible: false
             },{
-                title: '创建日期',
+                title: '创建时间',
                 field: 'creationDate',
                 formatter: function(value, row, index){
                     var date = new Date(value);
-                    return moment(date).format('LLLL');
+                    return moment(date).format('LLL');
                 }
             },{
                 title: '根设备类型',

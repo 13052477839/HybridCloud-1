@@ -4,7 +4,9 @@
         <small></small>
     </h1>
     <ol class="breadcrumb">
-        <li><a href="#/overview">首页</a></li>
+        <li>
+            <a href="#/overview">首页</a>
+        </li>
         <li class="active">用户</li>
     </ol>
 </section>
@@ -13,9 +15,6 @@
     <div class="row">
         <div class="col-xs-12">
             <div class="box">
-                <div id="userTableToolbar">
-                    <a class="create-btn" href="#/user/add"><i class="fa fa-plus"></i>添加</a>
-                </div>
                 <div class="box-body">
                     <table id="userTable"></table>
                 </div>
@@ -24,8 +23,17 @@
     </div>
 </section>
 
+<div style="display: none;">
+    <div id="userTableToolbar">
+        <a class="create-btn" href="#/user/add">
+            <i class="fa fa-plus"></i>
+            添加
+        </a>
+    </div>
+</div>
+
 <script>
-    seajs.use('user/main', function(main) {
+    seajs.use('user/main', function (main) {
         main.init();
     })
 </script>

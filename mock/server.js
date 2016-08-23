@@ -172,3 +172,42 @@ Mock.mock('api/v1.0/images/private?order=asc&offset=0&limit=10','get',{
        }
    ] 
 });
+
+Mock.mock('api/v1.0/volumes?order=asc&offset=0&limit=10','get', {
+    list: [{
+        "volumeId": "vol-3b306cbe",
+        "size": 1,
+        "snapshotId": "",
+        "availabilityZone": "cn-north-1a",
+        "state": "available",
+        "createTime": 1471914282836,
+        "attachments": [],
+        "tags": [],
+        "volumeType": "gp2",
+        "iops": 100,
+        "encrypted": false,
+        "kmsKeyId": null
+    },{
+        "volumeId": "vol-20eae89f",
+        "size": 40,
+        "snapshotId": "snap-4536c7b4",
+        "availabilityZone": "cn-north-1b",
+        "state": "in-use",
+        "createTime": 1471489450692,
+        "attachments": [
+            {
+                "volumeId": "vol-20eae89f",
+                "instanceId": "i-868ed43e",
+                "device": "/dev/sda1",
+                "state": "attached",
+                "attachTime": 1471489450000,
+                "deleteOnTermination": true
+            }
+        ],
+        "tags": [],
+        "volumeType": "gp2",
+        "iops": 120,
+        "encrypted": false,
+        "kmsKeyId": null
+    }]
+});

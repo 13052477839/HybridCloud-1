@@ -13,14 +13,22 @@
     <div class="row">
         <div class="col-xs-12">
             <div class="box">
-                <div class="box-header">
-                    <h3 class="box-title">云硬盘</h3>
-                </div>
+                <div class="box-body">
+                    <table id="volumeTable"></table>
                 </div>
             </div>
         </div>
     </div>
 </section>
+
+<div style="display: none;">
+    <div id="volumeTableToolbar">
+        <a class="create-btn" href="#/volume/add">
+            <i class="fa fa-plus"></i>
+            添加
+        </a>
+    </div>
+</div>
 
 <script>
     seajs.use('volume/main', function(main) {
