@@ -400,3 +400,7 @@ label {
 .run-status-running {
     background-position: -61px -4px;
 }
+
+.run-status-stopped {
+    background-position: -61px -28px;
+}
