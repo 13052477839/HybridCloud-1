@@ -41,7 +41,15 @@ define(function (require, exports, module) {
                 field: 'availabilityZone'
             }, {
                 title: '状态',
-                field: 'instanceState'
+                field: 'instanceState',
+                formatter: function (value, row, index) {
+                    if (value === 'running') {
+                        return '<i class="run-status run-status-running"></i>' + value;
+                    }
+                    if(value === 'stopped'){
+                        return '<i class="run-status run-status-stopped"></i>' + value;
+                    }
+                }
             }, {
                 title: '平台',
                 field: 'platform',
@@ -53,27 +61,27 @@ define(function (require, exports, module) {
             }, {
                 title: '公网IP',
                 field: 'publicIpAddress'
-            },{
+            }, {
                 title: '秘钥名称',
                 field: 'keyName'
-            },{
+            }, {
                 title: '监控',
                 field: 'monitoring'
-            },{
+            }, {
                 title: '启动时间',
                 field: 'launchTime',
                 formatter: function (value, row, index) {
                     var date = new Date(value);
                     return moment(date).format('LLL');
                 }
-            },{
+            }, {
                 title: '安全组',
                 field: '',
-                formatter: function(value, row, index) {
+                formatter: function (value, row, index) {
                     var sg = row.securityGroups;
                     return sg[0].securityGroupName;
                 }
-            },{
+            }, {
                 title: '拥有者',
                 field: 'owner',
                 visible: false
@@ -81,7 +89,7 @@ define(function (require, exports, module) {
                 title: '虚拟化',
                 field: 'virtualizationType',
                 visible: false
-            },  {
+            }, {
                 title: '操作',
                 field: '',
                 //events: operateEvents,
