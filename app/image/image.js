@@ -31,7 +31,7 @@ define(function(require, exports, module){
             }, {
                 title: 'ID',
                 field: 'imageId',
-                visible: false
+                visible: true
             }, {
                 title: '名称',
                 field: 'name',
@@ -40,6 +40,28 @@ define(function(require, exports, module){
                 title: '来源',
                 field: 'imageLocation'
             }, {
+                title: '拥有者',
+                field:'ownerId'
+            }, {
+                title: '可见性',
+                field: 'public',
+                formatter: function(value, row, index) {
+                    if(value){
+                        return '公有'
+                    }else{
+                        return '私有'
+                    }
+                }
+            },{
+                title: '状态',
+                field: 'state'
+            },{
+                title: '创建日期',
+                field: 'creationDate',
+                formatter: function(value, row, index){
+                    return value.format('llll');
+                }
+            },{
                 title: '操作',
                 field: '',
                 //events: operateEvents,
