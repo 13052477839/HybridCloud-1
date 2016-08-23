@@ -384,3 +384,19 @@ label {
 .login-box-body, .register-box-body {
     padding: 20px 30px;
 }
+
+.run-status {
+    display: inline-block;
+    border-radius: 16px;
+    vertical-align: middle;
+    margin-top: -1px;
+    width: 16px;
+    height: 16px;
+    background-position: 24px 24px;
+    background-repeat: no-repeat;
+    background-image: url("../images/ecs-icons.png");
+}
+
+.run-status-running {
+    background-position: -61px -4px;
+}

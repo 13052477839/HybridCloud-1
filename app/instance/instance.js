@@ -44,7 +44,7 @@ define(function (require, exports, module) {
                 field: 'instanceState',
                 formatter: function (value, row, index) {
                     if (value === 'running') {
-                        return '<i class="run-status run-status-running"></i>' + value;
+                        return '<i class="run-status run-status-running"></i> ' + value;
                     }
                     if(value === 'stopped'){
                         return '<i class="run-status run-status-stopped"></i>' + value;
