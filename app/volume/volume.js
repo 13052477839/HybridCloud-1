@@ -61,7 +61,6 @@ define(function (require, exports, module) {
                 title: '挂载点',
                 field: 'state',
                 formatter: function (value, row, index) {
-                    console.log(row);
                     if (row.attachments.length > 0) {
                         var at = row.attachments[0];
                         return '<b>'+at.instanceId + '</b>:' + at.device + '(' + at.state + ')';

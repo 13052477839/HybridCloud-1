@@ -20,7 +20,7 @@ define(function(require, exports, module){
         var image = this;
         var $table = $('#imageTable');
         $table.bootstrapTable($.extend(Util.gridUtilOptions(), {
-            url: API_URL.IMAGES + '/private',
+            url: API_URL.IMAGES,
             toolbar: '#imageTableToolbar',
             dataField: 'list',
             //detailView: true,

@@ -55,7 +55,7 @@ define(function (require) {
     //==============================
     var _ajaxSetup = function () {
         $.ajaxSetup({
-            timeout: 5000,
+            timeout: 20000,
             contentType: "application/json;charset=utf-8",
             beforeSend: function (xhr) {
                 var accessToken = window.localStorage.accessToken;
