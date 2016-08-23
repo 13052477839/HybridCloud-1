@@ -40,6 +40,9 @@ define(function(require, exports, module){
                 title: '来源',
                 field: 'imageLocation'
             }, {
+                title: '平台',
+                field: 'platform'
+            },{
                 title: '拥有者',
                 field:'ownerId'
             }, {
@@ -56,11 +59,24 @@ define(function(require, exports, module){
                 title: '状态',
                 field: 'state'
             },{
+                title: '虚拟化',
+                field: 'virtualizationType',
+                visible: false
+            },{
                 title: '创建日期',
                 field: 'creationDate',
                 formatter: function(value, row, index){
-                    return value.format('llll');
+                    var date = new Date(value);
+                    return moment(date).format('LLLL');
                 }
+            },{
+                title: '根设备类型',
+                field: 'rootDeviceType',
+                visible: false
+            },{
+                title: '描述',
+                field: 'description',
+                visible: false
             },{
                 title: '操作',
                 field: '',

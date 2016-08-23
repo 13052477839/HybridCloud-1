@@ -381,3 +381,6 @@ label {
     border-radius: 0;
 }
 
+.login-box-body, .register-box-body {
+    padding: 20px 30px;
+}
