@@ -57,6 +57,9 @@ define(function(require, exports, module){
                 showHeader: false,
                 url: API_URL.IMAGES + '/quickStart',
                 dataField: 'list',
+                /*queryParams: function(params){
+                  return $.extend(params, {'is-public': false});
+                },*/
                 columns: [{
                     title: '',
                     field: '',
