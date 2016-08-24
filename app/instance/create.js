@@ -10,6 +10,13 @@ define(function(require, exports, module){
     // init
     //=================================
     Create.prototype.init = function(){
-        
+        this.stepper();
+    };
+
+    //=================================
+    // init
+    //=================================
+    Create.prototype.stepper = function(){
+        $("#stepper").stepper();
     };
 });
