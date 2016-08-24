@@ -284,7 +284,6 @@ input[type="checkbox"]:checked {
     padding: 6.5px 35px;
 }
 
-
 .btn-cancel:hover {
     background-color: #eeeeee;
 }
@@ -336,7 +335,7 @@ a.add-account:hover {
 }
 
 .has-error .form-control-feedback {
-    color:#dd4b39;
+    color: #dd4b39;
 }
 
 .has-success .form-control-feedback {
@@ -348,7 +347,7 @@ label {
 }
 
 .has-error .help-block, .has-error .control-label, .has-error .radio, .has-error .checkbox, .has-error .radio-inline, .has-error .checkbox-inline, .has-error.radio label, .has-error.checkbox label, .has-error.radio-inline label, .has-error.checkbox-inline label {
-    color:#dd4b39;
+    color: #dd4b39;
 }
 
 .has-success .help-block, .has-success .control-label, .has-success .radio, .has-success .checkbox, .has-success .radio-inline, .has-success .checkbox-inline, .has-success.radio label, .has-success.checkbox label, .has-success.radio-inline label, .has-success.checkbox-inline label {
@@ -368,8 +367,8 @@ label {
 .account-detail {
     min-height: 30px;
     border: 1px solid #d2d6de;
-    margin-left:10px;
-    margin-bottom:10px;
+    margin-left: 10px;
+    margin-bottom: 10px;
     text-align: left;
 }
 
@@ -377,7 +376,7 @@ label {
     padding: 0 10px;
 }
 
-.fixed-table-container thead th:first-child{
+.fixed-table-container thead th:first-child {
     border-radius: 0;
 }
 
@@ -403,4 +402,24 @@ label {
 
 .run-status-stopped {
     background-position: -61px -28px;
+}
+
+.stepper .stepper-title {
+    position: absolute;
+    top: 25px;
+    width: 100px;
+    font-weight: 400;
+    font-size: 14px;
+}
+
+.stepper li.current .stepper-title {
+    color: #1ba1e2;
+}
+
+.nav-tabs-custom > .nav-tabs > li.active {
+    border-top-color: #1898eb;
+}
+
+.js-images .bootstrap-table td{
+    border: none;
 }

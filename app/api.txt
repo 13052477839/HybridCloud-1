@@ -127,3 +127,4 @@ public class PadingResult{
     private int total;
     private Object list;
 }
+

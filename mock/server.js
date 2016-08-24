@@ -215,7 +215,7 @@ Mock.mock('api/v1.0/volumes?order=asc&offset=0&limit=10', 'get', {
     total: 2
 });
 
-Mock.mock('api/v1.0/instances?order=asc&offset=0&limit=10','get',{
+Mock.mock('api/v1.0/instances?order=asc&offset=0&limit=10', 'get', {
     list: [
         {
             "amiLaunchIndex": 0,
@@ -674,4 +674,153 @@ Mock.mock('api/v1.0/instances?order=asc&offset=0&limit=10','get',{
         }
     ],
     total: 4
+});
+
+Mock.mock('api/v1.0/images/quickStart?order=asc&offset=0&limit=10', 'get', {
+    list: [
+        {
+            "description": "Amazon Linux AMI 2016.03.3 (HVM), SSD Volume Type",
+            "freeTier": true,
+            "imageId64": "ami-8e6aa0e3",
+            "platform": "amazon",
+            "ports": [
+                22
+            ],
+            "position": 0,
+            "rootDeviceType": "ebs",
+            "title": "Amazon Linux AMI 2016.03.3 (HVM), SSD Volume Type",
+            "totalImageSize": 8,
+            "virtualizationType": "hvm"
+        },
+        {
+            "description": "Red Hat Enterprise Linux 版本 7.2 (HVM)，EBS 通用 (SSD) 卷类型",
+            "freeTier": true,
+            "imageId64": "ami-52d1183f",
+            "platform": "rhel",
+            "ports": [
+                22
+            ],
+            "position": 1,
+            "rootDeviceType": "ebs",
+            "title": "Red Hat Enterprise Linux 7.2 (HVM)，SSD 卷类型",
+            "totalImageSize": 10,
+            "virtualizationType": "hvm"
+        },
+        {
+            "description": "SUSE Linux Enterprise Server 12 SP1 (HVM)， EBS 通用型 (SSD) 卷类型。公有云， 高级系统管理， Web 与脚本， 和早期的模块功能。",
+            "freeTier": true,
+            "imageId64": "ami-41559c2c",
+            "platform": "suse",
+            "ports": [
+                22
+            ],
+            "position": 2,
+            "rootDeviceType": "ebs",
+            "title": "SUSE Linux Enterprise Server 12 SP1 (HVM)， SSD 卷类型。",
+            "totalImageSize": 10,
+            "virtualizationType": "hvm"
+        },
+        {
+            "description": "Ubuntu Server 14.04 LTS (HVM)，EBS 通用 (SSD) 卷类型，由 Canonical 提供支持 (http://www.ubuntu.com/cloud/services)。",
+            "freeTier": true,
+            "imageId64": "ami-0220b23b",
+            "platform": "canonical",
+            "ports": [
+                22
+            ],
+            "position": 3,
+            "rootDeviceType": "ebs",
+            "title": "Ubuntu Server 14.04 LTS (HVM)，SSD 卷类型",
+            "totalImageSize": 8,
+            "virtualizationType": "hvm"
+        },
+        {
+            "description": "Microsoft Windows 2012 R2 Standard edition with 64-bit architecture.[简体中文]",
+            "freeTier": true,
+            "imageId64": "ami-4d1bce20",
+            "platform": "windows",
+            "ports": [
+                3389
+            ],
+            "position": 4,
+            "rootDeviceType": "ebs",
+            "title": "Microsoft Windows Server 2012 R2 Base（简体中文）",
+            "totalImageSize": 40,
+            "virtualizationType": "hvm"
+        },
+        {
+            "description": "Microsoft Windows 2012 R2 Standard edition with 64-bit architecture.[繁体中文（香港）]",
+            "freeTier": true,
+            "imageId64": "ami-5a19cc37",
+            "platform": "windows",
+            "ports": [
+                3389
+            ],
+            "position": 5,
+            "rootDeviceType": "ebs",
+            "title": "Microsoft Windows Server 2012 R2 Base（繁体中文，香港）",
+            "totalImageSize": 40,
+            "virtualizationType": "hvm"
+        },
+        {
+            "description": "Microsoft Windows 2012 R2 Standard edition with 64-bit architecture.[繁体中文]",
+            "freeTier": true,
+            "imageId64": "ami-971fcafa",
+            "platform": "windows",
+            "ports": [
+                3389
+            ],
+            "position": 6,
+            "rootDeviceType": "ebs",
+            "title": "Microsoft Windows Server 2012 R2 Base（繁体中文）",
+            "totalImageSize": 40,
+            "virtualizationType": "hvm"
+        },
+        {
+            "description": "Microsoft Windows 2012 R2 Standard edition with 64-bit architecture.[英语]",
+            "freeTier": true,
+            "imageId64": "ami-2b1ecb46",
+            "platform": "windows",
+            "ports": [
+                3389
+            ],
+            "position": 7,
+            "rootDeviceType": "ebs",
+            "title": "Microsoft Windows Server 2012 R2 Base (English)",
+            "totalImageSize": 30,
+            "virtualizationType": "hvm"
+        },
+        {
+            "description": "Microsoft Windows Server 2012 R2 Standard edition, 64-bit architecture, Microsoft SQL Server 2016 Express edition. [English]",
+            "freeTier": false,
+            "imageId64": "ami-931fcafe",
+            "platform": "windows",
+            "ports": [
+                1433,
+                3389
+            ],
+            "position": 8,
+            "rootDeviceType": "ebs",
+            "title": "Microsoft Windows Server 2012 R2 with SQL Server Express",
+            "totalImageSize": 50,
+            "virtualizationType": "hvm"
+        },
+        {
+            "description": "Microsoft Windows Server 2012 R2 Standard edition, 64-bit architecture, Microsoft SQL Server 2016 Web edition. [English]",
+            "freeTier": false,
+            "imageId64": "ami-8d1ecbe0",
+            "platform": "windows",
+            "ports": [
+                1433,
+                3389
+            ],
+            "position": 9,
+            "rootDeviceType": "ebs",
+            "title": "Microsoft Windows Server 2012 R2 with SQL Server Web",
+            "totalImageSize": 50,
+            "virtualizationType": "hvm"
+        }
+    ],
+    region: "cn-north-1",
+    total: 32
 });
