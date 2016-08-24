@@ -2,7 +2,9 @@ define(function(require, exports, module){
 
     var Util = require('util/util');
 
-    function Create(){}
+    function Create(){
+        this.choosenImage;
+    }
 
     module.exports = Create;
 
@@ -24,6 +26,9 @@ define(function(require, exports, module){
             type: 'default',
             onStep: function(index, step){
                 $('.stepper-content-wrapper').html($('#step' + index).html());
+            },
+            onStepClick: function(index, step){
+
             }
         });
         $('#stepper li').map(function(index, domElement){
