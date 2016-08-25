@@ -5,6 +5,7 @@ define(function(require, exports, module) {
         Util._ajaxSetup();
         $.extend($.fn.bootstrapTable.defaults, $.fn.bootstrapTable.locales['zh-CN']);
         moment.locale('zh-CN');
+        Util.isLogin();
     }
     module.exports = Index;
 
@@ -16,5 +17,6 @@ define(function(require, exports, module) {
         $('aside.main-sidebar').load('app/sider/sider.html?v=' + version);
         $('aside#modal').load('app/util/dialog.html?v=' + version);
         //$('footer.main-footer').load('app/footer/footer.html');
-    }
+    };
+
 });

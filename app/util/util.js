@@ -24,8 +24,20 @@ define(function (require) {
                     $a.parent().addClass('active');
                 }
             });
-            $('div.content-wrapper').css('min-height',$(window).height());
+            $('div.content-wrapper').css('min-height', $(window).height());
         }
+    };
+
+    //==============================
+    //  is login
+    //==============================
+    var isLogin = function () {
+        var accessToken = window.localStorage.accessToken;
+        //if(accessToken&&trim(accessToken)!=''){
+            $('body').css('display', 'inherit');
+        //}else{
+            //window.location.href = 'login.html';
+        //}
     };
 
     //==============================
@@ -65,19 +77,19 @@ define(function (require) {
                 // status: success, error, timeout
                 // xhr.status: 200, 404 500..., 0
                 /*if(xhr.status === 404 ) {
-                    $('.content-wrapper').load('app/util/404.html?v=' + version);
-                }
-                if(xhr.status === 500) {
-                    $('.content-wrapper').load('app/util/500.html?v=' + version);
-                }
-                if(status === 'timeout') {
-                    alertDialog('请求超时！');
-                }
-                var sessionStatus = xhr.getResponseHeader('sessionStatus');
-                if(sessionStatus === 'timeout') {
-                    alertDialog('登录超时，请重新登录！');
-                    setTimeout(function(){window.location.href = 'login.html';},3000);
-                }*/
+                 $('.content-wrapper').load('app/util/404.html?v=' + version);
+                 }
+                 if(xhr.status === 500) {
+                 $('.content-wrapper').load('app/util/500.html?v=' + version);
+                 }
+                 if(status === 'timeout') {
+                 alertDialog('请求超时！');
+                 }
+                 var sessionStatus = xhr.getResponseHeader('sessionStatus');
+                 if(sessionStatus === 'timeout') {
+                 alertDialog('登录超时，请重新登录！');
+                 setTimeout(function(){window.location.href = 'login.html';},3000);
+                 }*/
             }
         });
     };
@@ -85,24 +97,24 @@ define(function (require) {
     //====================================================
     // alertDialog
     //====================================================
-    var alertDialog = function(text) {
+    var alertDialog = function (text) {
         $('#dialog-alert p').text(text);
         $('#dialog-alert').modal({
-            backdrop : true,
-            keyboard : true,
-            show : true
+            backdrop: true,
+            keyboard: true,
+            show: true
         });
     };
 
     //====================================================
     // confrimDialog
     //====================================================
-    var confirmDialog = function(text, callback) {
+    var confirmDialog = function (text, callback) {
         $('#dialog-confirm p').text(text);
         $('#dialog-confirm').modal({
-            backdrop : true,
-            keyboard : true,
-            show : true
+            backdrop: true,
+            keyboard: true,
+            show: true
         });
         $('#dialog-confirm .btn-confirm').unbind().click(callback);
     };
@@ -110,7 +122,7 @@ define(function (require) {
     //====================================================
     // notify: default success info alert warning
     //====================================================
-    var notify = function(title, content, type){
+    var notify = function (title, content, type) {
         $.Notify({
             caption: title,
             content: content,
@@ -124,6 +136,7 @@ define(function (require) {
         _ajaxSetup: _ajaxSetup,
         alertDialog: alertDialog,
         confirmDialog: confirmDialog,
-        notify: notify
+        notify: notify,
+        isLogin: isLogin
     }
 });
