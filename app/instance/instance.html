@@ -12,37 +12,9 @@
 </section>
 
 <section class="content">
-    <div class="row">
-        <div class="col-xs-12">
-            <div class="box">
-                <div class="box-header">
-                    <h3 class="box-title">账号1的云主机</h3>
-                    <div class="box-tools pull-right">
-                        <button type="button" class="btn btn-box-tool" data-widget="collapse">
-                            <i class="fa fa-minus"></i>
-                        </button>
-                        <button type="button" class="btn btn-box-tool" data-widget="remove">
-                            <i class="fa fa-times"></i>
-                        </button>
-                    </div>
-                </div>
-                <div class="box-body">
-                    <table id="instanceTable"></table>
-                </div>
-
-            </div>
-        </div>
+    <div class="row" id="instance-content-wrapper">
     </div>
 </section>
-
-<div style="display: none;">
-    <div id="instanceTableToolbar">
-        <a class="create-btn" href="#/instance/create">
-            <i class="fa fa-plus"></i>
-            创建
-        </a>
-    </div>
-</div>
 
 <script>
     seajs.use('instance/main', function (main) {

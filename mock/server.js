@@ -1867,4 +1867,42 @@ Mock.mock('api/v1.0/flavors?order=asc', 'get', {
     ]
 });
 
-/*Mock.mock('api/v1.0/login', 'get',{});*/
+Mock.mock('api/v1.0/login/first', 'get', {
+
+});
+
+Mock.mock('api/v1.0/login', 'post',{
+    success: true,
+    object: {
+        token: 'sdaaafadsfewafeagfadgdfdfas',
+        user: {
+            id: 'userid',
+            name: 'yangkai',
+            accounts: [{
+                sequenceId: 'sequenceId-1',
+                type: 'amazon',
+                alias: 'amazon-yangkai-001'
+            },{
+                sequenceId: 'sequenceId-2',
+                type: 'amazon',
+                alias: 'amazon-yangkai-002'
+            },{
+                sequenceId: 'sequenceId-3',
+                type: 'aliyun',
+                alias: 'aliyun-yangkai-001'
+            },{
+                sequenceId: 'sequenceId-4',
+                type: 'qingCloud',
+                alias: 'qingCloud-yangkai-001'
+            },{
+                sequenceId: 'sequenceId-5',
+                type: 'tecent',
+                alias: 'tecent-yangkai-001'
+            },{
+                sequenceId: 'sequenceId-6',
+                type: 'aliyun',
+                alias: 'aliyun-yangkai-002'
+            }]
+        }
+    }
+});
