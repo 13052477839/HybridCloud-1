@@ -11,7 +11,9 @@ define(function (require, exports, module) {
     // init
     //==============================
     Instance.prototype.init = function () {
-        this.instanceTable()
+        this.instanceTable();
+
+        $('button, input').tooltip();
     };
 
     //==============================
@@ -24,6 +26,7 @@ define(function (require, exports, module) {
             url: API_URL.INSTANCES,
             toolbar: '#instanceTableToolbar',
             dataField: 'list',
+            pageSize: 5,
             //detailView: true,
             //sortName: 'name',
             //sortOrder: 'asc',
@@ -41,15 +44,15 @@ define(function (require, exports, module) {
                 field: 'availabilityZone'
             }, {
                 title: '状态',
-                field: 'instanceState',
+                field: 'state',
                 formatter: function (value, row, index) {
-                    if (value === 'running') {
-                        return '<i class="run-status run-status-running"></i> ' + value;
+                    if (value.name === 'running') {
+                        return '<i class="run-status run-status-running"></i> ' + value.name;
                     }
-                    else if(value === 'stopped'){
-                        return '<i class="run-status run-status-stopped"></i> ' + value;
+                    else if(value.name === 'stopped'){
+                        return '<i class="run-status run-status-stopped"></i> ' + value.name;
                     }else {
-                        return value;
+                        return value.name;
                     }
                 }
             }, {

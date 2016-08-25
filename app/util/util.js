@@ -24,7 +24,7 @@ define(function (require) {
                     $a.parent().addClass('active');
                 }
             });
-            //$('div.content-wrapper').css('min-height',$(window).height());
+            $('div.content-wrapper').css('min-height',$(window).height());
         }
     };
 

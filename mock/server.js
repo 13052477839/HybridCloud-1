@@ -203,7 +203,7 @@ Mock.mock('api/v1.0/volumes?order=asc&offset=0&limit=10', 'get', {
     total: 2
 });
 
-Mock.mock('api/v1.0/instances?order=asc&offset=0&limit=10', 'get', {
+Mock.mock('api/v1.0/instances?order=asc&offset=0&limit=5', 'get', {
     list: [
         {
             "amiLaunchIndex": 0,
@@ -1866,3 +1866,5 @@ Mock.mock('api/v1.0/flavors?order=asc', 'get', {
         }
     ]
 });
+
+/*Mock.mock('api/v1.0/login', 'get',{});*/
