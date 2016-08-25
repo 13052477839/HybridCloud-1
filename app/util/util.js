@@ -33,11 +33,11 @@ define(function (require) {
     //==============================
     var isLogin = function () {
         var accessToken = window.localStorage.accessToken;
-        //if(accessToken&&trim(accessToken)!=''){
+        if (accessToken && accessToken.trim() != '') {
             $('body').css('display', 'inherit');
-        //}else{
-            //window.location.href = 'login.html';
-        //}
+        } else {
+            window.location.href = 'login.html';
+        }
     };
 
     //==============================
