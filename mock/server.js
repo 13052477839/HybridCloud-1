@@ -27,54 +27,42 @@ Mock.mock('api/v1.0/users/1', 'get', {
         accounts: [
             {
                 sequenceId: "25552525",
-                id: "25552525",
-                name: "awsaccount1",
-                password: "ssssssss",
+                alias: "awsaccount1",
                 type: "aws",
                 awsAccessKeyId: "SSSEERERER",
                 awsSecretAccessKey: "EEEEEEEEEE########"
             },
             {
                 sequenceId: "25552525",
-                id: "25552525",
-                name: "awsaccount1",
-                password: "ssssssss",
+                alias: "awsaccount1",
                 type: "aws",
                 awsAccessKeyId: "SSSEERERER",
                 awsSecretAccessKey: "EEEEEEEEEE########"
             },
             {
                 sequenceId: "25552525",
-                id: "25552525",
-                name: "awsaccount1",
-                password: "ssssssss",
+                alias: "awsaccount1",
                 type: "aws",
                 awsAccessKeyId: "SSSEERERER",
                 awsSecretAccessKey: "EEEEEEEEEE########"
             },
             {
                 sequenceId: "25552525",
-                id: "25552525",
-                name: "awsaccount1",
-                password: "ssssssss",
+                alias: "awsaccount1",
                 type: "aws",
                 awsAccessKeyId: "SSSEERERER",
                 awsSecretAccessKey: "EEEEEEEEEE########"
             },
             {
                 sequenceId: "25552525",
-                id: "25552525",
-                name: "awsaccount1",
-                password: "ssssssss",
+                alias: "awsaccount1",
                 type: "aws",
                 awsAccessKeyId: "SSSEERERER",
                 awsSecretAccessKey: "EEEEEEEEEE########"
             },
             {
                 sequenceId: "25552525",
-                id: "25552525",
-                name: "awsaccount1",
-                password: "ssssssss",
+                alias: "awsaccount1",
                 type: "aws",
                 awsAccessKeyId: "SSSEERERER",
                 awsSecretAccessKey: "EEEEEEEEEE########"

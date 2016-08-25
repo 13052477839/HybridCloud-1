@@ -45,10 +45,13 @@ define(function (require, exports, module) {
         $accountWrapper.find('.account-close-btn').click(function () {
             $accountWrapper.remove();
         });
+        var alias = $('<div class="form-group"></div>').appendTo($accountWrapper);
+        alias.append('<label for="accountAlias' + add.accountNumber + '" class="col-sm-4 control-label">别名</label>');
+        alias.append('<div class="col-sm-7"><input type="text" class="form-control" id="accountAlias' + add.accountNumber + '" name="accounts.alias"></div>');
         var type = $('<div class="form-group"></div>').appendTo($accountWrapper);
         type.append('<label for="accountType' + add.accountNumber + '" class="col-sm-4 control-label">云服务提供商</label>');
         type.append('<div class="col-sm-7 checkbox"><label><input type="checkbox" name="accounts.type" id="accountType' + add.accountNumber + '" value="aws" checked>AWS</label></div>');
-        var account = $('<div class="form-group"></div>').appendTo($accountWrapper);
+        /*var account = $('<div class="form-group"></div>').appendTo($accountWrapper);
         account.append('<label for="accountId' + add.accountNumber + '" class="col-sm-4 control-label">账户</label>');
         account.append('<div class="col-sm-7"><input type="text" class="form-control" id="accountId' + add.accountNumber + '" name="accounts.id"></div>');
         var name = $('<div class="form-group"></div>').appendTo($accountWrapper);
@@ -56,7 +59,7 @@ define(function (require, exports, module) {
         name.append('<div class="col-sm-7"><input type="text" class="form-control" id="accountName' + add.accountNumber + '" name="accounts.name"></div>');
         var password = $('<div class="form-group"></div>').appendTo($accountWrapper);
         password.append('<label for="accountPassword' + add.accountNumber + '" class="col-sm-4 control-label">密码</label>');
-        password.append('<div class="col-sm-7"><input type="text" class="form-control" id="accountPassword' + add.accountNumber + '" name="accounts.password"></div>');
+        password.append('<div class="col-sm-7"><input type="text" class="form-control" id="accountPassword' + add.accountNumber + '" name="accounts.password"></div>');*/
         var accessKey = $('<div class="form-group"></div>').appendTo($accountWrapper);
         accessKey.append('<label for="accountAccessKey' + add.accountNumber + '" class="col-sm-4 control-label">AccessKeyId</label>');
         accessKey.append('<div class="col-sm-7"><input type="text" class="form-control" id="accountAccessKey' + add.accountNumber + '" name="accounts.awsAccessKeyId"></div>');
@@ -70,6 +73,7 @@ define(function (require, exports, module) {
     // add account validator
     //=============================
     Add.prototype.validator = function () {
+        var add = this;
         var $form = $('#user-add-form');
         $form.bootstrapValidator({
             feedbackIcons: {
@@ -189,9 +193,10 @@ define(function (require, exports, module) {
         accountWrappers.each(function (i, v) {
             var account = {
                 type: $(v).find('input[name="accounts.type"]').val(),
-                id: $(v).find('input[name="accounts.id"]').val(),
+                alias: $(v).find('input[name="accounts.alias"]').val(),
+                /*id: $(v).find('input[name="accounts.id"]').val(),
                 name: $(v).find('input[name="accounts.name"]').val(),
-                password: $(v).find('input[name="accounts.password"]').val(),
+                password: $(v).find('input[name="accounts.password"]').val(),*/
                 awsAccessKeyId: $(v).find('input[name="accounts.awsAccessKeyId"]').val(),
                 awsSecretAccessKey: $(v).find('input[name="accounts.awsSecretAccessKey"]').val()
             };
@@ -214,7 +219,7 @@ define(function (require, exports, module) {
     };
 
     //=============================
-    // add submit
+    // edit submit
     //=============================
     Add.prototype.editSubmit = function () {
         var add = this;

@@ -81,11 +81,11 @@ define(function (require, exports, module) {
             $($(a).attr('href')).find('table').bootstrapTable($.extend(Util.gridUtilOptions(), {
                 showColumns: false,
                 showHeader: false,
-                url: API_URL.IMAGES + '/quickStart',
+                url: API_URL.IMAGES,
                 dataField: 'list',
-                /*queryParams: function(params){
-                 return $.extend(params, {'is-public': false});
-                 },*/
+                queryParams: function(params){
+                 return $.extend(params, {'is-public': true});
+                 },
                 columns: [{
                     title: '',
                     field: '',
@@ -118,7 +118,6 @@ define(function (require, exports, module) {
                 }, {
                     title: '',
                     field: '',
-                    align: 'right',
                     formatter: function (value, row, index) {
                         return '<button class="btn-normal">选择</button>'
                     }
@@ -135,6 +134,15 @@ define(function (require, exports, module) {
     Create.prototype.flavor = function () {
         var create = this;
         $table = $('#flavorTable');
+        var thistoolbar = function () {
+            return ['<ul class="dropdown-menu">',
+                '<li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>',
+                '<li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>',
+                '<li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>',
+                '<li role="presentation" class="divider"></li>',
+                '<li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>',
+                '</ul>'].join('');
+        };
         $table.bootstrapTable($.extend(Util.gridUtilOptions(), {
             url: API_URL.FLAVORS,
             dataField: 'list',
@@ -154,7 +162,7 @@ define(function (require, exports, module) {
                 });
                 return result;
             },
-            //toolbar: '<a class="create-btn" href="#/instance/create"><i class="fa fa-plus"></i>创建</a>',
+            toolbar: thistoolbar(),
             /*queryParams: function(params){
              return $.extend(params, {'is-public': false});
              },*/
@@ -228,5 +236,6 @@ define(function (require, exports, module) {
         }));
         $('.bootstrap-table .search input').attr('placeholder', '')
             .parent().append('<span></span>');
+
     };
 });

@@ -75,10 +75,8 @@ define(function (require, exports, module) {
                         $.each(accounts, function (i, v) {
                             $account = $('<div class="col-sm-5 account-detail"></div>').appendTo($detail.find('.account-detail-wrapper'));
                             $account.append('<h4>账号' + (i + 1) + '</h4>');
-                            $account.append('<span><b>type: </b>' + v.type + '</span><br>');
-                            $account.append('<span><b>id: </b>' + v.id + '</span><br>');
-                            $account.append('<span><b>name: </b>' + v.name + '</span><br>');
-                            $account.append('<span><b>password: </b>' + v.password + '</span><br>');
+                            $account.append('<span><b>别名: </b>' + v.alias + '</span><br>');
+                            $account.append('<span><b>云服务提供商: </b>' + v.type + '</span><br>');
                             $account.append('<span><b>AccessKeyId: </b>' + v.awsAccessKeyId + '</span><br>');
                             $account.append('<span><b>SecretAccessKey: </b>' + v.awsSecretAccessKey + '</span><br>');
                         });
