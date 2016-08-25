@@ -70,6 +70,10 @@ define(function (require, exports, module) {
                     dataType: 'json',
                     success: function(result) {
                         if(result){
+                            /*window.localStorage.accessToken = result.accessToken;
+                            window.localStorage.userId = result.userId;
+                            window.localStorage.userName = result.userName;
+                            window.localStorage.accounts = result.accounts;*/
                             window.location.href = BASE;
                         }else{
                             $.Notify({
