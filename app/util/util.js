@@ -69,10 +69,10 @@ define(function (require) {
         $.ajaxSetup({
             //timeout: 20000,
             contentType: "application/json;charset=utf-8",
-            beforeSend: function (xhr) {
+            /*beforeSend: function (xhr) {
                 var accessToken = window.localStorage.accessToken;
                 xhr.setRequestHeader('Access-Token', accessToken);
-            },
+            },*/
             complete: function (xhr, status) {
                 // status: success, error, timeout
                 // xhr.status: 200, 404 500..., 0
