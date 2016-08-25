@@ -71,7 +71,7 @@ define(function (require, exports, module) {
                 field: 'keyName'
             }, {
                 title: '监控',
-                field: 'monitoring'
+                field: 'monitoring.state'
             }, {
                 title: '启动时间',
                 field: 'launchTime',
@@ -86,11 +86,11 @@ define(function (require, exports, module) {
                     var sg = row.securityGroups;
                     return sg[0].securityGroupName;
                 }
-            }, {
+            }, /*{
                 title: '拥有者',
                 field: 'owner',
                 visible: false
-            }, {
+            },*/ {
                 title: '虚拟化',
                 field: 'virtualizationType',
                 visible: false

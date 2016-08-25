@@ -5,9 +5,16 @@ define(function(require, exports, module) {
     module.exports = Header;
 
     //================================
-    //
+    // init
     //================================
     Header.prototype.init = function() {
         
-    }
+    };
+
+    //================================
+    //  feedback
+    //================================
+    Header.prototype.feedback = function() {
+        
+    };
 });
