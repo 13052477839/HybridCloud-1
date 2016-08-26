@@ -664,7 +664,7 @@ Mock.mock('api/v1.0/instances?order=asc&offset=0&limit=5', 'get', {
     total: 4
 });
 
-Mock.mock('api/v1.0/images/quickStart?order=asc&offset=0&limit=10', 'get', {
+Mock.mock('api/v1.0/images?order=asc&offset=0&limit=10', 'get', {
     list: [
         {
             "description": "Amazon Linux AMI 2016.03.3 (HVM), SSD Volume Type",
@@ -814,1057 +814,1059 @@ Mock.mock('api/v1.0/images/quickStart?order=asc&offset=0&limit=10', 'get', {
 });
 
 Mock.mock('api/v1.0/flavors?order=asc', 'get', {
-    "families": [
-        {
-            "description": "微型实例是低成本的实例，可提供少量的 CPU 资源。微型实例很适合吞吐量较低的应用程序和需要定期增加计算周期的网站，但不适合需要持久 CPU 性能的应用程序。微型实例的常见用途包含: 低流量网站或博客、较小的管理应用程序、堡垒主机和开发 EC2 功能的免费试用。",
-            "name": "微型实例",
-            "types": [
-                {
-                    "architectures": [
-                        "x86_64",
-                        "i386"
-                    ],
-                    "cpu": {
-                        "cores": 1,
-                        "units": "最多 2 个"
-                    },
-                    "description": "T1 微型",
-                    "ebsEncryptionSupported": false,
-                    "ebsOnly": true,
-                    "family": "微型实例",
-                    "freeTierEligible": true,
-                    "legacy": true,
-                    "memory": 0.613,
-                    "networkPerformance": "Very Low",
-                    "physicalProcessor": "Variable",
-                    "typeName": "t1.micro",
-                    "virtualizationTypes": [
-                        "paravirtual"
-                    ],
-                    "vpc": true,
-                    "windows": true
-                }
-            ]
-        },
-        {
-            "description": "通用型实例可实现计算、内存和网络资源的平衡，是很多应用程序的良好选择。建议将通用型实例用于小型和中型数据库、需要附加内存和缓存集群的数据处理作业，以及运行 SAP 的后端服务器、Microsoft SharePoint 和其他企业应用程序。",
-            "name": "通用型",
-            "types": [
-                {
-                    "architectures": [
-                        "x86_64",
-                        "i386"
-                    ],
-                    "cpu": {
-                        "cores": 1,
-                        "units": "变量"
-                    },
-                    "description": "T2 微型",
-                    "ebsEncryptionSupported": true,
-                    "ebsOnly": true,
-                    "family": "通用型",
-                    "freeTierEligible": true,
-                    "memory": 1,
-                    "networkPerformance": "Low to Moderate",
-                    "physicalProcessor": "Intel Xeon Family",
-                    "processorFeatures": {
-                        "AES-NI": true,
-                        "AVX": true,
-                        "Turbo": true
-                    },
-                    "processorSpeed": 2.5,
-                    "spotSupported": false,
-                    "typeName": "t2.micro",
-                    "virtualizationTypes": [
-                        "hvm"
-                    ],
-                    "vpc": true,
-                    "vpcOnly": true,
-                    "windows": true
-                },
-                {
-                    "architectures": [
-                        "x86_64",
-                        "i386"
-                    ],
-                    "cpu": {
-                        "cores": 1,
-                        "units": "变量"
-                    },
-                    "description": "T2 小型",
-                    "ebsEncryptionSupported": true,
-                    "ebsOnly": true,
-                    "family": "通用型",
-                    "memory": 2,
-                    "networkPerformance": "Low to Moderate",
-                    "physicalProcessor": "Intel Xeon Family",
-                    "processorFeatures": {
-                        "AES-NI": true,
-                        "AVX": true,
-                        "Turbo": true
-                    },
-                    "processorSpeed": 2.5,
-                    "spotSupported": false,
-                    "typeName": "t2.small",
-                    "virtualizationTypes": [
-                        "hvm"
-                    ],
-                    "vpc": true,
-                    "vpcOnly": true,
-                    "windows": true
-                },
-                {
-                    "architectures": [
-                        "x86_64",
-                        "i386"
-                    ],
-                    "cpu": {
-                        "cores": 2,
-                        "units": "变量"
-                    },
-                    "description": "T2 中型",
-                    "ebsEncryptionSupported": true,
-                    "ebsOnly": true,
-                    "family": "通用型",
-                    "memory": 4,
-                    "networkPerformance": "Low to Moderate",
-                    "physicalProcessor": "Intel Xeon Family",
-                    "processorFeatures": {
-                        "AES-NI": true,
-                        "AVX": true,
-                        "Turbo": true
-                    },
-                    "processorSpeed": 2.5,
-                    "spotSupported": false,
-                    "typeName": "t2.medium",
-                    "virtualizationTypes": [
-                        "hvm"
-                    ],
-                    "vpc": true,
-                    "vpcOnly": true,
-                    "windows": true
-                },
-                {
-                    "architectures": [
-                        "x86_64"
-                    ],
-                    "cpu": {
-                        "cores": 2,
-                        "units": "变量"
-                    },
-                    "description": "T2 大型",
-                    "ebsEncryptionSupported": true,
-                    "ebsOnly": true,
-                    "family": "通用型",
-                    "memory": 8,
-                    "networkPerformance": "Low to Moderate",
-                    "physicalProcessor": "Intel Xeon Family",
-                    "processorFeatures": {
-                        "AES-NI": true,
-                        "AVX": true,
-                        "Turbo": true
-                    },
-                    "processorSpeed": 2.4,
-                    "spotSupported": false,
-                    "typeName": "t2.large",
-                    "virtualizationTypes": [
-                        "hvm"
-                    ],
-                    "vpc": true,
-                    "vpcOnly": true,
-                    "windows": true
-                },
-                {
-                    "architectures": [
-                        "x86_64"
-                    ],
-                    "cpu": {
-                        "cores": 1,
-                        "units": "3"
-                    },
-                    "description": "M3 中型",
-                    "dual": true,
-                    "ebsEncryptionSupported": true,
-                    "ebsOnly": false,
-                    "family": "通用型",
-                    "memory": 3.75,
-                    "networkPerformance": "Moderate",
-                    "physicalProcessor": "Intel Xeon E5-2670v2",
-                    "processorFeatures": {
-                        "AES-NI": true,
-                        "AVX": true,
-                        "Turbo": true
-                    },
-                    "processorSpeed": 2.5,
-                    "storage": {
-                        "count": 1,
-                        "size": 4,
-                        "ssd": true
-                    },
-                    "typeName": "m3.medium",
-                    "virtualizationTypes": [
-                        "paravirtual",
-                        "hvm"
-                    ],
-                    "vpc": true,
-                    "windows": true
-                },
-                {
-                    "architectures": [
-                        "x86_64"
-                    ],
-                    "cpu": {
-                        "cores": 2,
-                        "units": "6.5"
-                    },
-                    "description": "M3 大型",
-                    "dual": true,
-                    "ebsEncryptionSupported": true,
-                    "ebsOnly": false,
-                    "ebsOptimizedSupported": false,
-                    "family": "通用型",
-                    "memory": 7.5,
-                    "networkPerformance": "Moderate",
-                    "physicalProcessor": "Intel Xeon E5-2670v2",
-                    "processorFeatures": {
-                        "AES-NI": true,
-                        "AVX": true,
-                        "Turbo": true
-                    },
-                    "processorSpeed": 2.5,
-                    "storage": {
-                        "count": 1,
-                        "size": 32,
-                        "ssd": true
-                    },
-                    "typeName": "m3.large",
-                    "virtualizationTypes": [
-                        "paravirtual",
-                        "hvm"
-                    ],
-                    "vpc": true,
-                    "windows": true
-                },
-                {
-                    "architectures": [
-                        "x86_64"
-                    ],
-                    "cpu": {
-                        "cores": 4,
-                        "units": "13"
-                    },
-                    "description": "M3 超大型",
-                    "dual": true,
-                    "ebsEncryptionSupported": true,
-                    "ebsOnly": false,
-                    "ebsOptimizedSupported": true,
-                    "family": "通用型",
-                    "memory": 15,
-                    "networkPerformance": "High",
-                    "physicalProcessor": "Intel Xeon E5-2670v2",
-                    "processorFeatures": {
-                        "AES-NI": true,
-                        "AVX": true,
-                        "Turbo": true
-                    },
-                    "processorSpeed": 2.5,
-                    "storage": {
-                        "count": 2,
-                        "size": 40,
-                        "ssd": true
-                    },
-                    "typeName": "m3.xlarge",
-                    "virtualizationTypes": [
-                        "paravirtual",
-                        "hvm"
-                    ],
-                    "vpc": true,
-                    "windows": true
-                },
-                {
-                    "architectures": [
-                        "x86_64"
-                    ],
-                    "cpu": {
-                        "cores": 8,
-                        "units": "26"
-                    },
-                    "description": "M3 双倍超大型",
-                    "dual": true,
-                    "ebsEncryptionSupported": true,
-                    "ebsOnly": false,
-                    "ebsOptimizedSupported": true,
-                    "family": "通用型",
-                    "memory": 30,
-                    "networkPerformance": "High",
-                    "physicalProcessor": "Intel Xeon E5-2670v2",
-                    "processorFeatures": {
-                        "AES-NI": true,
-                        "AVX": true,
-                        "Turbo": true
-                    },
-                    "processorSpeed": 2.5,
-                    "storage": {
-                        "count": 2,
-                        "size": 80,
-                        "ssd": true
-                    },
-                    "typeName": "m3.2xlarge",
-                    "virtualizationTypes": [
-                        "paravirtual",
-                        "hvm"
-                    ],
-                    "vpc": true,
-                    "windows": true
-                },
-                {
-                    "architectures": [
-                        "x86_64",
-                        "i386"
-                    ],
-                    "cpu": {
-                        "cores": 1,
-                        "units": "1"
-                    },
-                    "description": "M1 小型",
-                    "ebsEncryptionSupported": false,
-                    "family": "通用型",
-                    "legacy": true,
-                    "memory": 1.7,
-                    "networkPerformance": "Low",
-                    "physicalProcessor": "Intel Xeon Family",
-                    "riNotOfferedInRegions": [
-                        "cn-north-1",
-                        "cn-northwest-1"
-                    ],
-                    "storage": {
-                        "count": 1,
-                        "size": 160,
-                        "ssd": false
-                    },
-                    "typeName": "m1.small",
-                    "virtualizationTypes": [
-                        "paravirtual"
-                    ],
-                    "vpc": true,
-                    "windows": true
-                }
-            ]
-        },
-        {
-            "description": "计算优化型实例的 vCPU 与内存比率比其他系列高，且每个 vCPU 的成本是所有 Amazon EC2 实例类型中最低的。我们建议用计算优化型实例运行 CPU 限制型横向扩展应用程序。此类应用的示例包括，高流量前端集群、按需批量处理、分布式分析、Web 服务器、批量处理以及高性能科学与工程应用程序。",
-            "name": "计算优化",
-            "types": [
-                {
-                    "architectures": [
-                        "x86_64"
-                    ],
-                    "cpu": {
-                        "cores": 2,
-                        "units": "8"
-                    },
-                    "description": "C4 大型",
-                    "ebsEncryptionSupported": true,
-                    "ebsOnly": true,
-                    "ebsOptimizedByDefault": true,
-                    "ebsOptimizedSupported": true,
-                    "family": "计算优化",
-                    "memory": 3.75,
-                    "networkPerformance": "Moderate",
-                    "physicalProcessor": "Intel Xeon E5-2666v3",
-                    "placementGroupsSupported": true,
-                    "processorFeatures": {
-                        "AES-NI": true,
-                        "AVX": true,
-                        "Turbo": true
-                    },
-                    "processorSpeed": 2.9,
-                    "typeName": "c4.large",
-                    "virtualizationTypes": [
-                        "hvm"
-                    ],
-                    "vpc": true,
-                    "vpcOnly": true,
-                    "windows": true
-                },
-                {
-                    "architectures": [
-                        "x86_64"
-                    ],
-                    "cpu": {
-                        "cores": 4,
-                        "units": "16"
-                    },
-                    "description": "C4 超大型",
-                    "ebsEncryptionSupported": true,
-                    "ebsOnly": true,
-                    "ebsOptimizedByDefault": true,
-                    "ebsOptimizedSupported": true,
-                    "family": "计算优化",
-                    "memory": 7.5,
-                    "networkPerformance": "High",
-                    "physicalProcessor": "Intel Xeon E5-2666v3",
-                    "placementGroupsSupported": true,
-                    "processorFeatures": {
-                        "AES-NI": true,
-                        "AVX": true,
-                        "Turbo": true
-                    },
-                    "processorSpeed": 2.9,
-                    "typeName": "c4.xlarge",
-                    "virtualizationTypes": [
-                        "hvm"
-                    ],
-                    "vpc": true,
-                    "vpcOnly": true,
-                    "windows": true
-                },
-                {
-                    "architectures": [
-                        "x86_64"
-                    ],
-                    "cpu": {
-                        "cores": 8,
-                        "units": "31"
-                    },
-                    "description": "C4 双倍超大型",
-                    "ebsEncryptionSupported": true,
-                    "ebsOnly": true,
-                    "ebsOptimizedByDefault": true,
-                    "ebsOptimizedSupported": true,
-                    "family": "计算优化",
-                    "memory": 15,
-                    "networkPerformance": "High",
-                    "physicalProcessor": "Intel Xeon E5-2666v3",
-                    "placementGroupsSupported": true,
-                    "processorFeatures": {
-                        "AES-NI": true,
-                        "AVX": true,
-                        "Turbo": true
-                    },
-                    "processorSpeed": 2.9,
-                    "typeName": "c4.2xlarge",
-                    "virtualizationTypes": [
-                        "hvm"
-                    ],
-                    "vpc": true,
-                    "vpcOnly": true,
-                    "windows": true
-                },
-                {
-                    "architectures": [
-                        "x86_64"
-                    ],
-                    "cpu": {
-                        "cores": 16,
-                        "units": "62"
-                    },
-                    "description": "C4 四倍超大型",
-                    "ebsEncryptionSupported": true,
-                    "ebsOnly": true,
-                    "ebsOptimizedByDefault": true,
-                    "ebsOptimizedSupported": true,
-                    "family": "计算优化",
-                    "memory": 30,
-                    "networkPerformance": "High",
-                    "physicalProcessor": "Intel Xeon E5-2666v3",
-                    "placementGroupsSupported": true,
-                    "processorFeatures": {
-                        "AES-NI": true,
-                        "AVX": true,
-                        "Turbo": true
-                    },
-                    "processorSpeed": 2.9,
-                    "typeName": "c4.4xlarge",
-                    "virtualizationTypes": [
-                        "hvm"
-                    ],
-                    "vpc": true,
-                    "vpcOnly": true,
-                    "windows": true
-                },
-                {
-                    "architectures": [
-                        "x86_64"
-                    ],
-                    "cpu": {
-                        "cores": 36,
-                        "units": "132"
-                    },
-                    "description": "C4 八倍超大型",
-                    "ebsEncryptionSupported": true,
-                    "ebsOnly": true,
-                    "ebsOptimizedByDefault": true,
-                    "ebsOptimizedSupported": true,
-                    "family": "计算优化",
-                    "memory": 60,
-                    "networkPerformance": "10 Gigabit",
-                    "physicalProcessor": "Intel Xeon E5-2666v3",
-                    "placementGroupsSupported": true,
-                    "processorFeatures": {
-                        "AES-NI": true,
-                        "AVX": true,
-                        "Turbo": true
-                    },
-                    "processorSpeed": 2.9,
-                    "typeName": "c4.8xlarge",
-                    "virtualizationTypes": [
-                        "hvm"
-                    ],
-                    "vpc": true,
-                    "vpcOnly": true,
-                    "windows": true
-                },
-                {
-                    "architectures": [
-                        "x86_64",
-                        "i386"
-                    ],
-                    "cpu": {
-                        "cores": 2,
-                        "units": "7"
-                    },
-                    "description": "C3 大型",
-                    "ebsEncryptionSupported": true,
-                    "ebsOptimizedSupported": false,
-                    "family": "计算优化",
-                    "memory": 3.75,
-                    "networkPerformance": "Moderate",
-                    "physicalProcessor": "Intel Xeon E5-2680v2",
-                    "placementGroupsSupported": true,
-                    "processorFeatures": {
-                        "AES-NI": true,
-                        "AVX": true,
-                        "Turbo": true
-                    },
-                    "processorSpeed": 2.8,
-                    "storage": {
-                        "count": 2,
-                        "size": 16,
-                        "ssd": true
-                    },
-                    "typeName": "c3.large",
-                    "virtualizationTypes": [
-                        "paravirtual",
-                        "hvm"
-                    ],
-                    "vpc": true,
-                    "windows": true
-                },
-                {
-                    "architectures": [
-                        "x86_64"
-                    ],
-                    "cpu": {
-                        "cores": 4,
-                        "units": "14"
-                    },
-                    "description": "C3 超大型",
-                    "ebsEncryptionSupported": true,
-                    "ebsOptimizedSupported": true,
-                    "family": "计算优化",
-                    "memory": 7.5,
-                    "networkPerformance": "Moderate",
-                    "physicalProcessor": "Intel Xeon E5-2680v2",
-                    "placementGroupsSupported": true,
-                    "processorFeatures": {
-                        "AES-NI": true,
-                        "AVX": true,
-                        "Turbo": true
-                    },
-                    "processorSpeed": 2.8,
-                    "storage": {
-                        "count": 2,
-                        "size": 40,
-                        "ssd": true
-                    },
-                    "typeName": "c3.xlarge",
-                    "virtualizationTypes": [
-                        "paravirtual",
-                        "hvm"
-                    ],
-                    "vpc": true,
-                    "windows": true
-                },
-                {
-                    "architectures": [
-                        "x86_64"
-                    ],
-                    "cpu": {
-                        "cores": 8,
-                        "units": "28"
-                    },
-                    "description": "C3 双倍超大型",
-                    "ebsEncryptionSupported": true,
-                    "ebsOptimizedSupported": true,
-                    "family": "计算优化",
-                    "memory": 15,
-                    "networkPerformance": "High",
-                    "physicalProcessor": "Intel Xeon E5-2680v2",
-                    "placementGroupsSupported": true,
-                    "processorFeatures": {
-                        "AES-NI": true,
-                        "AVX": true,
-                        "Turbo": true
-                    },
-                    "processorSpeed": 2.8,
-                    "storage": {
-                        "count": 2,
-                        "size": 80,
-                        "ssd": true
-                    },
-                    "typeName": "c3.2xlarge",
-                    "virtualizationTypes": [
-                        "paravirtual",
-                        "hvm"
-                    ],
-                    "vpc": true,
-                    "windows": true
-                },
-                {
-                    "architectures": [
-                        "x86_64"
-                    ],
-                    "cpu": {
-                        "cores": 16,
-                        "units": "55"
-                    },
-                    "description": "C3 四倍超大型",
-                    "ebsEncryptionSupported": true,
-                    "ebsOptimizedSupported": true,
-                    "family": "计算优化",
-                    "memory": 30,
-                    "networkPerformance": "High",
-                    "physicalProcessor": "Intel Xeon E5-2680v2",
-                    "placementGroupsSupported": true,
-                    "processorFeatures": {
-                        "AES-NI": true,
-                        "AVX": true,
-                        "Turbo": true
-                    },
-                    "processorSpeed": 2.8,
-                    "storage": {
-                        "count": 2,
-                        "size": 160,
-                        "ssd": true
-                    },
-                    "typeName": "c3.4xlarge",
-                    "virtualizationTypes": [
-                        "paravirtual",
-                        "hvm"
-                    ],
-                    "vpc": true,
-                    "windows": true
-                },
-                {
-                    "architectures": [
-                        "x86_64"
-                    ],
-                    "cpu": {
-                        "cores": 32,
-                        "units": "108"
-                    },
-                    "description": "C3 八倍超大型",
-                    "ebsEncryptionSupported": true,
-                    "ebsOptimizedSupported": false,
-                    "family": "计算优化",
-                    "memory": 60,
-                    "networkPerformance": "10 Gigabit",
-                    "physicalProcessor": "Intel Xeon E5-2680v2",
-                    "placementGroupsSupported": true,
-                    "processorFeatures": {
-                        "AES-NI": true,
-                        "AVX": true,
-                        "Turbo": true
-                    },
-                    "processorSpeed": 2.8,
-                    "storage": {
-                        "count": 2,
-                        "size": 320,
-                        "ssd": true
-                    },
-                    "typeName": "c3.8xlarge",
-                    "virtualizationTypes": [
-                        "paravirtual",
-                        "hvm"
-                    ],
-                    "vpc": true,
-                    "windows": true
-                }
-            ]
-        },
-        {
-            "description": "内存优化型实例的每 GB RAM 的成本是 Amazon EC2 实例类型中最低的。我们建议将内存优化型实例用于很多数据库应用程序、内存缓存和其他分布式缓存以及较大的企业应用程序部署，如 SAP 和 Microsoft SharePoint。",
-            "name": "内存优化",
-            "types": [
-                {
-                    "architectures": [
-                        "x86_64"
-                    ],
-                    "cpu": {
-                        "cores": 2,
-                        "units": "6.5"
-                    },
-                    "description": "R3 大型",
-                    "ebsEncryptionSupported": true,
-                    "ebsOptimizedSupported": false,
-                    "family": "内存优化",
-                    "memory": 15,
-                    "networkPerformance": "Moderate",
-                    "physicalProcessor": "Intel Xeon E5-2670v2",
-                    "placementGroupsSupported": true,
-                    "processorFeatures": {
-                        "AES-NI": true,
-                        "AVX": true,
-                        "Turbo": true
-                    },
-                    "processorSpeed": 2.5,
-                    "storage": {
-                        "count": 1,
-                        "size": 32,
-                        "ssd": true
-                    },
-                    "typeName": "r3.large",
-                    "virtualizationTypes": [
-                        "hvm"
-                    ],
-                    "vpc": true,
-                    "windows": true
-                },
-                {
-                    "architectures": [
-                        "x86_64"
-                    ],
-                    "cpu": {
-                        "cores": 4,
-                        "units": "13"
-                    },
-                    "description": "R3 超大型",
-                    "ebsEncryptionSupported": true,
-                    "ebsOptimizedSupported": true,
-                    "family": "内存优化",
-                    "memory": 30.5,
-                    "networkPerformance": "Moderate",
-                    "physicalProcessor": "Intel Xeon E5-2670v2",
-                    "placementGroupsSupported": true,
-                    "processorFeatures": {
-                        "AES-NI": true,
-                        "AVX": true,
-                        "Turbo": true
-                    },
-                    "processorSpeed": 2.5,
-                    "storage": {
-                        "count": 1,
-                        "size": 80,
-                        "ssd": true
-                    },
-                    "typeName": "r3.xlarge",
-                    "virtualizationTypes": [
-                        "hvm"
-                    ],
-                    "vpc": true,
-                    "windows": true
-                },
-                {
-                    "architectures": [
-                        "x86_64"
-                    ],
-                    "cpu": {
-                        "cores": 8,
-                        "units": "26"
-                    },
-                    "description": "R3 双倍超大型",
-                    "ebsEncryptionSupported": true,
-                    "ebsOptimizedSupported": true,
-                    "family": "内存优化",
-                    "memory": 61,
-                    "networkPerformance": "High",
-                    "physicalProcessor": "Intel Xeon E5-2670v2",
-                    "placementGroupsSupported": true,
-                    "processorFeatures": {
-                        "AES-NI": true,
-                        "AVX": true,
-                        "Turbo": true
-                    },
-                    "processorSpeed": 2.5,
-                    "storage": {
-                        "count": 1,
-                        "size": 160,
-                        "ssd": true
-                    },
-                    "typeName": "r3.2xlarge",
-                    "virtualizationTypes": [
-                        "hvm"
-                    ],
-                    "vpc": true,
-                    "windows": true
-                },
-                {
-                    "architectures": [
-                        "x86_64"
-                    ],
-                    "cpu": {
-                        "cores": 16,
-                        "units": "52"
-                    },
-                    "description": "R3 四倍超大型",
-                    "ebsEncryptionSupported": true,
-                    "ebsOptimizedSupported": true,
-                    "family": "内存优化",
-                    "memory": 122,
-                    "networkPerformance": "High",
-                    "physicalProcessor": "Intel Xeon E5-2670v2",
-                    "placementGroupsSupported": true,
-                    "processorFeatures": {
-                        "AES-NI": true,
-                        "AVX": true,
-                        "Turbo": true
-                    },
-                    "processorSpeed": 2.5,
-                    "storage": {
-                        "count": 1,
-                        "size": 320,
-                        "ssd": true
-                    },
-                    "typeName": "r3.4xlarge",
-                    "virtualizationTypes": [
-                        "hvm"
-                    ],
-                    "vpc": true,
-                    "windows": true
-                },
-                {
-                    "architectures": [
-                        "x86_64"
-                    ],
-                    "cpu": {
-                        "cores": 32,
-                        "units": "104"
-                    },
-                    "description": "R3 八倍超大型",
-                    "ebsEncryptionSupported": true,
-                    "ebsOptimizedSupported": false,
-                    "family": "内存优化",
-                    "memory": 244,
-                    "networkPerformance": "10 Gigabit",
-                    "physicalProcessor": "Intel Xeon E5-2670v2",
-                    "placementGroupsSupported": true,
-                    "processorFeatures": {
-                        "AES-NI": true,
-                        "AVX": true,
-                        "Turbo": true
-                    },
-                    "processorSpeed": 2.5,
-                    "storage": {
-                        "count": 2,
-                        "size": 320,
-                        "ssd": true
-                    },
-                    "typeName": "r3.8xlarge",
-                    "virtualizationTypes": [
-                        "hvm"
-                    ],
-                    "vpc": true,
-                    "windows": true
-                }
-            ]
-        },
-        {
-            "description": "存储优化型实例能向您提供经过优化，且适用于具有特定磁盘 I/O 和存储容量要求的应用程序的直连式存储选项。我们建议将 I2 实例用于可从极高的随机 I/O 性能与较低的直连式 SSD 请求延迟中获益的 NoSQL 数据库。我们建议使用 D2 实例运行较大规模的数据仓库或并行文件系统。",
-            "name": "存储优化",
-            "types": [
-                {
-                    "architectures": [
-                        "x86_64"
-                    ],
-                    "cpu": {
-                        "cores": 4,
-                        "units": "14"
-                    },
-                    "defaultEphemerals": [
-                        "f"
-                    ],
-                    "description": "高 I/O 超大型",
-                    "ebsEncryptionSupported": true,
-                    "ebsOptimizedSupported": true,
-                    "family": "存储优化",
-                    "memory": 30.5,
-                    "networkPerformance": "Moderate",
-                    "physicalProcessor": "Intel Xeon E5-2670v2",
-                    "placementGroupsSupported": true,
-                    "processorFeatures": {
-                        "AES-NI": true,
-                        "AVX": true,
-                        "Turbo": true
-                    },
-                    "processorSpeed": 2.5,
-                    "spotSupported": true,
-                    "storage": {
-                        "count": 1,
-                        "size": 800,
-                        "ssd": true
-                    },
-                    "typeName": "i2.xlarge",
-                    "virtualizationTypes": [
-                        "hvm"
-                    ],
-                    "vpc": true,
-                    "windows": true
-                },
-                {
-                    "architectures": [
-                        "x86_64"
-                    ],
-                    "cpu": {
-                        "cores": 8,
-                        "units": "27"
-                    },
-                    "defaultEphemerals": [
-                        "f",
-                        "g"
-                    ],
-                    "description": "高 I/O 双倍超大型",
-                    "ebsEncryptionSupported": true,
-                    "ebsOptimizedSupported": true,
-                    "family": "存储优化",
-                    "memory": 61,
-                    "networkPerformance": "High",
-                    "physicalProcessor": "Intel Xeon E5-2670v2",
-                    "placementGroupsSupported": true,
-                    "processorFeatures": {
-                        "AES-NI": true,
-                        "AVX": true,
-                        "Turbo": true
-                    },
-                    "processorSpeed": 2.5,
-                    "spotSupported": true,
-                    "storage": {
-                        "count": 2,
-                        "size": 800,
-                        "ssd": true
-                    },
-                    "typeName": "i2.2xlarge",
-                    "virtualizationTypes": [
-                        "hvm"
-                    ],
-                    "vpc": true,
-                    "windows": true
-                },
-                {
-                    "architectures": [
-                        "x86_64"
-                    ],
-                    "cpu": {
-                        "cores": 16,
-                        "units": "53"
-                    },
-                    "defaultEphemerals": [
-                        "f",
-                        "g",
-                        "h",
-                        "i"
-                    ],
-                    "description": "高 I/O 四倍超大型",
-                    "ebsEncryptionSupported": true,
-                    "ebsOptimizedSupported": true,
-                    "family": "存储优化",
-                    "memory": 122,
-                    "networkPerformance": "High",
-                    "physicalProcessor": "Intel Xeon E5-2670v2",
-                    "placementGroupsSupported": true,
-                    "processorFeatures": {
-                        "AES-NI": true,
-                        "AVX": true,
-                        "Turbo": true
-                    },
-                    "processorSpeed": 2.5,
-                    "spotSupported": true,
-                    "storage": {
-                        "count": 4,
-                        "size": 800,
-                        "ssd": true
-                    },
-                    "typeName": "i2.4xlarge",
-                    "virtualizationTypes": [
-                        "hvm"
-                    ],
-                    "vpc": true,
-                    "windows": true
-                },
-                {
-                    "architectures": [
-                        "x86_64"
-                    ],
-                    "cpu": {
-                        "cores": 32,
-                        "units": "104"
-                    },
-                    "defaultEphemerals": [
-                        "f",
-                        "g",
-                        "h",
-                        "i",
-                        "j",
-                        "k",
-                        "l",
-                        "m"
-                    ],
-                    "description": "高 I/O 八倍超大型",
-                    "ebsEncryptionSupported": true,
-                    "family": "存储优化",
-                    "memory": 244,
-                    "networkPerformance": "10 Gigabit",
-                    "physicalProcessor": "Intel Xeon E5-2670v2",
-                    "placementGroupsSupported": true,
-                    "processorFeatures": {
-                        "AES-NI": true,
-                        "AVX": true,
-                        "Turbo": true
-                    },
-                    "processorSpeed": 2.5,
-                    "spotSupported": true,
-                    "storage": {
-                        "count": 8,
-                        "size": 800,
-                        "ssd": true
-                    },
-                    "typeName": "i2.8xlarge",
-                    "virtualizationTypes": [
-                        "hvm"
-                    ],
-                    "vpc": true,
-                    "windows": true
-                }
-            ]
-        }
-    ],
-    "footnotes": [
-        {
-            "text": "M1 实例是基于 Intel Xeon 处理器的。",
-            "types": [
-                "m1.small"
-            ]
-        },
-        {
-            "text": "对于 M3 实例，每个 vCPU 均是来自 Intel Xeon E5-2670 处理器的硬件超线程。",
-            "types": [
-                "m3.medium",
-                "m3.large",
-                "m3.xlarge",
-                "m3.2xlarge"
-            ]
-        },
-        {
-            "text": "C3 实例是最新一代的计算优化型实例。 对于 C3 实例，每个 vCPU 均是来自 Intel Xeon E5-2680v2 处理器的硬件超线程。",
-            "types": [
-                "c3.large",
-                "c3.xlarge",
-                "c3.2xlarge",
-                "c3.4xlarge",
-                "c3.8xlarge"
-            ]
-        }
-    ]
+    object: {
+        "families": [
+            {
+                "description": "微型实例是低成本的实例，可提供少量的 CPU 资源。微型实例很适合吞吐量较低的应用程序和需要定期增加计算周期的网站，但不适合需要持久 CPU 性能的应用程序。微型实例的常见用途包含: 低流量网站或博客、较小的管理应用程序、堡垒主机和开发 EC2 功能的免费试用。",
+                "name": "微型实例",
+                "types": [
+                    {
+                        "architectures": [
+                            "x86_64",
+                            "i386"
+                        ],
+                        "cpu": {
+                            "cores": 1,
+                            "units": "最多 2 个"
+                        },
+                        "description": "T1 微型",
+                        "ebsEncryptionSupported": false,
+                        "ebsOnly": true,
+                        "family": "微型实例",
+                        "freeTierEligible": true,
+                        "legacy": true,
+                        "memory": 0.613,
+                        "networkPerformance": "Very Low",
+                        "physicalProcessor": "Variable",
+                        "typeName": "t1.micro",
+                        "virtualizationTypes": [
+                            "paravirtual"
+                        ],
+                        "vpc": true,
+                        "windows": true
+                    }
+                ]
+            },
+            {
+                "description": "通用型实例可实现计算、内存和网络资源的平衡，是很多应用程序的良好选择。建议将通用型实例用于小型和中型数据库、需要附加内存和缓存集群的数据处理作业，以及运行 SAP 的后端服务器、Microsoft SharePoint 和其他企业应用程序。",
+                "name": "通用型",
+                "types": [
+                    {
+                        "architectures": [
+                            "x86_64",
+                            "i386"
+                        ],
+                        "cpu": {
+                            "cores": 1,
+                            "units": "变量"
+                        },
+                        "description": "T2 微型",
+                        "ebsEncryptionSupported": true,
+                        "ebsOnly": true,
+                        "family": "通用型",
+                        "freeTierEligible": true,
+                        "memory": 1,
+                        "networkPerformance": "Low to Moderate",
+                        "physicalProcessor": "Intel Xeon Family",
+                        "processorFeatures": {
+                            "AES-NI": true,
+                            "AVX": true,
+                            "Turbo": true
+                        },
+                        "processorSpeed": 2.5,
+                        "spotSupported": false,
+                        "typeName": "t2.micro",
+                        "virtualizationTypes": [
+                            "hvm"
+                        ],
+                        "vpc": true,
+                        "vpcOnly": true,
+                        "windows": true
+                    },
+                    {
+                        "architectures": [
+                            "x86_64",
+                            "i386"
+                        ],
+                        "cpu": {
+                            "cores": 1,
+                            "units": "变量"
+                        },
+                        "description": "T2 小型",
+                        "ebsEncryptionSupported": true,
+                        "ebsOnly": true,
+                        "family": "通用型",
+                        "memory": 2,
+                        "networkPerformance": "Low to Moderate",
+                        "physicalProcessor": "Intel Xeon Family",
+                        "processorFeatures": {
+                            "AES-NI": true,
+                            "AVX": true,
+                            "Turbo": true
+                        },
+                        "processorSpeed": 2.5,
+                        "spotSupported": false,
+                        "typeName": "t2.small",
+                        "virtualizationTypes": [
+                            "hvm"
+                        ],
+                        "vpc": true,
+                        "vpcOnly": true,
+                        "windows": true
+                    },
+                    {
+                        "architectures": [
+                            "x86_64",
+                            "i386"
+                        ],
+                        "cpu": {
+                            "cores": 2,
+                            "units": "变量"
+                        },
+                        "description": "T2 中型",
+                        "ebsEncryptionSupported": true,
+                        "ebsOnly": true,
+                        "family": "通用型",
+                        "memory": 4,
+                        "networkPerformance": "Low to Moderate",
+                        "physicalProcessor": "Intel Xeon Family",
+                        "processorFeatures": {
+                            "AES-NI": true,
+                            "AVX": true,
+                            "Turbo": true
+                        },
+                        "processorSpeed": 2.5,
+                        "spotSupported": false,
+                        "typeName": "t2.medium",
+                        "virtualizationTypes": [
+                            "hvm"
+                        ],
+                        "vpc": true,
+                        "vpcOnly": true,
+                        "windows": true
+                    },
+                    {
+                        "architectures": [
+                            "x86_64"
+                        ],
+                        "cpu": {
+                            "cores": 2,
+                            "units": "变量"
+                        },
+                        "description": "T2 大型",
+                        "ebsEncryptionSupported": true,
+                        "ebsOnly": true,
+                        "family": "通用型",
+                        "memory": 8,
+                        "networkPerformance": "Low to Moderate",
+                        "physicalProcessor": "Intel Xeon Family",
+                        "processorFeatures": {
+                            "AES-NI": true,
+                            "AVX": true,
+                            "Turbo": true
+                        },
+                        "processorSpeed": 2.4,
+                        "spotSupported": false,
+                        "typeName": "t2.large",
+                        "virtualizationTypes": [
+                            "hvm"
+                        ],
+                        "vpc": true,
+                        "vpcOnly": true,
+                        "windows": true
+                    },
+                    {
+                        "architectures": [
+                            "x86_64"
+                        ],
+                        "cpu": {
+                            "cores": 1,
+                            "units": "3"
+                        },
+                        "description": "M3 中型",
+                        "dual": true,
+                        "ebsEncryptionSupported": true,
+                        "ebsOnly": false,
+                        "family": "通用型",
+                        "memory": 3.75,
+                        "networkPerformance": "Moderate",
+                        "physicalProcessor": "Intel Xeon E5-2670v2",
+                        "processorFeatures": {
+                            "AES-NI": true,
+                            "AVX": true,
+                            "Turbo": true
+                        },
+                        "processorSpeed": 2.5,
+                        "storage": {
+                            "count": 1,
+                            "size": 4,
+                            "ssd": true
+                        },
+                        "typeName": "m3.medium",
+                        "virtualizationTypes": [
+                            "paravirtual",
+                            "hvm"
+                        ],
+                        "vpc": true,
+                        "windows": true
+                    },
+                    {
+                        "architectures": [
+                            "x86_64"
+                        ],
+                        "cpu": {
+                            "cores": 2,
+                            "units": "6.5"
+                        },
+                        "description": "M3 大型",
+                        "dual": true,
+                        "ebsEncryptionSupported": true,
+                        "ebsOnly": false,
+                        "ebsOptimizedSupported": false,
+                        "family": "通用型",
+                        "memory": 7.5,
+                        "networkPerformance": "Moderate",
+                        "physicalProcessor": "Intel Xeon E5-2670v2",
+                        "processorFeatures": {
+                            "AES-NI": true,
+                            "AVX": true,
+                            "Turbo": true
+                        },
+                        "processorSpeed": 2.5,
+                        "storage": {
+                            "count": 1,
+                            "size": 32,
+                            "ssd": true
+                        },
+                        "typeName": "m3.large",
+                        "virtualizationTypes": [
+                            "paravirtual",
+                            "hvm"
+                        ],
+                        "vpc": true,
+                        "windows": true
+                    },
+                    {
+                        "architectures": [
+                            "x86_64"
+                        ],
+                        "cpu": {
+                            "cores": 4,
+                            "units": "13"
+                        },
+                        "description": "M3 超大型",
+                        "dual": true,
+                        "ebsEncryptionSupported": true,
+                        "ebsOnly": false,
+                        "ebsOptimizedSupported": true,
+                        "family": "通用型",
+                        "memory": 15,
+                        "networkPerformance": "High",
+                        "physicalProcessor": "Intel Xeon E5-2670v2",
+                        "processorFeatures": {
+                            "AES-NI": true,
+                            "AVX": true,
+                            "Turbo": true
+                        },
+                        "processorSpeed": 2.5,
+                        "storage": {
+                            "count": 2,
+                            "size": 40,
+                            "ssd": true
+                        },
+                        "typeName": "m3.xlarge",
+                        "virtualizationTypes": [
+                            "paravirtual",
+                            "hvm"
+                        ],
+                        "vpc": true,
+                        "windows": true
+                    },
+                    {
+                        "architectures": [
+                            "x86_64"
+                        ],
+                        "cpu": {
+                            "cores": 8,
+                            "units": "26"
+                        },
+                        "description": "M3 双倍超大型",
+                        "dual": true,
+                        "ebsEncryptionSupported": true,
+                        "ebsOnly": false,
+                        "ebsOptimizedSupported": true,
+                        "family": "通用型",
+                        "memory": 30,
+                        "networkPerformance": "High",
+                        "physicalProcessor": "Intel Xeon E5-2670v2",
+                        "processorFeatures": {
+                            "AES-NI": true,
+                            "AVX": true,
+                            "Turbo": true
+                        },
+                        "processorSpeed": 2.5,
+                        "storage": {
+                            "count": 2,
+                            "size": 80,
+                            "ssd": true
+                        },
+                        "typeName": "m3.2xlarge",
+                        "virtualizationTypes": [
+                            "paravirtual",
+                            "hvm"
+                        ],
+                        "vpc": true,
+                        "windows": true
+                    },
+                    {
+                        "architectures": [
+                            "x86_64",
+                            "i386"
+                        ],
+                        "cpu": {
+                            "cores": 1,
+                            "units": "1"
+                        },
+                        "description": "M1 小型",
+                        "ebsEncryptionSupported": false,
+                        "family": "通用型",
+                        "legacy": true,
+                        "memory": 1.7,
+                        "networkPerformance": "Low",
+                        "physicalProcessor": "Intel Xeon Family",
+                        "riNotOfferedInRegions": [
+                            "cn-north-1",
+                            "cn-northwest-1"
+                        ],
+                        "storage": {
+                            "count": 1,
+                            "size": 160,
+                            "ssd": false
+                        },
+                        "typeName": "m1.small",
+                        "virtualizationTypes": [
+                            "paravirtual"
+                        ],
+                        "vpc": true,
+                        "windows": true
+                    }
+                ]
+            },
+            {
+                "description": "计算优化型实例的 vCPU 与内存比率比其他系列高，且每个 vCPU 的成本是所有 Amazon EC2 实例类型中最低的。我们建议用计算优化型实例运行 CPU 限制型横向扩展应用程序。此类应用的示例包括，高流量前端集群、按需批量处理、分布式分析、Web 服务器、批量处理以及高性能科学与工程应用程序。",
+                "name": "计算优化",
+                "types": [
+                    {
+                        "architectures": [
+                            "x86_64"
+                        ],
+                        "cpu": {
+                            "cores": 2,
+                            "units": "8"
+                        },
+                        "description": "C4 大型",
+                        "ebsEncryptionSupported": true,
+                        "ebsOnly": true,
+                        "ebsOptimizedByDefault": true,
+                        "ebsOptimizedSupported": true,
+                        "family": "计算优化",
+                        "memory": 3.75,
+                        "networkPerformance": "Moderate",
+                        "physicalProcessor": "Intel Xeon E5-2666v3",
+                        "placementGroupsSupported": true,
+                        "processorFeatures": {
+                            "AES-NI": true,
+                            "AVX": true,
+                            "Turbo": true
+                        },
+                        "processorSpeed": 2.9,
+                        "typeName": "c4.large",
+                        "virtualizationTypes": [
+                            "hvm"
+                        ],
+                        "vpc": true,
+                        "vpcOnly": true,
+                        "windows": true
+                    },
+                    {
+                        "architectures": [
+                            "x86_64"
+                        ],
+                        "cpu": {
+                            "cores": 4,
+                            "units": "16"
+                        },
+                        "description": "C4 超大型",
+                        "ebsEncryptionSupported": true,
+                        "ebsOnly": true,
+                        "ebsOptimizedByDefault": true,
+                        "ebsOptimizedSupported": true,
+                        "family": "计算优化",
+                        "memory": 7.5,
+                        "networkPerformance": "High",
+                        "physicalProcessor": "Intel Xeon E5-2666v3",
+                        "placementGroupsSupported": true,
+                        "processorFeatures": {
+                            "AES-NI": true,
+                            "AVX": true,
+                            "Turbo": true
+                        },
+                        "processorSpeed": 2.9,
+                        "typeName": "c4.xlarge",
+                        "virtualizationTypes": [
+                            "hvm"
+                        ],
+                        "vpc": true,
+                        "vpcOnly": true,
+                        "windows": true
+                    },
+                    {
+                        "architectures": [
+                            "x86_64"
+                        ],
+                        "cpu": {
+                            "cores": 8,
+                            "units": "31"
+                        },
+                        "description": "C4 双倍超大型",
+                        "ebsEncryptionSupported": true,
+                        "ebsOnly": true,
+                        "ebsOptimizedByDefault": true,
+                        "ebsOptimizedSupported": true,
+                        "family": "计算优化",
+                        "memory": 15,
+                        "networkPerformance": "High",
+                        "physicalProcessor": "Intel Xeon E5-2666v3",
+                        "placementGroupsSupported": true,
+                        "processorFeatures": {
+                            "AES-NI": true,
+                            "AVX": true,
+                            "Turbo": true
+                        },
+                        "processorSpeed": 2.9,
+                        "typeName": "c4.2xlarge",
+                        "virtualizationTypes": [
+                            "hvm"
+                        ],
+                        "vpc": true,
+                        "vpcOnly": true,
+                        "windows": true
+                    },
+                    {
+                        "architectures": [
+                            "x86_64"
+                        ],
+                        "cpu": {
+                            "cores": 16,
+                            "units": "62"
+                        },
+                        "description": "C4 四倍超大型",
+                        "ebsEncryptionSupported": true,
+                        "ebsOnly": true,
+                        "ebsOptimizedByDefault": true,
+                        "ebsOptimizedSupported": true,
+                        "family": "计算优化",
+                        "memory": 30,
+                        "networkPerformance": "High",
+                        "physicalProcessor": "Intel Xeon E5-2666v3",
+                        "placementGroupsSupported": true,
+                        "processorFeatures": {
+                            "AES-NI": true,
+                            "AVX": true,
+                            "Turbo": true
+                        },
+                        "processorSpeed": 2.9,
+                        "typeName": "c4.4xlarge",
+                        "virtualizationTypes": [
+                            "hvm"
+                        ],
+                        "vpc": true,
+                        "vpcOnly": true,
+                        "windows": true
+                    },
+                    {
+                        "architectures": [
+                            "x86_64"
+                        ],
+                        "cpu": {
+                            "cores": 36,
+                            "units": "132"
+                        },
+                        "description": "C4 八倍超大型",
+                        "ebsEncryptionSupported": true,
+                        "ebsOnly": true,
+                        "ebsOptimizedByDefault": true,
+                        "ebsOptimizedSupported": true,
+                        "family": "计算优化",
+                        "memory": 60,
+                        "networkPerformance": "10 Gigabit",
+                        "physicalProcessor": "Intel Xeon E5-2666v3",
+                        "placementGroupsSupported": true,
+                        "processorFeatures": {
+                            "AES-NI": true,
+                            "AVX": true,
+                            "Turbo": true
+                        },
+                        "processorSpeed": 2.9,
+                        "typeName": "c4.8xlarge",
+                        "virtualizationTypes": [
+                            "hvm"
+                        ],
+                        "vpc": true,
+                        "vpcOnly": true,
+                        "windows": true
+                    },
+                    {
+                        "architectures": [
+                            "x86_64",
+                            "i386"
+                        ],
+                        "cpu": {
+                            "cores": 2,
+                            "units": "7"
+                        },
+                        "description": "C3 大型",
+                        "ebsEncryptionSupported": true,
+                        "ebsOptimizedSupported": false,
+                        "family": "计算优化",
+                        "memory": 3.75,
+                        "networkPerformance": "Moderate",
+                        "physicalProcessor": "Intel Xeon E5-2680v2",
+                        "placementGroupsSupported": true,
+                        "processorFeatures": {
+                            "AES-NI": true,
+                            "AVX": true,
+                            "Turbo": true
+                        },
+                        "processorSpeed": 2.8,
+                        "storage": {
+                            "count": 2,
+                            "size": 16,
+                            "ssd": true
+                        },
+                        "typeName": "c3.large",
+                        "virtualizationTypes": [
+                            "paravirtual",
+                            "hvm"
+                        ],
+                        "vpc": true,
+                        "windows": true
+                    },
+                    {
+                        "architectures": [
+                            "x86_64"
+                        ],
+                        "cpu": {
+                            "cores": 4,
+                            "units": "14"
+                        },
+                        "description": "C3 超大型",
+                        "ebsEncryptionSupported": true,
+                        "ebsOptimizedSupported": true,
+                        "family": "计算优化",
+                        "memory": 7.5,
+                        "networkPerformance": "Moderate",
+                        "physicalProcessor": "Intel Xeon E5-2680v2",
+                        "placementGroupsSupported": true,
+                        "processorFeatures": {
+                            "AES-NI": true,
+                            "AVX": true,
+                            "Turbo": true
+                        },
+                        "processorSpeed": 2.8,
+                        "storage": {
+                            "count": 2,
+                            "size": 40,
+                            "ssd": true
+                        },
+                        "typeName": "c3.xlarge",
+                        "virtualizationTypes": [
+                            "paravirtual",
+                            "hvm"
+                        ],
+                        "vpc": true,
+                        "windows": true
+                    },
+                    {
+                        "architectures": [
+                            "x86_64"
+                        ],
+                        "cpu": {
+                            "cores": 8,
+                            "units": "28"
+                        },
+                        "description": "C3 双倍超大型",
+                        "ebsEncryptionSupported": true,
+                        "ebsOptimizedSupported": true,
+                        "family": "计算优化",
+                        "memory": 15,
+                        "networkPerformance": "High",
+                        "physicalProcessor": "Intel Xeon E5-2680v2",
+                        "placementGroupsSupported": true,
+                        "processorFeatures": {
+                            "AES-NI": true,
+                            "AVX": true,
+                            "Turbo": true
+                        },
+                        "processorSpeed": 2.8,
+                        "storage": {
+                            "count": 2,
+                            "size": 80,
+                            "ssd": true
+                        },
+                        "typeName": "c3.2xlarge",
+                        "virtualizationTypes": [
+                            "paravirtual",
+                            "hvm"
+                        ],
+                        "vpc": true,
+                        "windows": true
+                    },
+                    {
+                        "architectures": [
+                            "x86_64"
+                        ],
+                        "cpu": {
+                            "cores": 16,
+                            "units": "55"
+                        },
+                        "description": "C3 四倍超大型",
+                        "ebsEncryptionSupported": true,
+                        "ebsOptimizedSupported": true,
+                        "family": "计算优化",
+                        "memory": 30,
+                        "networkPerformance": "High",
+                        "physicalProcessor": "Intel Xeon E5-2680v2",
+                        "placementGroupsSupported": true,
+                        "processorFeatures": {
+                            "AES-NI": true,
+                            "AVX": true,
+                            "Turbo": true
+                        },
+                        "processorSpeed": 2.8,
+                        "storage": {
+                            "count": 2,
+                            "size": 160,
+                            "ssd": true
+                        },
+                        "typeName": "c3.4xlarge",
+                        "virtualizationTypes": [
+                            "paravirtual",
+                            "hvm"
+                        ],
+                        "vpc": true,
+                        "windows": true
+                    },
+                    {
+                        "architectures": [
+                            "x86_64"
+                        ],
+                        "cpu": {
+                            "cores": 32,
+                            "units": "108"
+                        },
+                        "description": "C3 八倍超大型",
+                        "ebsEncryptionSupported": true,
+                        "ebsOptimizedSupported": false,
+                        "family": "计算优化",
+                        "memory": 60,
+                        "networkPerformance": "10 Gigabit",
+                        "physicalProcessor": "Intel Xeon E5-2680v2",
+                        "placementGroupsSupported": true,
+                        "processorFeatures": {
+                            "AES-NI": true,
+                            "AVX": true,
+                            "Turbo": true
+                        },
+                        "processorSpeed": 2.8,
+                        "storage": {
+                            "count": 2,
+                            "size": 320,
+                            "ssd": true
+                        },
+                        "typeName": "c3.8xlarge",
+                        "virtualizationTypes": [
+                            "paravirtual",
+                            "hvm"
+                        ],
+                        "vpc": true,
+                        "windows": true
+                    }
+                ]
+            },
+            {
+                "description": "内存优化型实例的每 GB RAM 的成本是 Amazon EC2 实例类型中最低的。我们建议将内存优化型实例用于很多数据库应用程序、内存缓存和其他分布式缓存以及较大的企业应用程序部署，如 SAP 和 Microsoft SharePoint。",
+                "name": "内存优化",
+                "types": [
+                    {
+                        "architectures": [
+                            "x86_64"
+                        ],
+                        "cpu": {
+                            "cores": 2,
+                            "units": "6.5"
+                        },
+                        "description": "R3 大型",
+                        "ebsEncryptionSupported": true,
+                        "ebsOptimizedSupported": false,
+                        "family": "内存优化",
+                        "memory": 15,
+                        "networkPerformance": "Moderate",
+                        "physicalProcessor": "Intel Xeon E5-2670v2",
+                        "placementGroupsSupported": true,
+                        "processorFeatures": {
+                            "AES-NI": true,
+                            "AVX": true,
+                            "Turbo": true
+                        },
+                        "processorSpeed": 2.5,
+                        "storage": {
+                            "count": 1,
+                            "size": 32,
+                            "ssd": true
+                        },
+                        "typeName": "r3.large",
+                        "virtualizationTypes": [
+                            "hvm"
+                        ],
+                        "vpc": true,
+                        "windows": true
+                    },
+                    {
+                        "architectures": [
+                            "x86_64"
+                        ],
+                        "cpu": {
+                            "cores": 4,
+                            "units": "13"
+                        },
+                        "description": "R3 超大型",
+                        "ebsEncryptionSupported": true,
+                        "ebsOptimizedSupported": true,
+                        "family": "内存优化",
+                        "memory": 30.5,
+                        "networkPerformance": "Moderate",
+                        "physicalProcessor": "Intel Xeon E5-2670v2",
+                        "placementGroupsSupported": true,
+                        "processorFeatures": {
+                            "AES-NI": true,
+                            "AVX": true,
+                            "Turbo": true
+                        },
+                        "processorSpeed": 2.5,
+                        "storage": {
+                            "count": 1,
+                            "size": 80,
+                            "ssd": true
+                        },
+                        "typeName": "r3.xlarge",
+                        "virtualizationTypes": [
+                            "hvm"
+                        ],
+                        "vpc": true,
+                        "windows": true
+                    },
+                    {
+                        "architectures": [
+                            "x86_64"
+                        ],
+                        "cpu": {
+                            "cores": 8,
+                            "units": "26"
+                        },
+                        "description": "R3 双倍超大型",
+                        "ebsEncryptionSupported": true,
+                        "ebsOptimizedSupported": true,
+                        "family": "内存优化",
+                        "memory": 61,
+                        "networkPerformance": "High",
+                        "physicalProcessor": "Intel Xeon E5-2670v2",
+                        "placementGroupsSupported": true,
+                        "processorFeatures": {
+                            "AES-NI": true,
+                            "AVX": true,
+                            "Turbo": true
+                        },
+                        "processorSpeed": 2.5,
+                        "storage": {
+                            "count": 1,
+                            "size": 160,
+                            "ssd": true
+                        },
+                        "typeName": "r3.2xlarge",
+                        "virtualizationTypes": [
+                            "hvm"
+                        ],
+                        "vpc": true,
+                        "windows": true
+                    },
+                    {
+                        "architectures": [
+                            "x86_64"
+                        ],
+                        "cpu": {
+                            "cores": 16,
+                            "units": "52"
+                        },
+                        "description": "R3 四倍超大型",
+                        "ebsEncryptionSupported": true,
+                        "ebsOptimizedSupported": true,
+                        "family": "内存优化",
+                        "memory": 122,
+                        "networkPerformance": "High",
+                        "physicalProcessor": "Intel Xeon E5-2670v2",
+                        "placementGroupsSupported": true,
+                        "processorFeatures": {
+                            "AES-NI": true,
+                            "AVX": true,
+                            "Turbo": true
+                        },
+                        "processorSpeed": 2.5,
+                        "storage": {
+                            "count": 1,
+                            "size": 320,
+                            "ssd": true
+                        },
+                        "typeName": "r3.4xlarge",
+                        "virtualizationTypes": [
+                            "hvm"
+                        ],
+                        "vpc": true,
+                        "windows": true
+                    },
+                    {
+                        "architectures": [
+                            "x86_64"
+                        ],
+                        "cpu": {
+                            "cores": 32,
+                            "units": "104"
+                        },
+                        "description": "R3 八倍超大型",
+                        "ebsEncryptionSupported": true,
+                        "ebsOptimizedSupported": false,
+                        "family": "内存优化",
+                        "memory": 244,
+                        "networkPerformance": "10 Gigabit",
+                        "physicalProcessor": "Intel Xeon E5-2670v2",
+                        "placementGroupsSupported": true,
+                        "processorFeatures": {
+                            "AES-NI": true,
+                            "AVX": true,
+                            "Turbo": true
+                        },
+                        "processorSpeed": 2.5,
+                        "storage": {
+                            "count": 2,
+                            "size": 320,
+                            "ssd": true
+                        },
+                        "typeName": "r3.8xlarge",
+                        "virtualizationTypes": [
+                            "hvm"
+                        ],
+                        "vpc": true,
+                        "windows": true
+                    }
+                ]
+            },
+            {
+                "description": "存储优化型实例能向您提供经过优化，且适用于具有特定磁盘 I/O 和存储容量要求的应用程序的直连式存储选项。我们建议将 I2 实例用于可从极高的随机 I/O 性能与较低的直连式 SSD 请求延迟中获益的 NoSQL 数据库。我们建议使用 D2 实例运行较大规模的数据仓库或并行文件系统。",
+                "name": "存储优化",
+                "types": [
+                    {
+                        "architectures": [
+                            "x86_64"
+                        ],
+                        "cpu": {
+                            "cores": 4,
+                            "units": "14"
+                        },
+                        "defaultEphemerals": [
+                            "f"
+                        ],
+                        "description": "高 I/O 超大型",
+                        "ebsEncryptionSupported": true,
+                        "ebsOptimizedSupported": true,
+                        "family": "存储优化",
+                        "memory": 30.5,
+                        "networkPerformance": "Moderate",
+                        "physicalProcessor": "Intel Xeon E5-2670v2",
+                        "placementGroupsSupported": true,
+                        "processorFeatures": {
+                            "AES-NI": true,
+                            "AVX": true,
+                            "Turbo": true
+                        },
+                        "processorSpeed": 2.5,
+                        "spotSupported": true,
+                        "storage": {
+                            "count": 1,
+                            "size": 800,
+                            "ssd": true
+                        },
+                        "typeName": "i2.xlarge",
+                        "virtualizationTypes": [
+                            "hvm"
+                        ],
+                        "vpc": true,
+                        "windows": true
+                    },
+                    {
+                        "architectures": [
+                            "x86_64"
+                        ],
+                        "cpu": {
+                            "cores": 8,
+                            "units": "27"
+                        },
+                        "defaultEphemerals": [
+                            "f",
+                            "g"
+                        ],
+                        "description": "高 I/O 双倍超大型",
+                        "ebsEncryptionSupported": true,
+                        "ebsOptimizedSupported": true,
+                        "family": "存储优化",
+                        "memory": 61,
+                        "networkPerformance": "High",
+                        "physicalProcessor": "Intel Xeon E5-2670v2",
+                        "placementGroupsSupported": true,
+                        "processorFeatures": {
+                            "AES-NI": true,
+                            "AVX": true,
+                            "Turbo": true
+                        },
+                        "processorSpeed": 2.5,
+                        "spotSupported": true,
+                        "storage": {
+                            "count": 2,
+                            "size": 800,
+                            "ssd": true
+                        },
+                        "typeName": "i2.2xlarge",
+                        "virtualizationTypes": [
+                            "hvm"
+                        ],
+                        "vpc": true,
+                        "windows": true
+                    },
+                    {
+                        "architectures": [
+                            "x86_64"
+                        ],
+                        "cpu": {
+                            "cores": 16,
+                            "units": "53"
+                        },
+                        "defaultEphemerals": [
+                            "f",
+                            "g",
+                            "h",
+                            "i"
+                        ],
+                        "description": "高 I/O 四倍超大型",
+                        "ebsEncryptionSupported": true,
+                        "ebsOptimizedSupported": true,
+                        "family": "存储优化",
+                        "memory": 122,
+                        "networkPerformance": "High",
+                        "physicalProcessor": "Intel Xeon E5-2670v2",
+                        "placementGroupsSupported": true,
+                        "processorFeatures": {
+                            "AES-NI": true,
+                            "AVX": true,
+                            "Turbo": true
+                        },
+                        "processorSpeed": 2.5,
+                        "spotSupported": true,
+                        "storage": {
+                            "count": 4,
+                            "size": 800,
+                            "ssd": true
+                        },
+                        "typeName": "i2.4xlarge",
+                        "virtualizationTypes": [
+                            "hvm"
+                        ],
+                        "vpc": true,
+                        "windows": true
+                    },
+                    {
+                        "architectures": [
+                            "x86_64"
+                        ],
+                        "cpu": {
+                            "cores": 32,
+                            "units": "104"
+                        },
+                        "defaultEphemerals": [
+                            "f",
+                            "g",
+                            "h",
+                            "i",
+                            "j",
+                            "k",
+                            "l",
+                            "m"
+                        ],
+                        "description": "高 I/O 八倍超大型",
+                        "ebsEncryptionSupported": true,
+                        "family": "存储优化",
+                        "memory": 244,
+                        "networkPerformance": "10 Gigabit",
+                        "physicalProcessor": "Intel Xeon E5-2670v2",
+                        "placementGroupsSupported": true,
+                        "processorFeatures": {
+                            "AES-NI": true,
+                            "AVX": true,
+                            "Turbo": true
+                        },
+                        "processorSpeed": 2.5,
+                        "spotSupported": true,
+                        "storage": {
+                            "count": 8,
+                            "size": 800,
+                            "ssd": true
+                        },
+                        "typeName": "i2.8xlarge",
+                        "virtualizationTypes": [
+                            "hvm"
+                        ],
+                        "vpc": true,
+                        "windows": true
+                    }
+                ]
+            }
+        ],
+        "footnotes": [
+            {
+                "text": "M1 实例是基于 Intel Xeon 处理器的。",
+                "types": [
+                    "m1.small"
+                ]
+            },
+            {
+                "text": "对于 M3 实例，每个 vCPU 均是来自 Intel Xeon E5-2670 处理器的硬件超线程。",
+                "types": [
+                    "m3.medium",
+                    "m3.large",
+                    "m3.xlarge",
+                    "m3.2xlarge"
+                ]
+            },
+            {
+                "text": "C3 实例是最新一代的计算优化型实例。 对于 C3 实例，每个 vCPU 均是来自 Intel Xeon E5-2680v2 处理器的硬件超线程。",
+                "types": [
+                    "c3.large",
+                    "c3.xlarge",
+                    "c3.2xlarge",
+                    "c3.4xlarge",
+                    "c3.8xlarge"
+                ]
+            }
+        ]
+    }
 });
 
 Mock.mock('api/v1.0/login', 'post', {

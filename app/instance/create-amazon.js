@@ -13,7 +13,6 @@ define(function (require, exports, module) {
     //=================================
     Create.prototype.init = function () {
         this.stepper();
-        this.image();
     };
 
     //=================================
@@ -83,9 +82,9 @@ define(function (require, exports, module) {
                 showHeader: false,
                 url: API_URL.IMAGES,
                 dataField: 'list',
-                queryParams: function(params){
+                /*queryParams: function(params){
                  return $.extend(params, {'is-public': true});
-                 },
+                 },*/
                 columns: [{
                     title: '',
                     field: '',
@@ -134,8 +133,12 @@ define(function (require, exports, module) {
     Create.prototype.flavor = function () {
         var create = this;
         $table = $('#flavorTable');
-        var thistoolbar = function () {
-            return ['<ul class="dropdown-menu">',
+        var toolbar = function () {
+            return [
+                '<a class="dropdown-toggle flavor-type" data-toggle="dropdown" href="#">',
+                '所有实例类型 <span class="caret"></span>',
+                '</a>',
+                '<ul class="dropdown-menu">',
                 '<li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>',
                 '<li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>',
                 '<li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>',
@@ -162,7 +165,7 @@ define(function (require, exports, module) {
                 });
                 return result;
             },
-            toolbar: thistoolbar(),
+            toolbar: toolbar(),
             /*queryParams: function(params){
              return $.extend(params, {'is-public': false});
              },*/
