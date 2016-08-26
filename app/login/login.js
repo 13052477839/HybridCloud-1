@@ -58,7 +58,12 @@ define(function (require, exports, module) {
                     validators: {
                         notEmpty: {
                             message: '验证码不能为空！'
+                        },
+                        stringLength: {
+                            max: 4,
+                            message: '验证码最大不能超过4位！'
                         }
+
                     }
                 }
             },
