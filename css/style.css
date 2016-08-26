@@ -433,7 +433,18 @@ label {
     color: #000;
 }
 
-.skin-blue-light .main-header .navbar .nav > li > a:active, .skin-blue-light .main-header .navbar .nav > li > a:focus, .skin-blue-light .main-header .navbar .nav .open > a, .skin-blue-light .main-header .navbar .nav .open > a:hover, .skin-blue-light .main-header .navbar .nav .open > a:focus, .skin-blue-light .main-header .navbar .nav > .active > a {
+.skin-blue-light .main-header .navbar .nav .open > a,
+.skin-blue-light .main-header .navbar .nav .open > a:hover,
+.skin-blue-light .main-header .navbar .nav .open > a:focus,
+.skin-blue-light .main-header .navbar .nav > .active > a {
+    background-color: #ffffff;
+    color: #000;
+}
+
+.skin-blue .main-header .navbar .nav .open > a,
+.skin-blue .main-header .navbar .nav .open > a:hover,
+.skin-blue .main-header .navbar .nav .open > a:focus,
+.skin-blue .main-header .navbar .nav > .active > a {
     background-color: #ffffff;
     color: #000;
 }
