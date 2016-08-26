@@ -14,6 +14,7 @@ define(function (require, exports, module) {
         this.feedback();
         this.help();
         this.user();
+        this.logout();
     };
 
     //================================
@@ -52,6 +53,19 @@ define(function (require, exports, module) {
     //================================
     Header.prototype.user = function () {
         var userName = window.localStorage.userName;
-        $('.user-menu > a span:first').html(userName);
+        if(userName && userName.trim() != '' && userName!='undefined'){
+            $('.user-menu > a span:first').html(userName);
+        }else{
+            window.location.href = 'login.html';
+        }
     };
+
+    //================================
+    // log out
+    //================================
+    Header.prototype.logout = function() {
+        $('.logout').click(function(){
+           $
+        });
+    }
 });

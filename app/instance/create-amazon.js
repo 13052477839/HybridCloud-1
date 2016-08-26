@@ -155,7 +155,7 @@ define(function (require, exports, module) {
                 var result = {
                     list: []
                 };
-                $.each(res.families, function (i, v) {
+                $.each(res.object.families, function (i, v) {
                     $.each(v.types, function (_i, _v) {
                         result.list.push(_v);
                     });

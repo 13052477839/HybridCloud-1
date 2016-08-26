@@ -452,3 +452,7 @@ label {
 .skin-blue .sidebar-menu > li.header {
     background: #293038;
 }
+
+.navbar-nav>.user-menu>.dropdown-menu>.user-body a:active {
+    color: #fff !important;
+}

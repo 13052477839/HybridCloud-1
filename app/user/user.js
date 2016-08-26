@@ -25,7 +25,7 @@ define(function (require, exports, module) {
         $table.bootstrapTable($.extend(Util.gridUtilOptions(), {
             url: API_URL.USERS,
             toolbar: '#userTableToolbar',
-            dataField: 'object',
+            dataField: 'list',
             detailView: true,
             sortName: 'name',
             sortOrder: 'asc',

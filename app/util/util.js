@@ -33,8 +33,7 @@ define(function (require) {
     //==============================
     var isLogin = function () {
         var accessToken = window.localStorage.accessToken;
-        console.log(accessToken);
-        if (accessToken && accessToken.trim() != '') {
+        if (accessToken && accessToken.trim() != '' && accessToken != 'undefined') {
             $('body').css('display', 'inherit');
         } else {
             window.location.href = 'login.html';

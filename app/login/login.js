@@ -1,25 +1,8 @@
 define(function (require, exports, module) {
     function Login() {
-        this.first();
-        this.jsessionid;
     }
 
     module.exports = Login;
-
-    //=========================
-    // first
-    //=========================
-    Login.prototype.first = function () {
-        var login = this;
-        $.ajax({
-            url: API_URL.LOGIN + '/first',
-            dataType: 'json',
-            type: 'get',
-            complete: function(result) {
-                login.jsessionid = result.responseText;
-            }
-        });
-    };
 
     //=========================
     // init
@@ -87,7 +70,7 @@ define(function (require, exports, module) {
                 };
                 $.ajax({
                     timeout: 10000,
-                    url: API_URL.LOGIN + ';JSESSIONID=' + login.jsessionid,
+                    url: API_URL.LOGIN,
                     type: 'post',
                     contentType: 'application/json',
                     data: JSON.stringify(data),
@@ -95,7 +78,7 @@ define(function (require, exports, module) {
                     success: function (result) {
                         if (result.success) {
                             var object = result.object;
-                            window.localStorage.accessToken = object.token;
+                            //window.localStorage.accessToken = object.token;
                             window.localStorage.userId = object.user.id;
                             window.localStorage.userName = object.user.name;
                             window.localStorage.accounts = JSON.stringify(object.user.accounts);

@@ -71,6 +71,9 @@ define(function (require, exports, module) {
                 onLoadSuccess: function () {
                     $(v).parents('.box').find('.overlay').css('display', 'none');
                 },
+                onLoadError: function() {
+                    $(v).parents('.box').find('.overlay').css('display', 'none');
+                },
                 //detailView: true,
                 //sortName: 'name',
                 //sortOrder: 'asc',
