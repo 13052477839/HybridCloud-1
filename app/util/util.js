@@ -33,6 +33,7 @@ define(function (require) {
     //==============================
     var isLogin = function () {
         var accessToken = window.localStorage.accessToken;
+        console.log(accessToken);
         if (accessToken && accessToken.trim() != '') {
             $('body').css('display', 'inherit');
         } else {
@@ -67,29 +68,31 @@ define(function (require) {
     //==============================
     var _ajaxSetup = function () {
         $.ajaxSetup({
-            //timeout: 20000,
+            timeout: 20000,
             contentType: "application/json;charset=utf-8",
             /*beforeSend: function (xhr) {
-                var accessToken = window.localStorage.accessToken;
-                xhr.setRequestHeader('Access-Token', accessToken);
-            },*/
+             var accessToken = window.localStorage.accessToken;
+             xhr.setRequestHeader('Access-Token', accessToken);
+             },*/
             complete: function (xhr, status) {
                 // status: success, error, timeout
                 // xhr.status: 200, 404 500..., 0
-                /*if(xhr.status === 404 ) {
-                 $('.content-wrapper').load('app/util/404.html?v=' + version);
-                 }
-                 if(xhr.status === 500) {
-                 $('.content-wrapper').load('app/util/500.html?v=' + version);
-                 }
-                 if(status === 'timeout') {
-                 alertDialog('请求超时！');
-                 }
-                 var sessionStatus = xhr.getResponseHeader('sessionStatus');
-                 if(sessionStatus === 'timeout') {
-                 alertDialog('登录超时，请重新登录！');
-                 setTimeout(function(){window.location.href = 'login.html';},3000);
-                 }*/
+                if (xhr.status === 404) {
+                    $('.content-wrapper').load('app/util/404.html?v=' + version);
+                }
+                if (xhr.status === 500) {
+                    $('.content-wrapper').load('app/util/500.html?v=' + version);
+                }
+                if (status === 'timeout') {
+                    alertDialog('请求超时！');
+                }
+                var sessionStatus = xhr.getResponseHeader('sessionStatus');
+                if (sessionStatus === 'timeout') {
+                    alertDialog('登录超时，请重新登录！');
+                    setTimeout(function () {
+                        window.location.href = 'login.html';
+                    }, 3000);
+                }
             }
         });
     };

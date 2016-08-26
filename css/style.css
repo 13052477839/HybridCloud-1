@@ -428,7 +428,6 @@ label {
     width: inherit;
 }
 
-
 .skin-blue-light .main-header .navbar .nav .open > a, .skin-blue-light .main-header .navbar .nav .open > a:hover {
     background-color: #ffffff;
     color: #000;
@@ -437,4 +436,8 @@ label {
 .skin-blue-light .main-header .navbar .nav > li > a:active, .skin-blue-light .main-header .navbar .nav > li > a:focus, .skin-blue-light .main-header .navbar .nav .open > a, .skin-blue-light .main-header .navbar .nav .open > a:hover, .skin-blue-light .main-header .navbar .nav .open > a:focus, .skin-blue-light .main-header .navbar .nav > .active > a {
     background-color: #ffffff;
     color: #000;
+}
+
+.skin-blue .sidebar-menu > li.header {
+    background: #293038;
 }

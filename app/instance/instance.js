@@ -88,7 +88,7 @@ define(function (require, exports, module) {
                     field: 'availabilityZone'
                 }, {
                     title: '状态',
-                    field: 'instanceState',//'state.name',
+                    field: 'state.name',
                     formatter: function (value, row, index) {
                         if (value === 'running') {
                             return '<i class="run-status run-status-running"></i> ' + value;

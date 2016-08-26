@@ -42,7 +42,7 @@ define(function (require, exports, module) {
     // verifyCode
     //=========================
     Login.prototype.verifyCode = function () {
-        //$('#verifyCodeImg').attr('src', API_URL.LOGIN + '/validatecode?v=' + new Date());
+        $('#verifyCodeImg').attr('src', API_URL.LOGIN + '/validatecode?v=' + new Date());
     };
 
     //=========================
@@ -87,7 +87,7 @@ define(function (require, exports, module) {
                 };
                 $.ajax({
                     timeout: 10000,
-                    url: API_URL.LOGIN /*+ ';JSESSIONID=' + login.jsessionid*/,
+                    url: API_URL.LOGIN + ';JSESSIONID=' + login.jsessionid,
                     type: 'post',
                     contentType: 'application/json',
                     data: JSON.stringify(data),
