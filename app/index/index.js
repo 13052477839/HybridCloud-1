@@ -5,7 +5,6 @@ define(function(require, exports, module) {
         Util._ajaxSetup();
         $.extend($.fn.bootstrapTable.defaults, $.fn.bootstrapTable.locales['zh-CN']);
         moment.locale('zh-CN');
-        Util.isLogin();
     }
     module.exports = Index;
 

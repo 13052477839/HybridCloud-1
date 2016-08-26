@@ -53,9 +53,9 @@ define(function (require, exports, module) {
     //================================
     Header.prototype.user = function () {
         var userName = window.localStorage.userName;
-        if(userName && userName.trim() != '' && userName!='undefined'){
+        if (userName && userName.trim() != '' && userName != 'undefined') {
             $('.user-menu > a span:first').html(userName);
-        }else{
+        } else {
             window.location.href = 'login.html';
         }
     };
@@ -63,9 +63,21 @@ define(function (require, exports, module) {
     //================================
     // log out
     //================================
-    Header.prototype.logout = function() {
-        $('.logout').click(function(){
-           $
+    Header.prototype.logout = function () {
+        $('.logout').click(function () {
+            $.ajax({
+                url: API_URL.LOGIN + '/exit',
+                type: 'post',
+                dataType: 'json',
+                success: function(result) {
+                    if(result.success){
+                        window.localStorage.clear();
+                        window.location.href = 'login.html';
+                    }else{
+                        Util.alertDialog('系统异常，无法正常退出！');
+                    }
+                }
+            });
         });
     }
 });

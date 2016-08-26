@@ -23,7 +23,7 @@
     <link rel="stylesheet" href="css/style.css">
 
 </head>
-<body class="hold-transition skin-blue-light sidebar-mini fixed" style="display: none;">
+<body class="hold-transition skin-blue-light sidebar-mini fixed">
 <!--header-->
 <header class="main-header"></header>
 <!--/header-->
@@ -63,8 +63,8 @@
 <script src="assets/metroUI/metro.js"></script>
 <script src="assets/moment/moment-with-locales.min.js"></script>
 
-<!--<script src="mock/mock.js"></script>
-<script src="mock/server.js"></script>-->
+<script src="mock/mock.js"></script>
+<script src="mock/server.js"></script>
 
 <script src="assets/seajs/sea.js"></script>
 <script>
@@ -78,7 +78,8 @@
         USERS: API_BASE_URL + 'users',
         IMAGES: API_BASE_URL + 'images',
         VOLUMES: API_BASE_URL + 'volumes',
-        FLAVORS: API_BASE_URL + 'flavors'
+        FLAVORS: API_BASE_URL + 'flavors',
+        LOGIN: API_BASE_URL + 'login'
     };
 
     seajs.config({
