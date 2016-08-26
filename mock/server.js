@@ -1907,3 +1907,58 @@ Mock.mock('api/v1.0/login/exit', 'post', {
     success: true,
     object: {}
 });
+
+Mock.mock('api/v1.0/users/userid', 'get', {
+    success: true,
+    object: {
+        id: 'userid',
+        email: "yangkai@zte.com.cn",
+        password: "200000",
+        cellphone: "13913978541",
+        name: "yangkai",
+        accounts: [
+            {
+                sequenceId: "sequenceId-1",
+                alias: "amazon-yangkai-001",
+                type: "amazon",
+                awsAccessKeyId: "SSSEERERER",
+                awsSecretAccessKey: "EEEEEEEEEE########"
+            },
+            {
+                sequenceId: "sequenceId-2",
+                alias: "amazon-yangkai-002",
+                type: "amazon",
+                awsAccessKeyId: "SSSEERERER",
+                awsSecretAccessKey: "EEEEEEEEEE########"
+            },
+            {
+                sequenceId: "sequenceId-3",
+                alias: "aliyun-yangkai-001",
+                type: "aliyun",
+                awsAccessKeyId: "SSSEERERER",
+                awsSecretAccessKey: "EEEEEEEEEE########"
+            },
+            {
+                sequenceId: "sequenceId-4",
+                alias: "qingCloud-yangkai-001",
+                type: "qingCloud",
+                awsAccessKeyId: "SSSEERERER",
+                awsSecretAccessKey: "EEEEEEEEEE########"
+            },
+            {
+                sequenceId: "sequenceId-5",
+                alias: "tecent-yangkai-001",
+                type: "tecent",
+                awsAccessKeyId: "SSSEERERER",
+                awsSecretAccessKey: "EEEEEEEEEE########"
+            },
+            {
+                sequenceId: "sequenceId-6",
+                alias: "aliyun-yangkai-002",
+                type: "aliyun",
+                awsAccessKeyId: "SSSEERERER",
+                awsSecretAccessKey: "EEEEEEEEEE########"
+            }
+        ]
+    }
+});

@@ -50,7 +50,7 @@ define(function (require, exports, module) {
         alias.append('<div class="col-sm-7"><input type="text" class="form-control" id="accountAlias' + add.accountNumber + '" name="accounts.alias"></div>');
         var type = $('<div class="form-group"></div>').appendTo($accountWrapper);
         type.append('<label for="accountType' + add.accountNumber + '" class="col-sm-4 control-label">云服务提供商</label>');
-        type.append('<div class="col-sm-7 checkbox"><label><input type="checkbox" name="accounts.type" id="accountType' + add.accountNumber + '" value="aws" checked>AWS</label></div>');
+        type.append('<div class="col-sm-7 checkbox"><label><input type="checkbox" name="accounts.type" id="accountType' + add.accountNumber + '" value="amazon">amazon</label></div>');
         /*var account = $('<div class="form-group"></div>').appendTo($accountWrapper);
          account.append('<label for="accountId' + add.accountNumber + '" class="col-sm-4 control-label">账户</label>');
          account.append('<div class="col-sm-7"><input type="text" class="form-control" id="accountId' + add.accountNumber + '" name="accounts.id"></div>');

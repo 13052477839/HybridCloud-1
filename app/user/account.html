@@ -1,1 +1,84 @@
-wo de zhanghao
+<section class="content-header">
+    <h1>
+        我的账户
+        <small></small>
+    </h1>
+    <ol class="breadcrumb">
+        <li>
+            <a href="#/overview">首页</a>
+        </li>
+        <li class="active">我的账户</li>
+    </ol>
+</section>
+
+<section class="content">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="box">
+                <div class="box-body">
+                    <div class="row">
+                        <div class="col-md-7">
+                            <form class="form-horizontal" id="user-add-form" style="margin-top:30px;">
+                                <div class="form-group">
+                                    <label for="username" class="col-sm-3 control-label">用户名</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" id="username" name="name" title="由6~30位英文、数字、下划线组成">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="password" class="col-sm-3 control-label">密码</label>
+                                    <div class="col-sm-8">
+                                        <input type="password" class="form-control" id="password" name="password">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="passwordConfirm" class="col-sm-3 control-label">确认密码</label>
+                                    <div class="col-sm-8">
+                                        <input type="password" class="form-control" id="passwordConfirm">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="cellphone" class="col-sm-3 control-label">电话</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" id="cellphone" name="cellphone">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="email" class="col-sm-3 control-label">邮箱</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" id="email" name="email">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <a class="col-sm-3 control-label add-account">
+                                        <i class="fa fa-plus"></i>
+                                        添加关联账号
+                                    </a>
+                                    <div class="col-sm-8">
+                                        <div style="padding: 20px 10px;" class="accounts">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label"></label>
+                                    <div class="col-sm-8">
+                                        <button type="submit" class="btn-normal" id="user-add-submit">提交</button>
+                                        <a href="#/overview" class="btn-cancel" style="margin-left: 10px;">取消</a>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    seajs.use('user/add', function (Add) {
+        var add = new Add('edit');
+        add.init();
+    })
+</script>
