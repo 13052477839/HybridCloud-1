@@ -33,6 +33,9 @@ define(function (require, exports, module) {
                     case 2:
                         create.flavor();
                         break;
+                    case 3:
+                        create.config();
+                        break;
                     default:
                         break;
                 }
@@ -175,6 +178,7 @@ define(function (require, exports, module) {
             pagination: false,
             sortable: false,
             search: false,
+            showRefresh: false,
             toolbar: toolbar(),
             columns: [{
                 checkbox: true

@@ -453,15 +453,21 @@ label {
     background: #293038;
 }
 
-.navbar-nav>.user-menu>.dropdown-menu>.user-body a:active {
+.navbar-nav > .user-menu > .dropdown-menu > .user-body a:active {
     color: #fff !important;
 }
 
 a.flavor-type {
-    padding-top:6.5px;
+    padding-top: 7px;
 }
 
-.dropdown-menu>li>a:hover {
+.dropdown-menu > li > a:hover {
     background: #1898eb;
     color: #fff;
+}
+
+.instance-create-config hr {
+    height: 0;
+    border: none;
+    border-top: 1px solid #5cb85c;
 }
