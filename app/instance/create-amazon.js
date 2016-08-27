@@ -3,7 +3,7 @@ define(function (require, exports, module) {
     var Util = require('util/util');
 
     function Create() {
-        this.choosenImage;
+        this.accountSequenceId;
     }
 
     module.exports = Create;
@@ -12,11 +12,20 @@ define(function (require, exports, module) {
     // init
     //=================================
     Create.prototype.init = function () {
+        this.getAccountSequenceId();
         this.stepper();
     };
 
     //=================================
-    // init
+    // get account sequence id
+    //=================================
+    Create.prototype.getAccountSequenceId = function () {
+        var hash = window.location.hash;
+        this.accountSequenceId = hash.split('/')[3];
+    };
+
+    //=================================
+    // stepper
     //=================================
     Create.prototype.stepper = function () {
         var create = this;
@@ -35,6 +44,9 @@ define(function (require, exports, module) {
                         break;
                     case 3:
                         create.config();
+                        break;
+                    case 4:
+                        create.volume();
                         break;
                     default:
                         break;
@@ -77,6 +89,7 @@ define(function (require, exports, module) {
     // image
     //=================================
     Create.prototype.image = function () {
+        var create = this;
         $('.stepper-content-wrapper .instance-create-image a[data-toggle="tab"]:first').tab('show');
         $('.stepper-content-wrapper .instance-create-image a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
             var a = e.target;
@@ -85,9 +98,14 @@ define(function (require, exports, module) {
                 showHeader: false,
                 url: API_URL.IMAGES,
                 dataField: 'list',
-                /*queryParams: function(params){
-                 return $.extend(params, {'is-public': true});
-                 },*/
+                ajaxOptions: {
+                    beforeSend: function (xhr) {
+                        xhr.setRequestHeader('account-sequence-id', create.accountSequenceId);
+                    }
+                },
+                queryParams: function (params) {
+                    return $.extend(params, {'is-public': false});
+                },
                 columns: [{
                     title: '',
                     field: '',
@@ -107,6 +125,9 @@ define(function (require, exports, module) {
                                 break;
                             case 'windows':
                                 return '<img src="images/image-windows.png">';
+                                break;
+                            default:
+                                return '<img src="images/image-linux.png">';
                                 break;
                         }
                     }
@@ -141,6 +162,9 @@ define(function (require, exports, module) {
         types.push('所有实例类型');
         $.ajax({
             url: API_URL.FLAVORS,
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader('account-sequence-id', create.accountSequenceId);
+            },
             type: 'get',
             async: false,
             dataType: 'json',
@@ -259,5 +283,16 @@ define(function (require, exports, module) {
             }
             $table.bootstrapTable('uncheckAll');
         });
+    };
+
+    //=================================
+    // volume
+    //=================================
+    Create.prototype.volume = function () {
+        var create = this;
+        $table = $('#volumeTable');
+        $table.bootstrapTable($.extend(Util.gridUtilOptions(), {}));
+
+
     };
 });

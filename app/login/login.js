@@ -25,7 +25,7 @@ define(function (require, exports, module) {
     // verifyCode
     //=========================
     Login.prototype.verifyCode = function () {
-        //$('#verifyCodeImg').attr('src', API_URL.LOGIN + '/validatecode?v=' + new Date());
+        $('#verifyCodeImg').attr('src', API_URL.LOGIN + '/validatecode?v=' + new Date());
     };
 
     //=========================

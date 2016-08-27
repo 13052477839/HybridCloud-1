@@ -64,18 +64,20 @@ define(function (require, exports, module) {
         $.each($table, function (i, v) {
             $(v).bootstrapTable($.extend(Util.gridUtilOptions(), {
                 url: API_URL.INSTANCES,
-                toolbar: '<a class="create-btn" href="#/instance/create-' + $(v).attr('data-type') + '"><i class="fa fa-plus"></i>创建</a>',
+                ajaxOptions: {
+                    beforeSend: function (xhr) {
+                        xhr.setRequestHeader('account-sequence-id', $(v).attr('data-account-sequence-id'));
+                    }
+                },
+                toolbar: '<a class="create-btn" href="#/instance/create-' + $(v).attr('data-type') + '/' + $(v).attr('data-account-sequence-id') + '"><i class="fa fa-plus"></i>创建</a>',
                 dataField: 'list',
                 pageSize: 5,
                 onLoadSuccess: function () {
                     $(v).parents('.box').find('.overlay').css('display', 'none');
                 },
-                onLoadError: function() {
+                onLoadError: function () {
                     $(v).parents('.box').find('.overlay').css('display', 'none');
                 },
-                //detailView: true,
-                //sortName: 'name',
-                //sortOrder: 'asc',
                 columns: [{
                     checkbox: true
                 }, {
