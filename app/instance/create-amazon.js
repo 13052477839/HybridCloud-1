@@ -133,42 +133,49 @@ define(function (require, exports, module) {
     Create.prototype.flavor = function () {
         var create = this;
         $table = $('#flavorTable');
+        var flavors = [];
+        var types = [];
+        types.push('所有实例类型');
+        $.ajax({
+            url: API_URL.FLAVORS,
+            type: 'get',
+            async: false,
+            dataType: 'json',
+            success: function (result) {
+                if (result.success) {
+                    $.each(result.object.families, function (i, v) {
+                        types.push(v.name);
+                        $.each(v.types, function (_i, _v) {
+                            flavors.push(_v);
+                        });
+                    });
+                } else {
+                    Util.alertDialog('获取实例类型数据失败！');
+                }
+            }
+        });
         var toolbar = function () {
-            return [
-                '<a class="dropdown-toggle flavor-type" data-toggle="dropdown" href="#">',
+            var a = [
+                '<a class="dropdown-toggle btn-normal flavor-type" data-toggle="dropdown" href="javascript: void(0);">',
                 '所有实例类型 <span class="caret"></span>',
                 '</a>',
-                '<ul class="dropdown-menu">',
-                '<li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>',
-                '<li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>',
-                '<li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>',
-                '<li role="presentation" class="divider"></li>',
-                '<li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>',
-                '</ul>'].join('');
+                '<ul class="dropdown-menu flavor-type-dropdown">'
+            ].join('');
+            $.each(types, function (i, v) {
+                a += '<li role="presentation"><a role="menuitem" tabindex="-1" href="javascript: void(0);">' + v + '</a></li>';
+            });
+            return a += '</ul>';
+
         };
         $table.bootstrapTable($.extend(Util.gridUtilOptions(), {
-            url: API_URL.FLAVORS,
-            dataField: 'list',
+            data: flavors,
             clickToSelect: true,
             singleSelect: true,
+            sidePagination: 'client',
             pagination: false,
             sortable: false,
             search: false,
-            responseHandler: function (res) {
-                var result = {
-                    list: []
-                };
-                $.each(res.object.families, function (i, v) {
-                    $.each(v.types, function (_i, _v) {
-                        result.list.push(_v);
-                    });
-                });
-                return result;
-            },
             toolbar: toolbar(),
-            /*queryParams: function(params){
-             return $.extend(params, {'is-public': false});
-             },*/
             columns: [{
                 checkbox: true
             }, {
@@ -237,8 +244,16 @@ define(function (require, exports, module) {
                 }
             }]
         }));
-        $('.bootstrap-table .search input').attr('placeholder', '')
-            .parent().append('<span></span>');
 
+        $('.flavor-type-dropdown > li > a').click(function () {
+            var type = $(this).html();
+            $('.flavor-type').html(type + ' <span class="caret"></span>');
+            if (type != '所有实例类型') {
+                $table.bootstrapTable('filterBy', {family: type});
+            } else {
+                $table.bootstrapTable('filterBy', null);
+            }
+            $table.bootstrapTable('uncheckAll');
+        });
     };
 });

@@ -813,7 +813,8 @@ Mock.mock('api/v1.0/images?order=asc&offset=0&limit=10', 'get', {
     total: 32
 });
 
-Mock.mock('api/v1.0/flavors?order=asc', 'get', {
+Mock.mock('api/v1.0/flavors', 'get', {
+    success: true,
     object: {
         "families": [
             {

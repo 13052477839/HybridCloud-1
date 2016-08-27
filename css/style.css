@@ -456,3 +456,12 @@ label {
 .navbar-nav>.user-menu>.dropdown-menu>.user-body a:active {
     color: #fff !important;
 }
+
+a.flavor-type {
+    padding-top:6.5px;
+}
+
+.dropdown-menu>li>a:hover {
+    background: #1898eb;
+    color: #fff;
+}
