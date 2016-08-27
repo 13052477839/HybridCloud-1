@@ -4,34 +4,20 @@
         <small></small>
     </h1>
     <ol class="breadcrumb">
-        <li><a href="#/overview">首页</a></li>
+        <li>
+            <a href="#/overview">首页</a>
+        </li>
         <li class="active">云硬盘</li>
     </ol>
 </section>
 
 <section class="content">
-    <div class="row">
-        <div class="col-xs-12">
-            <div class="box">
-                <div class="box-body">
-                    <table id="volumeTable"></table>
-                </div>
-            </div>
-        </div>
+    <div class="row" id="volume-content-wrapper">
     </div>
 </section>
 
-<div style="display: none;">
-    <div id="volumeTableToolbar">
-        <a class="create-btn" href="#/volume/add">
-            <i class="fa fa-plus"></i>
-            添加
-        </a>
-    </div>
-</div>
-
 <script>
-    seajs.use('volume/main', function(main) {
+    seajs.use('volume/main', function (main) {
         main.init();
     })
 </script>

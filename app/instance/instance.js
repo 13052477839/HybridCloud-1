@@ -132,7 +132,11 @@ define(function (require, exports, module) {
                     field: '',
                     formatter: function (value, row, index) {
                         var sg = row.securityGroups;
-                        return sg[0].securityGroupName;
+                        if(sg && sg.length > 0){
+                            return sg[0].groupName;
+                        }else{
+                            return '-';
+                        }
                     }
                 }, /*{
                  title: '拥有者',

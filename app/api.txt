@@ -128,3 +128,33 @@ public class PadingResult{
     private Object list;
 }
 
+
+
+ "blockDeviceMappings": [
+                {
+                    "deviceName": "/dev/sda1",
+                    "ebs": {
+                        "deleteOnTermination": true,
+                        "encrypted": false,
+                        "snapshotId": "snap-4b86a343",
+                        "volumeSize": 10,
+                        "volumeType": "gp2"
+                    }
+                },
+                {
+                    "deviceName": "/dev/sdb",
+                    "virtualName": "ephemeral0"
+                },
+                {
+                    "deviceName": "/dev/sdc",
+                    "virtualName": "ephemeral1"
+                },
+                {
+                    "deviceName": "/dev/sdd",
+                    "virtualName": "ephemeral2"
+                },
+                {
+                    "deviceName": "/dev/sde",
+                    "virtualName": "ephemeral3"
+                }
+            ],

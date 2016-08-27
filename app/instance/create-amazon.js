@@ -104,7 +104,11 @@ define(function (require, exports, module) {
                     }
                 },
                 queryParams: function (params) {
-                    return $.extend(params, {'is-public': false});
+                    if($(a).attr('href') == '#tab_privateImage'){
+                        return $.extend(params, {'is-public': false});
+                    }else{
+                        return params;
+                    }
                 },
                 columns: [{
                     title: '',
@@ -127,7 +131,7 @@ define(function (require, exports, module) {
                                 return '<img src="images/image-windows.png">';
                                 break;
                             default:
-                                return '<img src="images/image-linux.png">';
+                                return '<img src="images/image-linux.gif">';
                                 break;
                         }
                     }
@@ -135,7 +139,7 @@ define(function (require, exports, module) {
                     title: '',
                     field: '',
                     formatter: function (value, row, index) {
-                        return '<b>' + row.title + '</b> - ' + row.imageId64 + '<br>' + row.description + '<br>根设备类型:' + row.rootDeviceType + ' 虚拟化类型:' + row.virtualizationType;
+                        return '<b>' + row.imageId + '</b> - ' + row.architecture + '<br>' + row.description + '<br>根设备类型:' + row.rootDeviceType + ' 虚拟化类型:' + row.virtualizationType;
                     },
                     align: 'left'
                 }, {
