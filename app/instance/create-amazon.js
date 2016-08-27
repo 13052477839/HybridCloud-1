@@ -292,10 +292,27 @@ define(function (require, exports, module) {
     //=================================
     // volume
     //=================================
+    Create.prototype.config = function () {
+
+    };
+
+    //=================================
+    // volume
+    //=================================
     Create.prototype.volume = function () {
         var create = this;
         $table = $('#volumeTable');
-        $table.bootstrapTable($.extend(Util.gridUtilOptions(), {}));
+        $table.bootstrapTable($.extend(Util.gridUtilOptions(), {
+            url: API_URL.VOLUMES,
+            ajaxOptions: {
+                beforeSend: function (xhr) {
+                    xhr.setRequestHeader('account-sequence-id', create.accountSequenceId);
+                }
+            },
+            
+            
+            
+        }));
 
 
     };

@@ -664,7 +664,7 @@ Mock.mock('api/v1.0/instances?order=asc&offset=0&limit=5', 'get', {
     total: 4
 });
 
-Mock.mock('api/v1.0/images?order=asc&offset=0&limit=10', 'get', {
+Mock.mock('api/v1.0/images?order=asc&offset=0&limit=10&is-public=false', 'get', {
     list: [
         {
             "description": "Amazon Linux AMI 2016.03.3 (HVM), SSD Volume Type",
