@@ -319,9 +319,6 @@ define(function (require, exports, module) {
             /*queryParams: function (params) {
              return $.extend(params, {'is-public': false});
              },*/
-            onLoadSuccess: function (res) {
-                console.log(res);
-            },
             columns: [
                 {
                     title: '卷类型',
