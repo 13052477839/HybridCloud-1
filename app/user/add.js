@@ -187,6 +187,7 @@ define(function (require, exports, module) {
             password: $('input[name="password"]').val(),
             cellphone: $('input[name="cellphone"]').val(),
             email: $('input[name="email"]').val(),
+            state: $('input[name="state"]').prop('checked')?1:0,
             accounts: []
         };
         var accountWrappers = $('.account-wrapper');

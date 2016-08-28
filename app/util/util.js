@@ -89,6 +89,7 @@ define(function (require) {
                 var sessionStatus = xhr.getResponseHeader('sessionStatus');
                 if (sessionStatus === 'timeout') {
                     alertDialog('登录超时，请重新登录！');
+                    window.localStorage.clear();
                     setTimeout(function () {
                         window.location.href = 'login.html';
                     }, 3000);

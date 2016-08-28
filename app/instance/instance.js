@@ -106,7 +106,7 @@ define(function (require, exports, module) {
                 }, {
                     title: '平台',
                     field: 'platform',
-                    visible: false
+                    visible: true
                 }, {
                     title: '公有DNS',
                     field: 'dnsName',
@@ -119,7 +119,8 @@ define(function (require, exports, module) {
                     field: 'keyName'
                 }, {
                     title: '监控',
-                    field: 'monitoring.state'
+                    field: 'monitoring.state',
+                    visible: false
                 }, {
                     title: '启动时间',
                     field: 'launchTime',
@@ -132,9 +133,9 @@ define(function (require, exports, module) {
                     field: '',
                     formatter: function (value, row, index) {
                         var sg = row.securityGroups;
-                        if(sg && sg.length > 0){
+                        if (sg && sg.length > 0) {
                             return sg[0].groupName;
-                        }else{
+                        } else {
                             return '-';
                         }
                     }
