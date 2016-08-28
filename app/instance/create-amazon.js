@@ -104,9 +104,9 @@ define(function (require, exports, module) {
                     }
                 },
                 queryParams: function (params) {
-                    if($(a).attr('href') == '#tab_privateImage'){
+                    if ($(a).attr('href') == '#tab_privateImage') {
                         return $.extend(params, {'is-public': false});
-                    }else{
+                    } else {
                         return params;
                     }
                 },
@@ -303,15 +303,59 @@ define(function (require, exports, module) {
         var create = this;
         $table = $('#volumeTable');
         $table.bootstrapTable($.extend(Util.gridUtilOptions(), {
-            url: API_URL.VOLUMES,
+            url: API_URL.VOLUMES + '/p',
+            sidePagination: 'client',
+            pagination: false,
+            sortable: false,
+            search: false,
             ajaxOptions: {
                 beforeSend: function (xhr) {
                     xhr.setRequestHeader('account-sequence-id', create.accountSequenceId);
                 }
             },
-            
-            
-            
+            responseHandler: function (res) {
+                return res.blockDeviceMappings;
+            },
+            /*queryParams: function (params) {
+             return $.extend(params, {'is-public': false});
+             },*/
+            onLoadSuccess: function (res) {
+                console.log(res);
+            },
+            columns: [
+                {
+                    title: '卷类型',
+                    field: '',
+                    formatter: function (value, row, index) {
+                        return '根目录';
+                    }
+                }, {
+                    title: '设备',
+                    field: 'deviceName'
+                }, {
+                    title: '快照',
+                    field: 'ebs.snapshotId'
+                }, {
+                    title: '大小(GB)',
+                    field: 'ebs.volumeSize'
+                },{
+                    title: '卷类型',
+                    field: 'ebs.volumeType'
+                }, {
+                    title: 'IOPS',
+                    field: ''
+                }, {
+                    title: '吞吐量(M/s)',
+                    field: ''
+                }, {
+                    title: '终止时删除',
+                    field: 'ebs.deleteOnTermination',
+                    formatter: function(value, row ,index){
+                        return '<input type="checkbox" checked='+value+'>';
+                    }
+                }
+            ]
+
         }));
 
 

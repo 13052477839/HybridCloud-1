@@ -1967,3 +1967,17 @@ Mock.mock('api/v1.0/users/userid', 'get', {
         ]
     }
 });
+
+Mock.mock('api/v1.0/volumes/p?order=asc', 'get', {
+    blockDeviceMappings: [
+        {
+            "deviceName": "/dev/sda1",
+            "ebs": {
+                "deleteOnTermination": true,
+                "encrypted": false,
+                "snapshotId": "snap-4b86a343",
+                "volumeSize": 10,
+                "volumeType": "gp2"
+            }
+        }]
+});
