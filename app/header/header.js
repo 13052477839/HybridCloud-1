@@ -54,12 +54,8 @@ define(function (require, exports, module) {
     Header.prototype.user = function () {
         var userId = window.localStorage.userId;
         var userName = window.localStorage.userName;
-        if (userName && userName.trim() != '' && userName != 'undefined') {
-            $('.user-menu > a span:first').html(userName);
-            $('.myaccount').attr('href', '#/user/account/' + userId);
-        } else {
-            window.location.href = 'login.html';
-        }
+        $('.user-menu > a span:first').html(userName);
+        $('.myaccount').attr('href', '#/user/account/' + userId);
     };
 
     //================================

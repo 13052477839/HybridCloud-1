@@ -32,9 +32,10 @@ define(function (require) {
     //  is login
     //==============================
     var isLogin = function () {
-        var accessToken = window.localStorage.accessToken;
-        if (accessToken && accessToken.trim() != '' && accessToken != 'undefined') {
-            $('body').css('display', 'inherit');
+        var userId = window.localStorage.userId;
+        var userName = window.localStorage.userName;
+        if (userId && userId.trim() != '' && userId != 'undefined' && userId!='[object object]'
+        && userName && userName.trim() != '' && userName != 'undefined' && userName!='[object object]') {
         } else {
             window.location.href = 'login.html';
         }
