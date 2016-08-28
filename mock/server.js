@@ -4,14 +4,16 @@ Mock.mock('api/v1.0/users?sort=name&order=asc&offset=0&limit=10', 'get', {
         name: 'ceshi1',
         password: 'xxxxxx',
         cellphone: '12312312333',
-        email: 'super@123.com'
+        email: 'super@123.com',
+        state: 0
 
     }, {
         id: 2,
         name: 'ceshi2',
         password: 'xxxxxx',
         cellphone: '12312312333',
-        email: 'super@123.com'
+        email: 'super@123.com',
+        state: 1
     }],
     total: 2
 });

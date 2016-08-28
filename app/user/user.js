@@ -49,6 +49,18 @@ define(function (require, exports, module) {
                 title: '邮箱',
                 field: 'email'
             }, {
+                title: '状态',
+                field: 'state',
+                formatter : function (value, row, index) {
+                    if (value == 0) {
+                        return '<span class="label label-danger">锁定</span>';
+                    } else if (value == 1) {
+                        return '<span class="label label-success">激活</span>';
+                    } else {
+                        return value;
+                    }
+                }
+            },{
                 title: '操作',
                 field: '',
                 //events: operateEvents,
@@ -57,7 +69,13 @@ define(function (require, exports, module) {
         }));
         $('.bootstrap-table .search input').attr('placeholder', '')
             .parent().append('<span></span>');
-        $('.fixed-table-container').append('<div class="fixed-table-footerButtons"><button disabled id="btn-user-delete">删除</button></div>');
+        var buttons = [
+            '<div class="fixed-table-footerButtons">',
+            '<button disabled id="btn-user-delete">删除</button>',
+            '<button disabled id="btn-user-lock">锁定</button>',
+            '<button disabled id="btn-user-unlock">解锁</button></div>'
+        ].join('');
+        $('.fixed-table-container').append(buttons);
         $table.on('check.bs.table uncheck.bs.table ' +
             'check-all.bs.table uncheck-all.bs.table', function () {
             $('.fixed-table-footerButtons button').prop('disabled', !$table.bootstrapTable('getSelections').length);
@@ -142,12 +160,18 @@ define(function (require, exports, module) {
     };
 
     //==============================
-    // operate events
+    // lock user
     //==============================
-    /*window.operateEvents = {
-        'click a.user-edit': function (e, value, row, index) {
-            alert(row.name);
-        }
-    };*/
+    User.prototype.lock = function () {
+
+    };
+
+    //==============================
+    // unlock user
+    //==============================
+    User.prototype.unlock = function () {
+
+    };
+
 
 });

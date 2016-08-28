@@ -471,3 +471,7 @@ a.flavor-type {
     border: none;
     border-top: 1px solid #5cb85c;
 }
+
+.label{
+    font-weight: normal;
+}
