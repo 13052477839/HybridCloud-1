@@ -36,6 +36,7 @@ define(function (require) {
         var userName = window.localStorage.userName;
         if (userId && userId.trim() != '' && userId != 'undefined' && userId!='[object object]'
         && userName && userName.trim() != '' && userName != 'undefined' && userName!='[object object]') {
+            $('body').css('display', 'inherit');
         } else {
             window.location.href = 'login.html';
         }
