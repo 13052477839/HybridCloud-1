@@ -475,3 +475,6 @@ a.flavor-type {
 .label{
     font-weight: normal;
 }
+.account-detail-title h4{
+    display: inline-block;
+}

@@ -66,6 +66,11 @@ define(function (require, exports, module) {
         var secretKey = $('<div class="form-group"></div>').appendTo($accountWrapper);
         secretKey.append('<label for="accountSecretAccessKey' + add.accountNumber + '" class="col-sm-4 control-label">SecretAccessKey</label>');
         secretKey.append(' <div class="col-sm-7"><input type="text" class="form-control" id="accountSecretAccessKey' + add.accountNumber + '" name="accounts.awsSecretAccessKey"></div>');
+        if (add.type == 'add') {
+            var type = $('<div class="form-group"></div>').appendTo($accountWrapper);
+            type.append('<label for="accountStatus' + add.accountNumber + '" class="col-sm-4 control-label">状态</label>');
+            type.append('<div class="col-sm-7 checkbox"><label><input type="checkbox" name="accounts.status" id="accountStatus' + add.accountNumber + '" value="amazon">禁用</label></div>');
+        }
     };
 
 
@@ -97,26 +102,26 @@ define(function (require, exports, module) {
                             message: '用户名只能由字母、数字、下划线组成'
                         },
                         callback: {
-                            /*message: '此用户名已经存在',
-                             callback: function (value, validator) {
-                             var e = true;
-                             $.ajax({
-                             url: '',
-                             async: false,
-                             type: 'post',
-                             data: {
-                             'name': value
-                             },
-                             success: function (result) {
-                             if (result.success) {
-                             e = false;
-                             } else {
-                             e = true;
-                             }
-                             }
-                             });
-                             return e;
-                             }*/
+                            message: '此用户名已经存在',
+                            callback: function (value, validator) {
+                                var e = true;
+                                $.ajax({
+                                    url: API_URL.USERS + '/checkname',
+                                    async: false,
+                                    type: 'post',
+                                    data: JSON.stringify({
+                                        'name': value
+                                    }),
+                                    success: function (result) {
+                                        if (result.success) {
+                                            e = false;
+                                        } else {
+                                            e = true;
+                                        }
+                                    }
+                                });
+                                return e;
+                            }
                         }
                     }
                 },
@@ -187,13 +192,14 @@ define(function (require, exports, module) {
             password: $('input[name="password"]').val(),
             cellphone: $('input[name="cellphone"]').val(),
             email: $('input[name="email"]').val(),
-            state: $('input[name="state"]').prop('checked')?1:0,
+            status: $('input[name="status"]').prop('checked') ? 1 : 2,
             accounts: []
         };
         var accountWrappers = $('.account-wrapper');
+        var valid = true;
         accountWrappers.each(function (i, v) {
             var account = {
-                type: $(v).find('input[name="accounts.type"]').val(),
+                type: $(v).find('input[name="accounts.type"]:checked').val()?$(v).find('input[name="accounts.type"]:checked').val():'',
                 alias: $(v).find('input[name="accounts.alias"]').val(),
                 /*id: $(v).find('input[name="accounts.id"]').val(),
                  name: $(v).find('input[name="accounts.name"]').val(),
@@ -201,8 +207,38 @@ define(function (require, exports, module) {
                 awsAccessKeyId: $(v).find('input[name="accounts.awsAccessKeyId"]').val(),
                 awsSecretAccessKey: $(v).find('input[name="accounts.awsSecretAccessKey"]').val()
             };
+            $.ajax({
+                url: API_URL.USERS + '/checkaccount',
+                type: 'post',
+                dataType: 'json',
+                async: false,
+                data: JSON.stringify(account),
+                success: function(result){
+                    if(result.success){
+                    }else{
+                        Util.alertDialog('账号' + $(v).attr('id').substr(7) + '验证不通过，请确认账号信息！');
+                        setTimeout(function(){
+                            $('#dialog-alert').modal('hide');
+                            $(v).find('input[name="accounts.alias"]').focus();
+                        },3000);
+                        valid = false;
+                    }
+                }
+            });
+            if(!valid){
+                return false;
+            }
+            if($(v).find('input[name="accounts.status"]').prop('checked')){
+                account['status'] = 2;
+            }else{
+                account['status'] = 1;
+            }
             data.accounts[i] = account;
         });
+        if(!valid){
+            $('#user-add-form').bootstrapValidator('disableSubmitButtons', false);
+            return;
+        }
         $.ajax({
             url: API_URL.USERS,
             type: 'post',

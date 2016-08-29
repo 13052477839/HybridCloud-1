@@ -52,9 +52,9 @@ define(function (require, exports, module) {
                 field: 'email'
             }, {
                 title: '状态',
-                field: 'state',
+                field: 'status',
                 formatter : function (value, row, index) {
-                    if (value == 0) {
+                    if (value == 2) {
                         return '<span class="label label-danger">锁定</span>';
                     } else if (value == 1) {
                         return '<span class="label label-success">激活</span>';
@@ -93,8 +93,14 @@ define(function (require, exports, module) {
                         $detail.html('<div class="account-detail-wrapper"></div>');
                         var accounts = result.object.accounts;
                         $.each(accounts, function (i, v) {
+                            var status = '';
+                            switch(v.status){
+                                case(0): status = '<span class="label label-warning">待审核</span>';break;
+                                case(1): status = '<span class="label label-success">可用</span>';break;
+                                case(2): status = '<span class="label label-danger">禁用</span>';break;
+                            }
                             $account = $('<div class="col-sm-5 account-detail"></div>').appendTo($detail.find('.account-detail-wrapper'));
-                            $account.append('<h4>账号' + (i + 1) + '</h4>');
+                            $account.append('<div class="account-detail-title"><h4>账号' + (i + 1) + '</h4> ' + status + '</div>');
                             $account.append('<span><b>别名: </b>' + v.alias + '</span><br>');
                             $account.append('<span><b>云服务提供商: </b>' + v.type + '</span><br>');
                             $account.append('<span><b>AccessKeyId: </b>' + v.awsAccessKeyId + '</span><br>');
