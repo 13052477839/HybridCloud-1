@@ -4,6 +4,7 @@ define(function (require, exports, module) {
 
     function Create() {
         this.accountSequenceId;
+        this.chosenImage;
     }
 
     module.exports = Create;
@@ -53,7 +54,11 @@ define(function (require, exports, module) {
                 }
             },
             onStepClick: function (index, step) {
-                $("#stepper").stepper('stepTo', index + 1);
+                if(create.chosenImage){
+                    $("#stepper").stepper('stepTo', index + 1);
+                }else{
+                    Util.notify('提示','请先选择镜像！','warning');
+                }
             }
         });
         $('#stepper li').map(function (index, domElement) {
