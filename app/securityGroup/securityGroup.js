@@ -1,26 +1,13 @@
 define(function(require, exports, module){
+    var Util = require('util/util');
 
-    function Overview(){}
+    function SecurityGroup(){}
 
-    module.exports = Overview;
+    module.exports = SecurityGroup;
 
     //==============================
     // init
     //==============================
-    Overview.prototype.init = function () {
-        /*$("#table1").bootstrapTable({
-            url: 'api/rest/table1',
-
-
-        });
-
-        $.ajax({
-            url: 'rest/test',
-            type: 'get',
-            dataType: 'json',
-            success: function(result) {
-                console.log(result);
-            }
-        })*/
+    SecurityGroup.prototype.init = function () {
     }
 });
