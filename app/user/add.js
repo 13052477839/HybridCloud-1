@@ -187,7 +187,7 @@ define(function (require, exports, module) {
                 if (add.type == 'edit') {
                     add.editSubmit();
                 }
-                if(add.type == 'account'){
+                if (add.type == 'account') {
                     add.accountSubmit();
                 }
             }
@@ -405,6 +405,9 @@ define(function (require, exports, module) {
                 if (data[key] == 1) {
                     $form.find('input[name="' + key + '"]').prop('checked', true);
                 }
+            }
+            if (key == 'password') {
+                $('#passwordConfirm').val(data[key]);
             }
         }
         if (data.accounts.length > 0) {
