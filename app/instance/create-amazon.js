@@ -101,6 +101,7 @@ define(function (require, exports, module) {
             $($(a).attr('href')).find('table').bootstrapTable($.extend(Util.gridUtilOptions(), {
                 showColumns: false,
                 showHeader: false,
+                singleSelect: true,
                 url: API_URL.IMAGES,
                 dataField: 'list',
                 ajaxOptions: {
@@ -113,6 +114,21 @@ define(function (require, exports, module) {
                         return $.extend(params, {'is-public': false});
                     } else {
                         return params;
+                    }
+                },
+                onCheck: function(row){
+                    if(create.chosenImage && create.chosenImage.imageId != row.imageId) {
+                        Util.confirmDialog('您已经选择了一个镜像，更换镜像将需要重新选择类型和存储等，您确认继续吗？', function(){
+                            $('#dialog-confirm').modal('hide');
+                            create.chosenImage = row;
+                            $('#step1 .page-header b').text('您已选择了一个镜像:'+ row.imageId);
+                            $("#stepper").stepper('stepTo', 2);
+                        });
+                    }
+                    if(typeof create.chosenImage == 'undefined'){
+                        create.chosenImage = row;
+                        $('#step1 .page-header b').text('您已选择了一个镜像:'+ row.imageId);
+                        $("#stepper").stepper('stepTo', 2);
                     }
                 },
                 columns: [{
@@ -149,9 +165,10 @@ define(function (require, exports, module) {
                     align: 'left'
                 }, {
                     title: '',
-                    field: '',
+                    field: 'operate',
+                    events: operateEvents,
                     formatter: function (value, row, index) {
-                        return '<button class="btn-normal">选择</button>'
+                        return '<button class="btn-normal btn-image" data-table="'+$(a).attr('href')+'">选择</button>'
                     }
                 }]
             }));
@@ -182,7 +199,9 @@ define(function (require, exports, module) {
                     $.each(result.object.families, function (i, v) {
                         types.push(v.name);
                         $.each(v.types, function (_i, _v) {
-                            flavors.push(_v);
+                            if(_.contains(_v.virtualizationTypes, create.chosenImage.virtualizationType)){
+                                flavors.push(_v);
+                            }
                         });
                     });
                 } else {
@@ -359,7 +378,14 @@ define(function (require, exports, module) {
             ]
 
         }));
-
-
     };
+
+    //=================================
+    // operateEvents
+    //=================================
+    window.operateEvents = {
+        'click .btn-image': function(e, value, row, index){
+            $($(this).attr('data-table')).find('table').bootstrapTable('check', index);
+        }
+    }
 });

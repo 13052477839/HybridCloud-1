@@ -261,3 +261,7 @@
 .fixed-table-loading {
     top: 50px !important;
 }
+
+.instance-create-image .fixed-table-loading{
+    top: 10px !important;
+}
