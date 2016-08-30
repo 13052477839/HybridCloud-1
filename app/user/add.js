@@ -14,7 +14,7 @@ define(function (require, exports, module) {
     //=============================
     Add.prototype.init = function () {
 
-        if (this.type == 'edit') {
+        if (this.type == 'edit' || this.type == 'account') {
             this.initData();
         }
 
@@ -41,7 +41,7 @@ define(function (require, exports, module) {
         var add = this;
         add.accountNumber++;
         var $accountWrapper = $('<div class="account-wrapper" id="account' + add.accountNumber + '"></div>').appendTo('.accounts');
-        $accountWrapper.append('<button class="btn btn-default account-close-btn">x</button><h4>账号' + add.accountNumber + '</h4><div class="clearfix"></div>');
+        $accountWrapper.append('<div class="account-detail-title"><button class="btn btn-default account-close-btn">x</button><h4>账号' + add.accountNumber + '</h4></div><div class="clearfix"></div>');
         $accountWrapper.find('.account-close-btn').click(function () {
             $accountWrapper.remove();
         });
@@ -66,7 +66,7 @@ define(function (require, exports, module) {
         var secretKey = $('<div class="form-group"></div>').appendTo($accountWrapper);
         secretKey.append('<label for="accountSecretAccessKey' + add.accountNumber + '" class="col-sm-4 control-label">SecretAccessKey</label>');
         secretKey.append(' <div class="col-sm-7"><input type="text" class="form-control" id="accountSecretAccessKey' + add.accountNumber + '" name="accounts.awsSecretAccessKey"></div>');
-        if (add.type == 'add') {
+        if (add.type == 'add' || add.type == 'edit') {
             var type = $('<div class="form-group"></div>').appendTo($accountWrapper);
             type.append('<label for="accountStatus' + add.accountNumber + '" class="col-sm-4 control-label">状态</label>');
             type.append('<div class="col-sm-7 checkbox"><label><input type="checkbox" name="accounts.status" id="accountStatus' + add.accountNumber + '" value="amazon">禁用</label></div>');
@@ -88,6 +88,7 @@ define(function (require, exports, module) {
             },
             fields: {
                 'name': {
+                    trigger: 'blur',
                     validators: {
                         notEmpty: {
                             message: '用户名不能为空'
@@ -105,13 +106,20 @@ define(function (require, exports, module) {
                             message: '此用户名已经存在',
                             callback: function (value, validator) {
                                 var e = true;
+                                var data = {
+                                    name: value
+                                };
+                                if (add.type == 'edit' || add.type == 'account') {
+                                    data = {
+                                        name: value,
+                                        id: add.id
+                                    }
+                                }
                                 $.ajax({
                                     url: API_URL.USERS + '/checkname',
                                     async: false,
                                     type: 'post',
-                                    data: JSON.stringify({
-                                        'name': value
-                                    }),
+                                    data: JSON.stringify(data),
                                     success: function (result) {
                                         if (result.success) {
                                             e = false;
@@ -176,7 +184,7 @@ define(function (require, exports, module) {
                 if (add.type == 'add') {
                     add.addSubmit();
                 }
-                if (add.type == 'edit') {
+                if (add.type == 'edit' || add.type == 'account') {
                     add.editSubmit();
                 }
             }
@@ -198,8 +206,16 @@ define(function (require, exports, module) {
         var accountWrappers = $('.account-wrapper');
         var valid = true;
         accountWrappers.each(function (i, v) {
+            Util.globalMask('从云服务提供商处验证账号信息，请稍后...');
+            var t = $(v).find('input[name="accounts.type"]:checked').val();
+            if (typeof t === 'undefined') {
+                $('#global-mask').hide();
+                Util.alertDialog('账号' + $(v).attr('id').substr(7) + '未选择云服务提供商！');
+                valid = false;
+                return false;
+            }
             var account = {
-                type: $(v).find('input[name="accounts.type"]:checked').val()?$(v).find('input[name="accounts.type"]:checked').val():'',
+                type: $(v).find('input[name="accounts.type"]:checked').val() ? $(v).find('input[name="accounts.type"]:checked').val() : '',
                 alias: $(v).find('input[name="accounts.alias"]').val(),
                 /*id: $(v).find('input[name="accounts.id"]').val(),
                  name: $(v).find('input[name="accounts.name"]').val(),
@@ -213,38 +229,41 @@ define(function (require, exports, module) {
                 dataType: 'json',
                 async: false,
                 data: JSON.stringify(account),
-                success: function(result){
-                    if(result.success){
-                    }else{
+                success: function (result) {
+                    if (result.success) {
+                    } else {
+                        $('#global-mask').hide();
                         Util.alertDialog('账号' + $(v).attr('id').substr(7) + '验证不通过，请确认账号信息！');
-                        setTimeout(function(){
+                        setTimeout(function () {
                             $('#dialog-alert').modal('hide');
                             $(v).find('input[name="accounts.alias"]').focus();
-                        },3000);
+                        }, 3000);
                         valid = false;
                     }
                 }
             });
-            if(!valid){
+            if (!valid) {
                 return false;
             }
-            if($(v).find('input[name="accounts.status"]').prop('checked')){
+            if ($(v).find('input[name="accounts.status"]').prop('checked')) {
                 account['status'] = 2;
-            }else{
+            } else {
                 account['status'] = 1;
             }
             data.accounts[i] = account;
         });
-        if(!valid){
+        if (!valid) {
             $('#user-add-form').bootstrapValidator('disableSubmitButtons', false);
             return;
         }
+        Util.globalMask('正在保存，请稍后...');
         $.ajax({
             url: API_URL.USERS,
             type: 'post',
             dataType: 'json',
             data: JSON.stringify(data),
             success: function (result) {
+                $('#global-mask').hide();
                 if (result.success) {
                     Util.notify('成功！', '添加用户成功！', 'success');
                     window.location.hash = '#/user';
@@ -253,6 +272,7 @@ define(function (require, exports, module) {
                 }
             }
         });
+        $('#global-mask').hide();
     };
 
     //=============================
@@ -260,12 +280,17 @@ define(function (require, exports, module) {
     //=============================
     Add.prototype.editSubmit = function () {
         var add = this;
+        var status = 1;
+        if (add.type == 'edit') {
+            status = $('input[name="status"]').prop('checked') ? 1 : 2;
+        }
         var data = {
             id: add.id,
             name: $('input[name="name"]').val(),
             password: $('input[name="password"]').val(),
             cellphone: $('input[name="cellphone"]').val(),
             email: $('input[name="email"]').val(),
+            status: status,
             accounts: []
         };
         var accountWrappers = $('.account-wrapper');
@@ -331,8 +356,13 @@ define(function (require, exports, module) {
         var add = this;
         var $form = $('#user-add-form');
         for (var key in data) {
-            if (key != 'accounts' && key != 'id') {
+            if (key != 'accounts' && key != 'id' && key != 'status') {
                 $form.find('input[name="' + key + '"]').val(data[key]);
+            }
+            if (key == 'status' && add.type == 'edit') {
+                if (data[key] == 1) {
+                    $form.find('input[name="' + key + '"]').prop('checked', true);
+                }
             }
         }
         if (data.accounts.length > 0) {
@@ -341,11 +371,29 @@ define(function (require, exports, module) {
                 var $account = $('#account' + (i + 1));
                 $account.append('<input type="hidden" name="accounts.sequenceId" value="' + v['sequenceId'] + '">');
                 for (var k in v) {
-                    if (k != 'type') {
+                    if (k != 'type' && k != 'status') {
                         $account.find('input[name="accounts.' + k + '"]').val(v[k]);
                     }
                     if (k == 'type') {
                         $account.find('input[name="accounts.' + k + '"][value="' + v[k] + '"]').prop('checked', true);
+                    }
+                    if (k == 'status') {
+                        var s;
+                        switch (v[k]) {
+                            case 0:
+                                s = '<span class="label label-warning">待审核</span>';
+                                break;
+                            case 1:
+                                s = '<span class="label label-success">可用</span>';
+                                break;
+                            case 2:
+                                s = '<span class="label label-danger">禁用</span>';
+                                break;
+                        }
+                        $account.find('h4').after(s);
+                        if (v[k] == 2) {
+                            $account.find('input[name="accounts.' + k + '"]').prop('checked', true);
+                        }
                     }
                 }
             });

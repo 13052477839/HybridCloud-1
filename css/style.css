@@ -472,9 +472,27 @@ a.flavor-type {
     border-top: 1px solid #5cb85c;
 }
 
-.label{
+.label {
     font-weight: normal;
 }
-.account-detail-title h4{
+
+.account-detail-title h4 {
     display: inline-block;
+}
+
+.mask {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1000000000;
+    background: rgba(0, 0, 0, 0.1);
+    display: none;
+}
+
+.mask-content {
+    width: 10%;
+    margin: 20% auto;
+    text-align: center;
 }

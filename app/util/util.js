@@ -125,6 +125,14 @@ define(function (require) {
     };
 
     //====================================================
+    // global mask
+    //====================================================
+    var globalMask = function(text) {
+        $('#global-mask h4').text(text);
+        $('#global-mask').show();
+    };
+
+    //====================================================
     // notify: default success info alert warning
     //====================================================
     var notify = function (title, content, type) {
@@ -142,6 +150,7 @@ define(function (require) {
         alertDialog: alertDialog,
         confirmDialog: confirmDialog,
         notify: notify,
-        isLogin: isLogin
+        isLogin: isLogin,
+        globalMask: globalMask
     }
 });

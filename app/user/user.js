@@ -95,9 +95,9 @@ define(function (require, exports, module) {
                         $.each(accounts, function (i, v) {
                             var status = '';
                             switch(v.status){
-                                case(0): status = '<span class="label label-warning">待审核</span>';break;
-                                case(1): status = '<span class="label label-success">可用</span>';break;
-                                case(2): status = '<span class="label label-danger">禁用</span>';break;
+                                case 0: status = '<span class="label label-warning">待审核</span>';break;
+                                case 1: status = '<span class="label label-success">可用</span>';break;
+                                case 2: status = '<span class="label label-danger">禁用</span>';break;
                             }
                             $account = $('<div class="col-sm-5 account-detail"></div>').appendTo($detail.find('.account-detail-wrapper'));
                             $account.append('<div class="account-detail-title"><h4>账号' + (i + 1) + '</h4> ' + status + '</div>');
