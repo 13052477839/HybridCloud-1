@@ -184,8 +184,11 @@ define(function (require, exports, module) {
                 if (add.type == 'add') {
                     add.addSubmit();
                 }
-                if (add.type == 'edit' || add.type == 'account') {
+                if (add.type == 'edit') {
                     add.editSubmit();
+                }
+                if(add.type == 'account'){
+                    add.accountSubmit();
                 }
             }
         });
@@ -280,21 +283,26 @@ define(function (require, exports, module) {
     //=============================
     Add.prototype.editSubmit = function () {
         var add = this;
-        var status = 1;
-        if (add.type == 'edit') {
-            status = $('input[name="status"]').prop('checked') ? 1 : 2;
-        }
         var data = {
             id: add.id,
             name: $('input[name="name"]').val(),
             password: $('input[name="password"]').val(),
             cellphone: $('input[name="cellphone"]').val(),
             email: $('input[name="email"]').val(),
-            status: status,
+            status: $('input[name="status"]').prop('checked') ? 1 : 2,
             accounts: []
         };
         var accountWrappers = $('.account-wrapper');
+        var valid = true;
         accountWrappers.each(function (i, v) {
+            Util.globalMask('从云服务提供商处验证账号信息，请稍后...');
+            var t = $(v).find('input[name="accounts.type"]:checked').val();
+            if (typeof t === 'undefined') {
+                $('#global-mask').hide();
+                Util.alertDialog('账号' + $(v).attr('id').substr(7) + '未选择云服务提供商！');
+                valid = false;
+                return false;
+            }
             var account = {
                 type: $(v).find('input[name="accounts.type"]').val(),
                 alias: $(v).find('input[name="accounts.alias"]').val(),
@@ -307,14 +315,47 @@ define(function (require, exports, module) {
             if ($(v).find('input[name="accounts.sequenceId"]')) {
                 account['sequenceId'] = $(v).find('input[name="accounts.sequenceId"]').val();
             }
+            $.ajax({
+                url: API_URL.USERS + '/checkaccount',
+                type: 'post',
+                dataType: 'json',
+                async: false,
+                data: JSON.stringify(account),
+                success: function (result) {
+                    if (result.success) {
+                    } else {
+                        $('#global-mask').hide();
+                        Util.alertDialog('账号' + $(v).attr('id').substr(7) + '验证不通过，请确认账号信息！');
+                        setTimeout(function () {
+                            $('#dialog-alert').modal('hide');
+                            $(v).find('input[name="accounts.alias"]').focus();
+                        }, 3000);
+                        valid = false;
+                    }
+                }
+            });
+            if (!valid) {
+                return false;
+            }
+            if ($(v).find('input[name="accounts.status"]').prop('checked')) {
+                account['status'] = 2;
+            } else {
+                account['status'] = 1;
+            }
             data.accounts[i] = account;
         });
+        if (!valid) {
+            $('#user-add-form').bootstrapValidator('disableSubmitButtons', false);
+            return;
+        }
+        Util.globalMask('正在保存，请稍后...');
         $.ajax({
             url: API_URL.USERS + '/' + add.id,
             type: 'put',
             dataType: 'json',
             data: JSON.stringify(data),
             success: function (result) {
+                $('#global-mask').hide();
                 if (result.success) {
                     Util.notify('成功！', '编辑用户成功！', 'success');
                     window.location.hash = '#/user';
@@ -323,6 +364,7 @@ define(function (require, exports, module) {
                 }
             }
         });
+        $('#global-mask').hide();
     };
 
     //=============================
@@ -391,7 +433,7 @@ define(function (require, exports, module) {
                                 break;
                         }
                         $account.find('h4').after(s);
-                        if (v[k] == 2) {
+                        if (v[k] == 2 && add.type == 'edit') {
                             $account.find('input[name="accounts.' + k + '"]').prop('checked', true);
                         }
                     }
