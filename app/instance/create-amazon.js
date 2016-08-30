@@ -3,8 +3,11 @@ define(function (require, exports, module) {
     var Util = require('util/util');
 
     function Create() {
+        this.currentStep;
         this.accountSequenceId;
         this.chosenImage;
+        this.chosenFlavor;
+        this.chosenConfig;
     }
 
     module.exports = Create;
@@ -35,6 +38,7 @@ define(function (require, exports, module) {
             start: 1,
             type: 'default',
             onStep: function (index, step) {
+                create.currentStep = index;
                 $('.stepper-content-wrapper').html($('#step' + index).html());
                 switch (index) {
                     case 1:
@@ -54,10 +58,10 @@ define(function (require, exports, module) {
                 }
             },
             onStepClick: function (index, step) {
-                if(create.chosenImage){
+                if (create.chosenImage) {
                     $("#stepper").stepper('stepTo', index + 1);
-                }else{
-                    Util.notify('提示','请先选择镜像！','warning');
+                } else {
+                    Util.notify('提示', '请先选择镜像！', 'warning');
                 }
             }
         });
@@ -116,18 +120,19 @@ define(function (require, exports, module) {
                         return params;
                     }
                 },
-                onCheck: function(row){
-                    if(create.chosenImage && create.chosenImage.imageId != row.imageId) {
-                        Util.confirmDialog('您已经选择了一个镜像，更换镜像将需要重新选择类型和存储等，您确认继续吗？', function(){
+                onCheck: function (row) {
+                    if (create.chosenImage && create.chosenImage.imageId != row.imageId) {
+                        Util.confirmDialog('您已经选择了一个镜像，更换镜像将需要重新选择类型和存储等，您确认继续吗？', function () {
                             $('#dialog-confirm').modal('hide');
                             create.chosenImage = row;
-                            $('#step1 .page-header b').text('您已选择了一个镜像:'+ row.imageId);
+                            create.chosenFlavor = '';
+                            $('.step1-header b').text('您已选择了一个镜像:' + row.imageId);
                             $("#stepper").stepper('stepTo', 2);
                         });
                     }
-                    if(typeof create.chosenImage == 'undefined'){
+                    if (typeof create.chosenImage == 'undefined') {
                         create.chosenImage = row;
-                        $('#step1 .page-header b').text('您已选择了一个镜像:'+ row.imageId);
+                        $('.step1-header b').text('您已选择了一个镜像:' + row.imageId);
                         $("#stepper").stepper('stepTo', 2);
                     }
                 },
@@ -168,7 +173,7 @@ define(function (require, exports, module) {
                     field: 'operate',
                     events: operateEvents,
                     formatter: function (value, row, index) {
-                        return '<button class="btn-normal btn-image" data-table="'+$(a).attr('href')+'">选择</button>'
+                        return '<button class="btn-normal btn-image" data-table="' + $(a).attr('href') + '">选择</button>'
                     }
                 }]
             }));
@@ -199,7 +204,7 @@ define(function (require, exports, module) {
                     $.each(result.object.families, function (i, v) {
                         types.push(v.name);
                         $.each(v.types, function (_i, _v) {
-                            if(_.contains(_v.virtualizationTypes, create.chosenImage.virtualizationType)){
+                            if (_.contains(_v.virtualizationTypes, create.chosenImage.virtualizationType)) {
                                 flavors.push(_v);
                             }
                         });
@@ -232,6 +237,10 @@ define(function (require, exports, module) {
             search: false,
             showRefresh: false,
             toolbar: toolbar(),
+            onCheck: function(row){
+                create.chosenFlavor = row;
+                $('.step2-header b').text('您已选择了一个实例类型:' + row.typeName);
+            },
             columns: [{
                 checkbox: true
             }, {
@@ -301,6 +310,12 @@ define(function (require, exports, module) {
             }]
         }));
 
+        if(typeof create.chosenFlavor == 'undefined' || create.chosenFlavor == ''){
+            $table.bootstrapTable('check', 0);
+        }else{
+            $table.bootstrapTable('checkBy',  {field:'typeName', values:[create.chosenFlavor.typeName]});
+        }
+
         $('.flavor-type-dropdown > li > a').click(function () {
             var type = $(this).html();
             $('.flavor-type').html(type + ' <span class="caret"></span>');
@@ -310,13 +325,109 @@ define(function (require, exports, module) {
                 $table.bootstrapTable('filterBy', null);
             }
             $table.bootstrapTable('uncheckAll');
+            $table.bootstrapTable('check', 0);
         });
     };
 
     //=================================
-    // volume
+    // config
     //=================================
     Create.prototype.config = function () {
+        var create = this;
+        var vpcs, subnets;
+        $.ajax({
+            url: API_URL.NETWORKS,
+            type: 'get',
+            dataType: 'json',
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader('account-sequence-id', create.accountSequenceId);
+            },
+            success: function (result) {
+                if (result.success) {
+                    vpcs = result.object.vpcs;
+                    var options;
+                    vpcs = _.sortBy(vpcs, function (data) {
+                        return -data.default;
+                    });
+                    $.each(vpcs, function (i, v) {
+                        var vdefault = v.default ? '(默认)' : '';
+                        options += '<option value="' + v.vpcId + '">' + v.vpcId + '(' + v.cidrBlock + ')' + vdefault + '</option>';
+                    });
+                    $('#intance-create-config-network').html(options);
+                } else {
+                    Util.alertDialog('获取网络数据失败！');
+                }
+            }
+        });
+        $.ajax({
+            url: API_URL.SUBNETS,
+            type: 'get',
+            dataType: 'json',
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader('account-sequence-id', create.accountSequenceId);
+            },
+            success: function (result) {
+                if (result.success) {
+                    subnets = result.object.subnets;
+                    var options = '<option value="no-preference">无首选项(任何可用区的默认子网)</option>';
+                    $.each(subnets, function (i, v) {
+                        if (v.defaultForAz) {
+                            options += '<option value="' + v.subnetId + '">' + v.subnetId + '(' + v.cidrBlock + ') | 默认范围 ' + v.availabilityZone + '</option>';
+                        }
+                    });
+                    $('#intance-create-config-subnet').html(options);
+                } else {
+                    Util.alertDialog('获取子网数据失败！');
+                }
+            }
+        });
+        $('#intance-create-config-network').unbind().change(function () {
+            var vpcId = $(this).val();
+            var options;
+            var vpc = _.filter(vpcs, function (data) {
+                return data.vpcId == vpcId;
+            });
+            var subnet = _.filter(subnets, function (data) {
+                return data.vpcId == vpcId;
+            });
+            if (vpc[0].default) {
+                options += '<option value="no-preference">无首选项(任何可用区的默认子网)</option>';
+            }
+            $.each(subnet, function (i, v) {
+                options += '<option value="' + v.subnetId + '">' + v.subnetId + '(' + v.cidrBlock + ') | 默认范围 ' + v.availabilityZone + '</option>';
+            });
+            $('#intance-create-config-subnet').html(options).trigger('change');
+        });
+        $('#intance-create-config-subnet').unbind().change(function () {
+            var subnetId = $(this).val();
+            $('.network-interfaces').remove();
+            if (subnetId && subnetId != 'no-preference') {
+                var table = [
+                    '<div class="form-group network-interfaces">',
+                    '<label class="col-sm-3 control-label">网络接口</label>',
+                    '<div class="col-sm-8">',
+                    '<div class="network-interfaces">',
+                    '<table class="table table-hover table-condensed table-bordered">',
+                    '<thead><tr><th>设备</th><th>网络接口</th><th>子网</th><th>主要IP</th><th></th></tr></thead>',
+                    '<tbody>',
+                    '<tr><td>eh0</td><td>新网络接口</td><td>' + subnetId + '</td><td><input type="text" placeholder="自动分配"></td><td><a href="javascript:void(0);" class="network-interface-add"><i class="fa fa-plus"></i></a></td></tr>',
+                    '</tbody>',
+                    '</table>',
+                    '</div>',
+                    '</div>',
+                    '</div>'
+                ].join('');
+                $(this).parent().parent().after(table);
+                $('.network-interface-add').unbind().click(function () {
+                    var index = parseInt($('.network-interfaces').find('tbody tr:last td:eq(0)').text().substr(2)) + 1;
+                    var $tr = $('<tr><td>eh' + index + '</td><td>新网络接口</td><td>' + subnetId + '</td><td><input type="text" placeholder="自动分配"></td><td><a href="javascript:void(0);" class="network-interface-minus"><i class="fa fa-minus"></i></a></td></tr>').appendTo($('.network-interfaces table tbody'));
+                    $tr.find('.network-interface-minus').click(function () {
+                        $tr.remove();
+                    });
+                });
+            }
+        });
+
 
     };
 
@@ -359,7 +470,7 @@ define(function (require, exports, module) {
                 }, {
                     title: '大小(GB)',
                     field: 'ebs.volumeSize'
-                },{
+                }, {
                     title: '卷类型',
                     field: 'ebs.volumeType'
                 }, {
@@ -371,8 +482,8 @@ define(function (require, exports, module) {
                 }, {
                     title: '终止时删除',
                     field: 'ebs.deleteOnTermination',
-                    formatter: function(value, row ,index){
-                        return '<input type="checkbox" checked='+value+'>';
+                    formatter: function (value, row, index) {
+                        return '<input type="checkbox" checked=' + value + '>';
                     }
                 }
             ]
@@ -384,7 +495,7 @@ define(function (require, exports, module) {
     // operateEvents
     //=================================
     window.operateEvents = {
-        'click .btn-image': function(e, value, row, index){
+        'click .btn-image': function (e, value, row, index) {
             $($(this).attr('data-table')).find('table').bootstrapTable('check', index);
         }
     }

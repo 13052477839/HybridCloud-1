@@ -211,7 +211,7 @@ define(function (require, exports, module) {
         accountWrappers.each(function (i, v) {
             Util.globalMask('从云服务提供商处验证账号信息，请稍后...');
             var t = $(v).find('input[name="accounts.type"]:checked').val();
-            if (typeof t === 'undefined') {
+            if (typeof t == 'undefined') {
                 $('#global-mask').hide();
                 Util.alertDialog('账号' + $(v).attr('id').substr(7) + '未选择云服务提供商！');
                 valid = false;
@@ -297,7 +297,7 @@ define(function (require, exports, module) {
         accountWrappers.each(function (i, v) {
             Util.globalMask('从云服务提供商处验证账号信息，请稍后...');
             var t = $(v).find('input[name="accounts.type"]:checked').val();
-            if (typeof t === 'undefined') {
+            if (typeof t == 'undefined') {
                 $('#global-mask').hide();
                 Util.alertDialog('账号' + $(v).attr('id').substr(7) + '未选择云服务提供商！');
                 valid = false;
@@ -386,7 +386,7 @@ define(function (require, exports, module) {
         accountWrappers.each(function (i, v) {
             Util.globalMask('正在保存，请稍后...');
             var t = $(v).find('input[name="accounts.type"]:checked').val();
-            if (typeof t === 'undefined') {
+            if (typeof t == 'undefined') {
                 $('#global-mask').hide();
                 Util.alertDialog('账号' + $(v).attr('id').substr(7) + '未选择云服务提供商！');
                 valid = false;

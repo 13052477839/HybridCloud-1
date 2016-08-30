@@ -523,3 +523,7 @@ select:focus {
     background: url("../images/btn_droplist_disabled.png") no-repeat right #f2f2f2 !important;
     color: #bbbbbb !important;
 }
+
+.network-interfaces tbody td{
+    vertical-align: middle !important;
+}

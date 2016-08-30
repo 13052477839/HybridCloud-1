@@ -30,7 +30,7 @@
 <div style="display:none;">
 
     <div id="step1">
-        <h2 class="page-header" style="margin-top: 30px;">步骤1：选择一个镜像 <b></b></h2>
+        <h2 class="page-header step1-header" style="margin-top: 30px;">步骤1：选择一个镜像 <b></b></h2>
         <div class="row instance-create-image">
             <div class="col-md-12">
                 <div class="nav-tabs-custom instance-create-image">
@@ -62,7 +62,7 @@
     </div>
 
     <div id="step2">
-        <h2 class="page-header" style="margin-top: 30px;">步骤2：选择一个实例类型 <b></b></h2>
+        <h2 class="page-header step2-header" style="margin-top: 30px;">步骤2：选择一个实例类型 <b></b></h2>
         <div class="row instance-create-flavor">
             <div class="col-md-12">
                 <table id="flavorTable"></table>
@@ -71,26 +71,26 @@
     </div>
 
     <div id="step3">
-        <h2 class="page-header" style="margin-top: 30px;">步骤3：配置实例详细信息 <b></b></h2>
+        <h2 class="page-header step3-header" style="margin-top: 30px;">步骤3：配置实例详细信息 <b></b></h2>
         <div class="row instance-create-config">
             <div class="col-md-7">
                 <form class="form-horizontal" id="instance-create-config-form">
                     <div class="form-group">
                         <label for="intance-create-config-number" class="col-sm-3 control-label">实例的数量</label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control" id="intance-create-config-number" name="" value="1">
+                            <input type="text" class="form-control" id="intance-create-config-number" name="maxCount" value="1">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="intance-create-config-network" class="col-sm-3 control-label">网络</label>
                         <div class="col-sm-8">
-                            <select class="form-control" id="intance-create-config-network" name=""></select>
+                            <select class="form-control" id="intance-create-config-network" name="vpc"></select>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="intance-create-config-subnet" class="col-sm-3 control-label">子网</label>
                         <div class="col-sm-8">
-                            <select class="form-control" id="intance-create-config-subnet" name=""></select>
+                            <select class="form-control" id="intance-create-config-subnet" name="subnet"></select>
                         </div>
                     </div>
                     <div class="form-group">
@@ -147,7 +147,7 @@
     </div>
 
     <div id="step4">
-        <h2 class="page-header" style="margin-top: 30px;">步骤4：添加存储 <b></b></h2>
+        <h2 class="page-header step4-header" style="margin-top: 30px;">步骤4：添加存储 <b></b></h2>
         <div class="row instance-create-volume">
             <div class="col-md-12">
                 <table id="volumeTable"></table>
@@ -156,7 +156,7 @@
     </div>
 
     <div id="step5">
-        <h2 class="page-header" style="margin-top: 30px;">步骤5：标签实例 <b></b></h2>
+        <h2 class="page-header step5-header" style="margin-top: 30px;">步骤5：标签实例 <b></b></h2>
         <div class="row instance-create-volume">
             <div class="col-md-12">
             </div>
@@ -164,7 +164,7 @@
     </div>
 
     <div id="step6">
-        <h2 class="page-header" style="margin-top: 30px;">步骤6：配置安全组 <b></b></h2>
+        <h2 class="page-header step6-header" style="margin-top: 30px;">步骤6：配置安全组 <b></b></h2>
         <div class="row instance-create-volume">
             <div class="col-md-12">
             </div>
