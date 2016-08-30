@@ -307,8 +307,8 @@ define(function (require, exports, module) {
                 type: $(v).find('input[name="accounts.type"]').val(),
                 alias: $(v).find('input[name="accounts.alias"]').val(),
                 /*id: $(v).find('input[name="accounts.id"]').val(),
-                 name: $(v).find('input[name="accounts.name"]').val(),*/
-                password: $(v).find('input[name="accounts.password"]').val(),
+                name: $(v).find('input[name="accounts.name"]').val(),
+                password: $(v).find('input[name="accounts.password"]').val(),*/
                 awsAccessKeyId: $(v).find('input[name="accounts.awsAccessKeyId"]').val(),
                 awsSecretAccessKey: $(v).find('input[name="accounts.awsSecretAccessKey"]').val()
             };
@@ -365,6 +365,82 @@ define(function (require, exports, module) {
             }
         });
         $('#global-mask').hide();
+    };
+
+    //=============================
+    // account submit
+    //=============================
+    Add.prototype.accountSubmit = function () {
+        var add = this;
+        var data = {
+            id: add.id,
+            name: $('input[name="name"]').val(),
+            password: $('input[name="password"]').val(),
+            cellphone: $('input[name="cellphone"]').val(),
+            email: $('input[name="email"]').val(),
+            status: 1,
+            accounts: []
+        };
+        var accountWrappers = $('.account-wrapper');
+        var valid = true;
+        accountWrappers.each(function (i, v) {
+            Util.globalMask('正在保存，请稍后...');
+            var t = $(v).find('input[name="accounts.type"]:checked').val();
+            if (typeof t === 'undefined') {
+                $('#global-mask').hide();
+                Util.alertDialog('账号' + $(v).attr('id').substr(7) + '未选择云服务提供商！');
+                valid = false;
+                return false;
+            }
+            if ($(v).find('input[name="accounts.awsAccessKeyId"]').val().trim() == ''){
+                $('#global-mask').hide();
+                Util.alertDialog('账号' + $(v).attr('id').substr(7) + '的AccessKeyId不能为空！');
+                valid = false;
+                return false;
+            }
+            if ($(v).find('input[name="accounts.awsSecretAccessKey"]').val().trim() == ''){
+                $('#global-mask').hide();
+                Util.alertDialog('账号' + $(v).attr('id').substr(7) + '的SecretAccessKey不能为空！');
+                valid = false;
+                return false;
+            }
+            var account = {
+                type: $(v).find('input[name="accounts.type"]').val(),
+                alias: $(v).find('input[name="accounts.alias"]').val(),
+                /*id: $(v).find('input[name="accounts.id"]').val(),
+                name: $(v).find('input[name="accounts.name"]').val(),
+                password: $(v).find('input[name="accounts.password"]').val(),*/
+                awsAccessKeyId: $(v).find('input[name="accounts.awsAccessKeyId"]').val(),
+                awsSecretAccessKey: $(v).find('input[name="accounts.awsSecretAccessKey"]').val(),
+                status: 0
+            };
+            if ($(v).find('input[name="accounts.sequenceId"]')) {
+                account['sequenceId'] = $(v).find('input[name="accounts.sequenceId"]').val();
+            }
+            data.accounts[i] = account;
+        });
+        if (!valid) {
+            $('#user-add-form').bootstrapValidator('disableSubmitButtons', false);
+            return;
+        }
+        Util.globalMask('正在保存，请稍后...');
+        $.ajax({
+            url: API_URL.USERS + '/' + add.id,
+            type: 'put',
+            dataType: 'json',
+            data: JSON.stringify(data),
+            success: function (result) {
+                $('#global-mask').hide();
+                if (result.success) {
+                    Util.notify('成功！', '修改我的账户成功！', 'success');
+                    window.location.hash = '#/overview';
+                } else {
+                    Util.alertDialog('操作失败！');
+                }
+            }
+        });
+        $('#global-mask').hide();
+
     };
 
     //=============================
