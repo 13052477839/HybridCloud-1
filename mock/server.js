@@ -1981,3 +1981,129 @@ Mock.mock('api/v1.0/volumes/p?order=asc', 'get', {
             }
         }]
 });
+
+Mock.mock('api/v1.0/networks', 'get', {
+    "object": {
+        "vpcs": [
+            {
+                "cidrBlock": "172.31.0.0/16",
+                "default": true,
+                "dhcpOptionsId": "dopt-ba89ebdf",
+                "instanceTenancy": "default",
+                "isDefault": true,
+                "state": "available",
+                "tags": [],
+                "vpcId": "vpc-2a14fd4e"
+            },
+            {
+                "cidrBlock": "171.31.0.0/24",
+                "default": false,
+                "dhcpOptionsId": "dopt-ba89ebdf",
+                "instanceTenancy": "default",
+                "isDefault": false,
+                "state": "available",
+                "tags": [
+                    {
+                        "key": "Name",
+                        "value": "testnet"
+                    }
+                ],
+                "vpcId": "vpc-5d957e39"
+            },
+            {
+                "cidrBlock": "10.0.10.0/24",
+                "default": false,
+                "dhcpOptionsId": "dopt-ba89ebdf",
+                "instanceTenancy": "default",
+                "isDefault": false,
+                "state": "available",
+                "tags": [
+                    {
+                        "key": "Name",
+                        "value": "all"
+                    }
+                ],
+                "vpcId": "vpc-73ec0717"
+            }
+        ]
+    },
+    "success": true
+});
+
+Mock.mock('api/v1.0/subnets', 'get', {
+    "object": {
+        "subnets": [
+            {
+                "availabilityZone": "cn-north-1b",
+                "availableIpAddressCount": 4091,
+                "cidrBlock": "172.31.0.0/20",
+                "defaultForAz": true,
+                "mapPublicIpOnLaunch": true,
+                "state": "available",
+                "subnetId": "subnet-c510c2b2",
+                "tags": [],
+                "vpcId": "vpc-2a14fd4e"
+            },
+            {
+                "availabilityZone": "cn-north-1a",
+                "availableIpAddressCount": 251,
+                "cidrBlock": "171.31.0.0/24",
+                "defaultForAz": false,
+                "mapPublicIpOnLaunch": false,
+                "state": "available",
+                "subnetId": "subnet-40471b25",
+                "tags": [
+                    {
+                        "key": "Name",
+                        "value": "testsub"
+                    }
+                ],
+                "vpcId": "vpc-5d957e39"
+            },
+            {
+                "availabilityZone": "cn-north-1b",
+                "availableIpAddressCount": 123,
+                "cidrBlock": "10.0.10.0/25",
+                "defaultForAz": false,
+                "mapPublicIpOnLaunch": false,
+                "state": "available",
+                "subnetId": "subnet-3c88574b",
+                "tags": [
+                    {
+                        "key": "Name",
+                        "value": "all-sub-b"
+                    }
+                ],
+                "vpcId": "vpc-73ec0717"
+            },
+            {
+                "availabilityZone": "cn-north-1a",
+                "availableIpAddressCount": 4090,
+                "cidrBlock": "172.31.16.0/20",
+                "defaultForAz": true,
+                "mapPublicIpOnLaunch": true,
+                "state": "available",
+                "subnetId": "subnet-7eb9ea1b",
+                "tags": [],
+                "vpcId": "vpc-2a14fd4e"
+            },
+            {
+                "availabilityZone": "cn-north-1a",
+                "availableIpAddressCount": 123,
+                "cidrBlock": "10.0.10.128/25",
+                "defaultForAz": false,
+                "mapPublicIpOnLaunch": false,
+                "state": "available",
+                "subnetId": "subnet-78762a1d",
+                "tags": [
+                    {
+                        "key": "Name",
+                        "value": "all-sub-a"
+                    }
+                ],
+                "vpcId": "vpc-73ec0717"
+            }
+        ]
+    },
+    "success": true
+});

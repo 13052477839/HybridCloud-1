@@ -428,7 +428,27 @@ define(function (require, exports, module) {
             }
         });
 
+        $('input[name="maxCount"]').inputmask("9{1,2}");
 
+        $('#instance-create-config-form').bootstrapValidator({
+            feedbackIcons: {
+                valid: 'glyphicon glyphicon-ok',
+                invalid: 'glyphicon glyphicon-remove',
+                validating: 'glyphicon glyphicon-refresh'
+            },
+            fields: {
+                'maxCount':{
+                    validators: {
+                        integer:{
+                            message: '实例的数量必须为整数！'
+                        },
+                        notEmpty:{
+                            message: '实例的数量不能为空！'
+                        },
+                    }
+                }
+            }
+        });
     };
 
     //=================================
