@@ -237,7 +237,7 @@ define(function (require, exports, module) {
             search: false,
             showRefresh: false,
             toolbar: toolbar(),
-            onCheck: function(row){
+            onCheck: function (row) {
                 create.chosenFlavor = row;
                 $('.step2-header b').text('您已选择了一个实例类型:' + row.typeName);
             },
@@ -310,10 +310,10 @@ define(function (require, exports, module) {
             }]
         }));
 
-        if(typeof create.chosenFlavor == 'undefined' || create.chosenFlavor == ''){
+        if (typeof create.chosenFlavor == 'undefined' || create.chosenFlavor == '') {
             $table.bootstrapTable('check', 0);
-        }else{
-            $table.bootstrapTable('checkBy',  {field:'typeName', values:[create.chosenFlavor.typeName]});
+        } else {
+            $table.bootstrapTable('checkBy', {field: 'typeName', values: [create.chosenFlavor.typeName]});
         }
 
         $('.flavor-type-dropdown > li > a').click(function () {
@@ -410,7 +410,7 @@ define(function (require, exports, module) {
                     '<table class="table table-hover table-condensed table-bordered">',
                     '<thead><tr><th>设备</th><th>网络接口</th><th>子网</th><th>主要IP</th><th></th></tr></thead>',
                     '<tbody>',
-                    '<tr><td>eh0</td><td>新网络接口</td><td>' + subnetId + '</td><td><input type="text" placeholder="自动分配"></td><td><a href="javascript:void(0);" class="network-interface-add"><i class="fa fa-plus"></i></a></td></tr>',
+                    '<tr><td>eh0</td><td>新网络接口</td><td>' + subnetId + '</td><td><input type="text" class="network-interface-ip" placeholder="自动分配"></td><td><a href="javascript:void(0);" class="network-interface-add"><i class="fa fa-plus"></i></a></td></tr>',
                     '</tbody>',
                     '</table>',
                     '</div>',
@@ -420,11 +420,13 @@ define(function (require, exports, module) {
                 $(this).parent().parent().after(table);
                 $('.network-interface-add').unbind().click(function () {
                     var index = parseInt($('.network-interfaces').find('tbody tr:last td:eq(0)').text().substr(2)) + 1;
-                    var $tr = $('<tr><td>eh' + index + '</td><td>新网络接口</td><td>' + subnetId + '</td><td><input type="text" placeholder="自动分配"></td><td><a href="javascript:void(0);" class="network-interface-minus"><i class="fa fa-minus"></i></a></td></tr>').appendTo($('.network-interfaces table tbody'));
+                    var $tr = $('<tr><td>eh' + index + '</td><td>新网络接口</td><td>' + subnetId + '</td><td><input type="text" class="network-interface-ip" placeholder="自动分配"></td><td><a href="javascript:void(0);" class="network-interface-minus"><i class="fa fa-minus"></i></a></td></tr>').appendTo($('.network-interfaces table tbody'));
                     $tr.find('.network-interface-minus').click(function () {
                         $tr.remove();
                     });
+                    $('.network-interface-ip').inputmask('ip');
                 });
+                $('.network-interface-ip').inputmask('ip');
             }
         });
 
@@ -437,14 +439,22 @@ define(function (require, exports, module) {
                 validating: 'glyphicon glyphicon-refresh'
             },
             fields: {
-                'maxCount':{
+                'maxCount': {
                     validators: {
-                        integer:{
-                            message: '实例的数量必须为整数！'
-                        },
-                        notEmpty:{
+                        notEmpty: {
                             message: '实例的数量不能为空！'
                         },
+                        callback: {
+                            callback: function (value) {
+                                if (parseInt(value) == 0) {
+                                    return false;
+                                } else {
+                                    return true;
+                                }
+                            },
+                            message: '实例的数量必须大于0！'
+                        }
+
                     }
                 }
             }
