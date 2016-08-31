@@ -401,6 +401,7 @@ define(function (require, exports, module) {
         $('#intance-create-config-subnet').unbind().change(function () {
             var subnetId = $(this).val();
             $('.network-interfaces').remove();
+            $('#intance-create-config-publicIp').html('<option value="true">启用</option><option value="false">禁用</option>');
             if (subnetId && subnetId != 'no-preference') {
                 var table = [
                     '<div class="form-group network-interfaces">',
@@ -423,8 +424,14 @@ define(function (require, exports, module) {
                     var $tr = $('<tr><td>eh' + index + '</td><td>新网络接口</td><td>' + subnetId + '</td><td><input type="text" class="network-interface-ip" placeholder="自动分配"></td><td><a href="javascript:void(0);" class="network-interface-minus"><i class="fa fa-minus"></i></a></td></tr>').appendTo($('.network-interfaces table tbody'));
                     $tr.find('.network-interface-minus').click(function () {
                         $tr.remove();
+                        if($('.network-interfaces tbody tr').length==1){
+                            $('#intance-create-config-publicIp').html('<option value="true">启用</option><option value="false">禁用</option>');
+                        }
                     });
                     $('.network-interface-ip').inputmask('ip');
+                    if($('.network-interfaces tbody tr').length>1){
+                        $('#intance-create-config-publicIp').html('<option value="false">禁用</option>');
+                    }
                 });
                 $('.network-interface-ip').inputmask('ip');
             }
