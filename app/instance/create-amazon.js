@@ -17,7 +17,10 @@ define(function (require, exports, module) {
     //=================================
     Create.prototype.init = function () {
         this.getAccountSequenceId();
+
         this.stepper();
+        this.image();
+        this.config();
     };
 
     //=================================
@@ -39,23 +42,13 @@ define(function (require, exports, module) {
             type: 'default',
             onStep: function (index, step) {
                 create.currentStep = index;
-                $('.stepper-content-wrapper').html($('#step' + index).html());
-                switch (index) {
-                    case 1:
-                        create.image();
-                        break;
-                    case 2:
-                        create.flavor();
-                        break;
-                    case 3:
-                        create.config();
-                        break;
-                    case 4:
-                        create.volume();
-                        break;
-                    default:
-                        break;
-                }
+                $('.stepper-content-wrapper #step' + index).show();
+                var $steps = $('.stepper-content-wrapper .step');
+                $steps.map(function (i, v) {
+                    if (i != index - 1) {
+                        $(this).hide();
+                    }
+                });
             },
             onStepClick: function (index, step) {
                 if (create.chosenImage) {
@@ -126,12 +119,14 @@ define(function (require, exports, module) {
                             $('#dialog-confirm').modal('hide');
                             create.chosenImage = row;
                             create.chosenFlavor = '';
+                            create.flavor();
                             $('.step1-header b').text('您已选择了一个镜像:' + row.imageId);
                             $("#stepper").stepper('stepTo', 2);
                         });
                     }
                     if (typeof create.chosenImage == 'undefined') {
                         create.chosenImage = row;
+                        create.flavor();
                         $('.step1-header b').text('您已选择了一个镜像:' + row.imageId);
                         $("#stepper").stepper('stepTo', 2);
                     }
@@ -222,7 +217,7 @@ define(function (require, exports, module) {
                 '<ul class="dropdown-menu flavor-type-dropdown">'
             ].join('');
             $.each(types, function (i, v) {
-                a += '<li role="presentation"><a role="menuitem" tabindex="-1" href="javascript: void(0);">' + v + '</a></li>';
+                a += '<li><a href="javascript: void(0);">' + v + '</a></li>';
             });
             return a += '</ul>';
 
@@ -311,9 +306,10 @@ define(function (require, exports, module) {
         }));
 
         if (typeof create.chosenFlavor == 'undefined' || create.chosenFlavor == '') {
+            $('.flavor-type').html('所有实例类型 <span class="caret"></span>');
+            $table.bootstrapTable('filterBy', null);
+            $table.bootstrapTable('uncheckAll');
             $table.bootstrapTable('check', 0);
-        } else {
-            $table.bootstrapTable('checkBy', {field: 'typeName', values: [create.chosenFlavor.typeName]});
         }
 
         $('.flavor-type-dropdown > li > a').click(function () {
@@ -424,12 +420,12 @@ define(function (require, exports, module) {
                     var $tr = $('<tr><td>eh' + index + '</td><td>新网络接口</td><td>' + subnetId + '</td><td><input type="text" class="network-interface-ip" placeholder="自动分配"></td><td><a href="javascript:void(0);" class="network-interface-minus"><i class="fa fa-minus"></i></a></td></tr>').appendTo($('.network-interfaces table tbody'));
                     $tr.find('.network-interface-minus').click(function () {
                         $tr.remove();
-                        if($('.network-interfaces tbody tr').length==1){
+                        if ($('.network-interfaces tbody tr').length == 1) {
                             $('#intance-create-config-publicIp').html('<option value="true">启用</option><option value="false">禁用</option>');
                         }
                     });
                     $('.network-interface-ip').inputmask('ip');
-                    if($('.network-interfaces tbody tr').length>1){
+                    if ($('.network-interfaces tbody tr').length > 1) {
                         $('#intance-create-config-publicIp').html('<option value="false">禁用</option>');
                     }
                 });
@@ -464,6 +460,11 @@ define(function (require, exports, module) {
 
                     }
                 }
+            },
+            submitButtons: '#stepper ul li:eq(1)',
+            submitHandler: function (validator, form, submitButton) {
+                console.log($('#stepper ul li:not(:eq(2))'));
+                alert('haha');
             }
         });
     };

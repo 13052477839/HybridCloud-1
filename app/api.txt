@@ -357,3 +357,8 @@ public class PadingResult{
 	},
 	"success":true
 }
+
+
+ {
+            $table.bootstrapTable('uncheckAll');
+            $table.bootstrapTable('checkBy', {field: 'typeName', values: [create.chosenFlavor.typeName]});

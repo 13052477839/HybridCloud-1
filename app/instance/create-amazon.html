@@ -20,168 +20,180 @@
             <div class="box">
                 <div class="box-body">
                     <div class="stepper" id="stepper" style="padding:0 20px 0 10px;"></div>
-                    <div class="stepper-content-wrapper"></div>
+                    <div class="stepper-content-wrapper">
+
+                        <div id="step1" class="step">
+                            <h2 class="page-header step1-header" style="margin-top: 30px;">步骤1：选择一个镜像 <b></b></h2>
+                            <div class="row instance-create-image">
+                                <div class="col-md-12">
+                                    <div class="nav-tabs-custom instance-create-image">
+                                        <ul class="nav nav-tabs">
+                                            <!--<li>
+                                                <a href="#tab_quickStartImage" data-toggle="tab">快速启动</a>
+                                            </li>-->
+                                            <li>
+                                                <a href="#tab_privateImage" data-toggle="tab">私有镜像</a>
+                                            </li>
+                                            <li>
+                                                <a href="#tab_publicImage" data-toggle="tab">社区镜像</a>
+                                            </li>
+                                        </ul>
+                                        <div class="tab-content">
+                                            <div class="tab-pane active fade in" id="tab_quickStartImage">
+                                                <table id="quickStartImage"></table>
+                                            </div>
+                                            <div class="tab-pane fade" id="tab_privateImage">
+                                                <table id="privateImage"></table>
+                                            </div>
+                                            <div class="tab-pane fade" id="tab_publicImage">
+                                                <table id="publicImage"></table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="step2" class="step">
+                            <h2 class="page-header step2-header" style="margin-top: 30px;">步骤2：选择一个实例类型 <b></b></h2>
+                            <div class="row instance-create-flavor">
+                                <div class="col-md-12">
+                                    <table id="flavorTable"></table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="step3" class="step">
+                            <h2 class="page-header step3-header" style="margin-top: 30px;">步骤3：配置实例详细信息 <b></b></h2>
+                            <div class="row instance-create-config">
+                                <div class="col-md-7">
+                                    <form class="form-horizontal" id="instance-create-config-form">
+                                        <div class="form-group">
+                                            <label for="intance-create-config-number" class="col-sm-3 control-label">实例的数量</label>
+                                            <div class="col-sm-8">
+                                                <input type="text" class="form-control"
+                                                       id="intance-create-config-number" name="maxCount"  value="1">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="intance-create-config-network"
+                                                   class="col-sm-3 control-label">网络</label>
+                                            <div class="col-sm-8">
+                                                <select class="form-control" id="intance-create-config-network"
+                                                        name="vpc"></select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="intance-create-config-subnet"
+                                                   class="col-sm-3 control-label">子网</label>
+                                            <div class="col-sm-8">
+                                                <select class="form-control" id="intance-create-config-subnet"
+                                                        name="subnet"></select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="intance-create-config-publicIp" class="col-sm-3 control-label">自动分配公有IP</label>
+                                            <div class="col-sm-8">
+                                                <select class="form-control" id="intance-create-config-publicIp"
+                                                        name="AssociatePublicIpAddress">
+                                                    <option value="true">启用</option>
+                                                    <option value="false">禁用</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <!--<div class="form-group">
+                                            <label for="intance-create-config-IAMRole" class="col-sm-3 control-label">IAM角色</label>
+                                            <div class="col-sm-8">
+                                                <select class="form-control" id="intance-create-config-IAMRole" name="">
+                                                    <option value="">无</option>
+                                                </select>
+                                            </div>
+                                        </div>-->
+                                        <div class="form-group">
+                                            <label for="intance-create-config-shutdownOperate"
+                                                   class="col-sm-3 control-label">关闭操作</label>
+                                            <div class="col-sm-8">
+                                                <select class="form-control" id="intance-create-config-shutdownOperate"
+                                                        name="">
+                                                    <option value="">停止</option>
+                                                    <option value="">终止</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label">启用终止保护</label>
+                                            <div class="col-sm-8 checkbox">
+                                                <label for="intance-create-config-shutdownGuard">
+                                                    <input type="checkbox" name=""
+                                                           id="intance-create-config-shutdownGuard" value="">
+                                                    防止意外终止
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label">监控</label>
+                                            <div class="col-sm-8 checkbox">
+                                                <label for="intance-create-config-cloudWatch">
+                                                    <input type="checkbox" name="" id="intance-create-config-cloudWatch"
+                                                           value="">
+                                                    启用 CloudWatch 详细监控
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="intance-create-config-lease"
+                                                   class="col-sm-3 control-label">租赁</label>
+                                            <div class="col-sm-8">
+                                                <select class="form-control" id="intance-create-config-lease" name="">
+                                                    <option value="">共享-运行共享硬件实例</option>
+                                                    <option value="">专用-运行专用硬件实例</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="step4" class="step">
+                            <h2 class="page-header step4-header" style="margin-top: 30px;">步骤4：添加存储 <b></b></h2>
+                            <div class="row instance-create-volume">
+                                <div class="col-md-12">
+                                    <table id="volumeTable"></table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="step5" class="step">
+                            <h2 class="page-header step5-header" style="margin-top: 30px;">步骤5：标签实例 <b></b></h2>
+                            <div class="row instance-create-volume">
+                                <div class="col-md-12">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="step6" class="step">
+                            <h2 class="page-header step6-header" style="margin-top: 30px;">步骤6：配置安全组 <b></b></h2>
+                            <div class="row instance-create-volume">
+                                <div class="col-md-12">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="step7" class="step">
+                            <h2 class="page-header" style="margin-top: 30px;">步骤7：审核</h2>
+                            <div class="row instance-create-volume">
+                                <div class="col-md-12">
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </section>
-
-<div style="display:none;">
-
-    <div id="step1">
-        <h2 class="page-header step1-header" style="margin-top: 30px;">步骤1：选择一个镜像 <b></b></h2>
-        <div class="row instance-create-image">
-            <div class="col-md-12">
-                <div class="nav-tabs-custom instance-create-image">
-                    <ul class="nav nav-tabs">
-                        <!--<li>
-                            <a href="#tab_quickStartImage" data-toggle="tab">快速启动</a>
-                        </li>-->
-                        <li>
-                            <a href="#tab_privateImage" data-toggle="tab">私有镜像</a>
-                        </li>
-                        <li>
-                            <a href="#tab_publicImage" data-toggle="tab">社区镜像</a>
-                        </li>
-                    </ul>
-                    <div class="tab-content">
-                        <div class="tab-pane active fade in" id="tab_quickStartImage">
-                            <table id="quickStartImage"></table>
-                        </div>
-                        <div class="tab-pane fade" id="tab_privateImage">
-                            <table id="privateImage"></table>
-                        </div>
-                        <div class="tab-pane fade" id="tab_publicImage">
-                            <table id="publicImage"></table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div id="step2">
-        <h2 class="page-header step2-header" style="margin-top: 30px;">步骤2：选择一个实例类型 <b></b></h2>
-        <div class="row instance-create-flavor">
-            <div class="col-md-12">
-                <table id="flavorTable"></table>
-            </div>
-        </div>
-    </div>
-
-    <div id="step3">
-        <h2 class="page-header step3-header" style="margin-top: 30px;">步骤3：配置实例详细信息 <b></b></h2>
-        <div class="row instance-create-config">
-            <div class="col-md-7">
-                <form class="form-horizontal" id="instance-create-config-form">
-                    <div class="form-group">
-                        <label for="intance-create-config-number" class="col-sm-3 control-label">实例的数量</label>
-                        <div class="col-sm-8">
-                            <input type="text" class="form-control" id="intance-create-config-number" name="maxCount" value="1">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="intance-create-config-network" class="col-sm-3 control-label">网络</label>
-                        <div class="col-sm-8">
-                            <select class="form-control" id="intance-create-config-network" name="vpc"></select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="intance-create-config-subnet" class="col-sm-3 control-label">子网</label>
-                        <div class="col-sm-8">
-                            <select class="form-control" id="intance-create-config-subnet" name="subnet"></select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="intance-create-config-publicIp" class="col-sm-3 control-label">自动分配公有IP</label>
-                        <div class="col-sm-8">
-                            <select class="form-control" id="intance-create-config-publicIp" name="AssociatePublicIpAddress">
-                                <option value="true">启用</option>
-                                <option value="false">禁用</option>
-                            </select>
-                        </div>
-                    </div>
-                    <!--<div class="form-group">
-                        <label for="intance-create-config-IAMRole" class="col-sm-3 control-label">IAM角色</label>
-                        <div class="col-sm-8">
-                            <select class="form-control" id="intance-create-config-IAMRole" name="">
-                                <option value="">无</option>
-                            </select>
-                        </div>
-                    </div>-->
-                    <div class="form-group">
-                        <label for="intance-create-config-shutdownOperate" class="col-sm-3 control-label">关闭操作</label>
-                        <div class="col-sm-8">
-                            <select class="form-control" id="intance-create-config-shutdownOperate" name="">
-                                <option value="">停止</option>
-                                <option value="">终止</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-3 control-label">启用终止保护</label>
-                        <div class="col-sm-8 checkbox">
-                            <label for="intance-create-config-shutdownGuard">
-                                <input type="checkbox" name="" id="intance-create-config-shutdownGuard" value="">防止意外终止
-                            </label>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-3 control-label">监控</label>
-                        <div class="col-sm-8 checkbox">
-                            <label for="intance-create-config-cloudWatch">
-                                <input type="checkbox" name="" id="intance-create-config-cloudWatch" value="">启用 CloudWatch 详细监控
-                            </label>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="intance-create-config-lease" class="col-sm-3 control-label">租赁</label>
-                        <div class="col-sm-8">
-                            <select class="form-control" id="intance-create-config-lease" name="">
-                                <option value="">共享-运行共享硬件实例</option>
-                                <option value="">专用-运行专用硬件实例</option>
-                            </select>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-
-    <div id="step4">
-        <h2 class="page-header step4-header" style="margin-top: 30px;">步骤4：添加存储 <b></b></h2>
-        <div class="row instance-create-volume">
-            <div class="col-md-12">
-                <table id="volumeTable"></table>
-            </div>
-        </div>
-    </div>
-
-    <div id="step5">
-        <h2 class="page-header step5-header" style="margin-top: 30px;">步骤5：标签实例 <b></b></h2>
-        <div class="row instance-create-volume">
-            <div class="col-md-12">
-            </div>
-        </div>
-    </div>
-
-    <div id="step6">
-        <h2 class="page-header step6-header" style="margin-top: 30px;">步骤6：配置安全组 <b></b></h2>
-        <div class="row instance-create-volume">
-            <div class="col-md-12">
-            </div>
-        </div>
-    </div>
-
-    <div id="step7">
-        <h2 class="page-header" style="margin-top: 30px;">步骤7：审核</h2>
-        <div class="row instance-create-volume">
-            <div class="col-md-12">
-            </div>
-        </div>
-    </div>
-</div>
 
 <script>
     seajs.use('instance/create-amazon', function (Create) {

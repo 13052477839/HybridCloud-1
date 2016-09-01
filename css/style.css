@@ -527,3 +527,6 @@ select:focus {
 .network-interfaces tbody td{
     vertical-align: middle !important;
 }
+.step{
+    display: none;
+}
