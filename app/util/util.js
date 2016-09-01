@@ -34,8 +34,8 @@ define(function (require) {
     var isLogin = function () {
         var userId = window.localStorage.userId;
         var userName = window.localStorage.userName;
-        if (userId && userId.trim() != '' && userId != 'undefined' && userId!='[object object]'
-        && userName && userName.trim() != '' && userName != 'undefined' && userName!='[object object]') {
+        if (userId && userId.trim() != '' && userId != 'undefined' && userId != '[object object]'
+            && userName && userName.trim() != '' && userName != 'undefined' && userName != '[object object]') {
             $('body').css('display', 'inherit');
         } else {
             window.location.href = 'login.html';
@@ -127,7 +127,7 @@ define(function (require) {
     //====================================================
     // global mask
     //====================================================
-    var globalMask = function(text) {
+    var globalMask = function (text) {
         $('#global-mask h4').text(text);
         $('#global-mask').show();
     };
@@ -143,6 +143,17 @@ define(function (require) {
         })
     };
 
+    //====================================================
+    // ip valid
+    //====================================================
+    var ipValid = function (ip) {
+        var regExp = /^(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])(\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])){3}$/;
+        if (!regExp.test(ip)) {
+            return false;
+        }
+        return true;
+    };
+
     return {
         hashChange: hashChange,
         gridUtilOptions: gridUtilOptions,
@@ -151,6 +162,7 @@ define(function (require) {
         confirmDialog: confirmDialog,
         notify: notify,
         isLogin: isLogin,
-        globalMask: globalMask
+        globalMask: globalMask,
+        ipValid: ipValid
     }
 });

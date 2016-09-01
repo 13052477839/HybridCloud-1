@@ -7,7 +7,7 @@ define(function (require, exports, module) {
         this.accountSequenceId;
         this.chosenImage;
         this.chosenFlavor;
-        this.chosenVolume;
+        this.chosenSecurityGroup = [];
     }
 
     module.exports = Create;
@@ -58,6 +58,13 @@ define(function (require, exports, module) {
                 }
                 if (index != 4 && $('#stepper ul li:eq(4)').is('.current') && !create.tagValid()) {
                     return;
+                }
+                if (index != 2 && $('#stepper ul li:eq(2)').is('.current') && !create.ipValid()) {
+                    return;
+                }
+                if (index == 6) {
+                    create.check('config');
+                    create.check('tag');
                 }
                 $("#stepper").stepper('stepTo', index + 1);
             }
@@ -126,6 +133,8 @@ define(function (require, exports, module) {
                             create.flavor();
                             create.volume();
                             $('.step1-header b').text('您已选择了一个镜像:' + row.imageId);
+                            create.check('image');
+                            create.check('volume');
                             $("#stepper").stepper('stepTo', 2);
                         });
                     }
@@ -134,6 +143,8 @@ define(function (require, exports, module) {
                         create.flavor();
                         create.volume();
                         $('.step1-header b').text('您已选择了一个镜像:' + row.imageId);
+                        create.check('image');
+                        create.check('volume');
                         $("#stepper").stepper('stepTo', 2);
                     }
                 },
@@ -240,6 +251,7 @@ define(function (require, exports, module) {
             toolbar: toolbar(),
             onCheck: function (row) {
                 create.chosenFlavor = row;
+                create.check('flavor');
                 $('.step2-header b').text('您已选择了一个实例类型:' + row.typeName);
             },
             columns: [{
@@ -374,7 +386,7 @@ define(function (require, exports, module) {
                     var options = '<option value="no-preference">无首选项(任何可用区的默认子网)</option>';
                     $.each(subnets, function (i, v) {
                         if (v.defaultForAz) {
-                            options += '<option value="' + v.subnetId + '">' + v.subnetId + '(' + v.cidrBlock + ') | 默认范围 ' + v.availabilityZone + '</option>';
+                            options += '<option value="' + v.subnetId + '" data-cidr="' + v.cidrBlock + '">' + v.subnetId + '(' + v.cidrBlock + ') | 默认范围 ' + v.availabilityZone + '</option>';
                         }
                     });
                     $('#intance-create-config-subnet').html(options);
@@ -396,7 +408,7 @@ define(function (require, exports, module) {
                 options += '<option value="no-preference">无首选项(任何可用区的默认子网)</option>';
             }
             $.each(subnet, function (i, v) {
-                options += '<option value="' + v.subnetId + '">' + v.subnetId + '(' + v.cidrBlock + ') | 默认范围 ' + v.availabilityZone + '</option>';
+                options += '<option value="' + v.subnetId + '" data-cidr="' + v.cidrBlock + '">' + v.subnetId + '(' + v.cidrBlock + ') | 默认范围 ' + v.availabilityZone + '</option>';
             });
             $('#intance-create-config-subnet').html(options).trigger('change');
         });
@@ -466,13 +478,28 @@ define(function (require, exports, module) {
 
                     }
                 }
-            },
-            submitButtons: '#stepper ul li:eq(1)',
-            submitHandler: function (validator, form, submitButton) {
-                console.log($('#stepper ul li:not(:eq(2))'));
-                alert('haha');
             }
         });
+    };
+
+    //=================================
+    // ip valid
+    //=================================
+    Create.prototype.ipValid = function () {
+        var create = this;
+        var flag = true;
+        $.each($('.network-interface-ip'), function (i, v) {
+            if ($(v).val().trim() != '') {
+                var ip = $(v).val().split('.');
+                var subnetcidr = $('#intance-create-config-subnet').find('option:selected').attr('data-cidr').split('.');
+                if (subnetcidr[0] != ip[0] || subnetcidr[1] != ip[1] || !Util.ipValid($(v).val())) {
+                    flag = false;
+                    Util.notify('校验提示！', '网络接口IP格式有误或不在子网中！', 'alert');
+                    return false;
+                }
+            }
+        });
+        return flag;
     };
 
     //=================================
@@ -490,9 +517,6 @@ define(function (require, exports, module) {
             search: false,
             showRefresh: false,
             showColumns: false,
-            onCheck: function (row) {
-                create.chosenVolume = row;
-            },
             columns: [
                 {
                     title: '卷类型',
@@ -572,7 +596,7 @@ define(function (require, exports, module) {
         $('#tagTable tbody tr').map(function (i, v) {
             var key = $(v).find('input:eq(0)').val();
             if (key.trim() == '') {
-                Util.notify('校验提示！', '不能存在键值为空的标签实例！', 'alert');
+                Util.notify('校验提示！', '不能存在键为空的标签实例！', 'alert');
                 flag = false;
                 return false;
             }
@@ -594,9 +618,23 @@ define(function (require, exports, module) {
                     xhr.setRequestHeader('account-sequence-id', create.accountSequenceId);
                 }
             },
-            singleSelect: true,
             clickToSelect: true,
-            dataField: 'object',
+            dataField: 'list',
+            onCheck: function (row) {
+                create.chosenSecurityGroup.push(row.groupId);
+            },
+            onUncheck: function (row) {
+                create.chosenSecurityGroup.splice(create.chosenSecurityGroup.indexOf(row.groupId), 1);
+            },
+            onCheckAll: function (rows) {
+                create.chosenSecurityGroup = [];
+                $.each(rows, function (i, v) {
+                    create.chosenSecurityGroup.push(v.groupId);
+                });
+            },
+            onUncheckAll: function (rows) {
+                create.chosenSecurityGroup = [];
+            },
             columns: [
                 {
                     checkbox: true
@@ -615,6 +653,225 @@ define(function (require, exports, module) {
                 }
             ]
         }));
+    };
+
+    //=================================
+    // check
+    //=================================
+    Create.prototype.check = function (type) {
+        var create = this;
+
+        if (type == 'image') {
+            var image = create.chosenImage;
+            var platform = function () {
+                switch (image.platform) {
+                    case 'amazon':
+                        return '<img src="images/image-amazon-linux.png">';
+                        break;
+                    case 'rhel':
+                        return '<img src="images/image-redhat.png">';
+                        break;
+                    case 'suse':
+                        return '<img src="images/image-suse.png">';
+                        break;
+                    case 'canonical':
+                        return '<img src="images/image-ubuntu.png">';
+                        break;
+                    case 'windows':
+                        return '<img src="images/image-windows.png">';
+                        break;
+                    default:
+                        return '<img src="images/image-linux.gif">';
+                        break;
+                }
+            };
+
+            var imageInfo = [
+                '<div style="display:inline-block;width: 100px; text-align: center;vertical-align: 20px;padding-top:20px;">' + platform() + '</div>',
+                '<div style="display:inline-block;">',
+                '<b>' + image.imageId + '</b> - ' + image.architecture,
+                '<br>' + image.description,
+                '<br>根设备类型:' + image.rootDeviceType + ' 虚拟化类型:' + image.virtualizationType,
+                '</div>'
+            ].join('');
+            $('#step7 .image').html(imageInfo);
+        }
+
+        if (type == 'flavor') {
+
+            var flavor = create.chosenFlavor;
+
+            var ebs = function () {
+                if (flavor.ebsOnly) {
+                    return '仅限于EBS';
+                }
+                if (!flavor.ebsOnly && flavor.storage.ssd) {
+                    return flavor.storage.count + 'x' + flavor.storage.size + '(SSD)';
+                }
+                if (!flavor.ebsOnly && !flavor.storage.ssd) {
+                    return flavor.storage.count + 'x' + flavor.storage.size;
+                }
+            };
+
+            var networkPerformance = function () {
+                var value = flavor.networkPerformance;
+                switch (value) {
+                    case 'High':
+                        return '高';
+                        break;
+                    case 'Moderate':
+                        return '中等';
+                        break;
+                    case 'Low to Moderate':
+                        return '低到中等';
+                        break;
+                    case 'Very Low':
+                        return '非常低';
+                        break;
+                    case 'Low':
+                        return '低';
+                        break;
+                    case '10 Gigabit':
+                        return '10 GB';
+                        break;
+                    default:
+                        return value;
+                        break;
+                }
+            };
+
+            var ebsOptimizedSupported = flavor.ebsOptimizedSupported ? '是' : '-';
+
+            var flavorInfo = [
+                '<dl class="dl-horizontal">',
+                '<dt>实例类型</dt>',
+                '<dd>' + flavor.typeName + '</dd>',
+                '<dt>vCPU</dt>',
+                '<dd>' + flavor.cpu.cores + '</dd>',
+                '<dt>内存(GB)</dt>',
+                '<dd>' + flavor.memory + '</dd>',
+                '<dt>实例存储(GB)</dt>',
+                '<dd>' + ebs() + '</dd>',
+                '<dt>可用的优化ESB</dt>',
+                '<dd>' + ebsOptimizedSupported + '</dd>',
+                '<dt>网络性能</dt>',
+                '<dd>' + networkPerformance() + '</dd>',
+                '</dl>'
+            ].join('');
+            $('#step7 .flavor').html(flavorInfo);
+        }
+
+        if (type == 'config') {
+            var instanceNumber = $('#intance-create-config-number').val();
+            var network = $('#intance-create-config-network').val();
+            var subnet = $('#intance-create-config-subnet').val() == 'no-preference' ? '无首选项(任何可用区的默认子网)' : $('#intance-create-config-subnet').val();
+            var publicIpAssociate = $('#intance-create-config-publicIp').val() == 'true' ? '启用' : '禁用';
+            var shutdownBehavior = $('#intance-create-config-shutdownBehavior').val() == 'stop' ? '停止' : '终止';
+            var shutdownGuard = $('#intance-create-config-shutdownGuard').prop('checked') ? '是' : '否';
+            var cloudWatch = $('#intance-create-config-cloudWatch').prop('checked') ? '是' : '否';
+            var ips = $('.network-interface-ip').map(function () {
+                if ($(this).val().trim() != '') {
+                    return $(this).val();
+                }
+            }).get().join(', ');
+            var configInfo = [
+                '<dl class="dl-horizontal">',
+                '<dt>实例的数量</dt>',
+                '<dd>' + instanceNumber + '</dd>',
+                '<dt>网络</dt>',
+                '<dd>' + network + '</dd>',
+                '<dt>子网</dt>',
+                '<dd>' + subnet + '</dd>',
+                '<dt>网络接口</dt>',
+                '<dd>' + ips + '</dd>',
+                '<dt>分配公有IP</dt>',
+                '<dd>' + publicIpAssociate + '</dd>',
+                '<dt>关闭操作</dt>',
+                '<dd>' + shutdownBehavior + '</dd>',
+                '<dt>终止保护</dt>',
+                '<dd>' + shutdownGuard + '</dd>',
+                '<dt>监控</dt>',
+                '<dd>' + cloudWatch + '</dd>',
+                '</dl>'
+            ].join('');
+
+            $('#step7 .config').html(configInfo);
+        }
+
+        if (type == 'volume') {
+            $('#step7 .volume').html('<table id="volumeInfoTable"></table>');
+            var $table = $('#volumeInfoTable');
+            $table.bootstrapTable($.extend(Util.gridUtilOptions(), {
+                data: create.chosenImage.blockDeviceMappings,
+                sidePagination: 'client',
+                pagination: false,
+                sortable: false,
+                search: false,
+                showRefresh: false,
+                showColumns: false,
+                columns: [
+                    {
+                        title: '卷类型',
+                        field: '',
+                        formatter: function (value, row, index) {
+                            return '根目录';
+                        }
+                    }, {
+                        title: '设备',
+                        field: 'deviceName'
+                    }, {
+                        title: '快照',
+                        field: 'ebs.snapshotId'
+                    }, {
+                        title: '大小(GB)',
+                        field: 'ebs.volumeSize'
+                    }, {
+                        title: '卷类型',
+                        field: 'ebs.volumeType'
+                    }, {
+                        title: 'IOPS',
+                        field: 'iops',
+                        formatter: function (value, row, index) {
+                            if (value) {
+                                return value;
+                            } else {
+                                return '100 /3000'
+                            }
+                        }
+                    }, {
+                        title: '吞吐量(M/s)',
+                        field: '',
+                        formatter: function (value, row, index) {
+                            return '不适用';
+                        }
+                    }, {
+                        title: '终止时删除',
+                        field: 'ebs.deleteOnTermination',
+                        formatter: function (value, row, index) {
+                            return '<input type="checkbox" checked=' + value + '>';
+                        }
+                    }
+                ]
+            }));
+        }
+
+        if (type == 'tag') {
+
+            var tagInfo = [
+                '<div class="col-md-8">',
+                '<table id="tagInfoTable" class="table table-hover my-table">',
+                '<thead><tr><th>键</th><th>值</th></tr></thead><tbody>',
+                '</tbody></table></div>'
+            ].join('');
+
+            $('#step7 .tag').html(tagInfo);
+
+            $('#tagTable tbody tr').map(function (i, v) {
+                $('#tagInfoTable tbody').append('<tr><td>' + $(v).find('input:eq(0)').val() + '</td><td>' + $(v).find('input:eq(1)').val() + '</td></tr>');
+            });
+        }
+
+
     };
 
     //=================================
