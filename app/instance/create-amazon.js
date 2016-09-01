@@ -69,6 +69,7 @@ define(function (require, exports, module) {
                 if (index == 6) {
                     create.check('config');
                     create.check('tag');
+                    create.check('securityGroup');
                 }
                 $("#stepper").stepper('stepTo', index + 1);
             }
@@ -563,7 +564,7 @@ define(function (require, exports, module) {
                     title: '终止时删除',
                     field: 'ebs.deleteOnTermination',
                     formatter: function (value, row, index) {
-                        return '<input type="checkbox" checked=' + value + '>';
+                        return '<input type="checkbox" disabled checked=' + value + '>';
                     }
                 }
             ]
@@ -627,16 +628,19 @@ define(function (require, exports, module) {
             },
             clickToSelect: true,
             dataField: 'list',
+            onLoadSuccess: function () {
+                $table.bootstrapTable('checkBy', {field: 'groupName', values: ['default']});
+            },
             onCheck: function (row) {
-                create.chosenSecurityGroup.push(row.groupId);
+                create.chosenSecurityGroup.push(row);
             },
             onUncheck: function (row) {
-                create.chosenSecurityGroup.splice(create.chosenSecurityGroup.indexOf(row.groupId), 1);
+                create.chosenSecurityGroup.splice(create.chosenSecurityGroup.indexOf(row), 1);
             },
             onCheckAll: function (rows) {
                 create.chosenSecurityGroup = [];
                 $.each(rows, function (i, v) {
-                    create.chosenSecurityGroup.push(v.groupId);
+                    create.chosenSecurityGroup.push(v);
                 });
             },
             onUncheckAll: function (rows) {
@@ -660,6 +664,7 @@ define(function (require, exports, module) {
                 }
             ]
         }));
+
     };
 
     //=================================
@@ -855,7 +860,7 @@ define(function (require, exports, module) {
                         title: '终止时删除',
                         field: 'ebs.deleteOnTermination',
                         formatter: function (value, row, index) {
-                            return '<input type="checkbox" checked=' + value + '>';
+                            return '<input type="checkbox" disabled checked=' + value + '>';
                         }
                     }
                 ]
@@ -878,7 +883,32 @@ define(function (require, exports, module) {
             });
         }
 
-
+        if (type == 'securityGroup') {
+            $('#step7 .securityGroup').html('<table id="securityGroupInfoTable"></table>');
+            var $table = $('#securityGroupInfoTable');
+            $table.bootstrapTable($.extend(Util.gridUtilOptions(), {
+                data: create.chosenSecurityGroup,
+                showRefresh: false,
+                showColumns: false,
+                search: false,
+                pagination: false,
+                sidePagination: 'client',
+                columns: [
+                    {
+                        title: '安全组ID',
+                        field: 'groupId'
+                    },
+                    {
+                        title: '名称',
+                        field: 'groupName'
+                    },
+                    {
+                        title: '描述',
+                        field: 'description'
+                    }
+                ]
+            }));
+        }
     };
 
     //=================================
