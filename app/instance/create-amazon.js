@@ -62,6 +62,10 @@ define(function (require, exports, module) {
                 if (index != 2 && $('#stepper ul li:eq(2)').is('.current') && !create.ipValid()) {
                     return;
                 }
+                if (index != 5 && $('#stepper ul li:eq(5)').is('.current') && create.chosenSecurityGroup.length == 0) {
+                    Util.notify('校验提示！', '必须至少选择一个安全组！', 'alert');
+                    return;
+                }
                 if (index == 6) {
                     create.check('config');
                     create.check('tag');
@@ -858,7 +862,7 @@ define(function (require, exports, module) {
         if (type == 'tag') {
 
             var tagInfo = [
-                '<div class="col-md-8">',
+                '<div class="col-md-8" style="padding-left:0;">',
                 '<table id="tagInfoTable" class="table table-hover my-table">',
                 '<thead><tr><th>键</th><th>值</th></tr></thead><tbody>',
                 '</tbody></table></div>'

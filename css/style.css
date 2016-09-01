@@ -538,6 +538,7 @@ select:focus {
     border-color: #ededed;
     border-width: 1px 0 0 0;
     border-collapse: separate;
+    margin-bottom: 0;
 }
 
 .my-table tr {
