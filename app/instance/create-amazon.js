@@ -203,7 +203,7 @@ define(function (require, exports, module) {
     //=================================
     Create.prototype.flavor = function () {
         var create = this;
-        $table = $('#flavorTable');
+        var $table = $('#flavorTable');
         var flavors = [];
         var types = [];
         types.push('所有实例类型');
@@ -257,6 +257,9 @@ define(function (require, exports, module) {
                 create.chosenFlavor = row;
                 create.check('flavor');
                 $('.step2-header b').text('您已选择了一个实例类型:' + row.typeName);
+            },
+            onUncheck: function (row) {
+                $table.bootstrapTable('check', 0);
             },
             columns: [{
                 checkbox: true
@@ -511,7 +514,7 @@ define(function (require, exports, module) {
     //=================================
     Create.prototype.volume = function () {
         var create = this;
-        $table = $('#volumeTable');
+        var $table = $('#volumeTable');
 
         $table.bootstrapTable($.extend(Util.gridUtilOptions(), {
             data: create.chosenImage.blockDeviceMappings,

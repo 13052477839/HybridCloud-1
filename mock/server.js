@@ -1983,127 +1983,228 @@ Mock.mock('api/v1.0/volumes/p?order=asc', 'get', {
 });
 
 Mock.mock('api/v1.0/networks', 'get', {
-    "object": {
-        "vpcs": [
-            {
-                "cidrBlock": "172.31.0.0/16",
-                "default": true,
-                "dhcpOptionsId": "dopt-ba89ebdf",
-                "instanceTenancy": "default",
-                "isDefault": true,
-                "state": "available",
-                "tags": [],
-                "vpcId": "vpc-2a14fd4e"
-            },
-            {
-                "cidrBlock": "171.31.0.0/24",
-                "default": false,
-                "dhcpOptionsId": "dopt-ba89ebdf",
-                "instanceTenancy": "default",
-                "isDefault": false,
-                "state": "available",
-                "tags": [
-                    {
-                        "key": "Name",
-                        "value": "testnet"
-                    }
-                ],
-                "vpcId": "vpc-5d957e39"
-            },
-            {
-                "cidrBlock": "10.0.10.0/24",
-                "default": false,
-                "dhcpOptionsId": "dopt-ba89ebdf",
-                "instanceTenancy": "default",
-                "isDefault": false,
-                "state": "available",
-                "tags": [
-                    {
-                        "key": "Name",
-                        "value": "all"
-                    }
-                ],
-                "vpcId": "vpc-73ec0717"
-            }
-        ]
-    },
-    "success": true
+    "list": [
+        {
+            "cidrBlock": "172.31.0.0/16",
+            "default": true,
+            "dhcpOptionsId": "dopt-ba89ebdf",
+            "instanceTenancy": "default",
+            "isDefault": true,
+            "state": "available",
+            "tags": [],
+            "vpcId": "vpc-2a14fd4e"
+        },
+        {
+            "cidrBlock": "171.31.0.0/24",
+            "default": false,
+            "dhcpOptionsId": "dopt-ba89ebdf",
+            "instanceTenancy": "default",
+            "isDefault": false,
+            "state": "available",
+            "tags": [
+                {
+                    "key": "Name",
+                    "value": "testnet"
+                }
+            ],
+            "vpcId": "vpc-5d957e39"
+        },
+        {
+            "cidrBlock": "10.0.10.0/24",
+            "default": false,
+            "dhcpOptionsId": "dopt-ba89ebdf",
+            "instanceTenancy": "default",
+            "isDefault": false,
+            "state": "available",
+            "tags": [
+                {
+                    "key": "Name",
+                    "value": "all"
+                }
+            ],
+            "vpcId": "vpc-73ec0717"
+        }
+    ],
+    "success": true,
+    total: 3
 });
 
 Mock.mock('api/v1.0/subnets', 'get', {
-    "object": {
-        "subnets": [
-            {
-                "availabilityZone": "cn-north-1b",
-                "availableIpAddressCount": 4091,
-                "cidrBlock": "172.31.0.0/20",
-                "defaultForAz": true,
-                "mapPublicIpOnLaunch": true,
-                "state": "available",
-                "subnetId": "subnet-c510c2b2",
-                "tags": [],
-                "vpcId": "vpc-2a14fd4e"
-            },
-            {
-                "availabilityZone": "cn-north-1a",
-                "availableIpAddressCount": 251,
-                "cidrBlock": "171.31.0.0/24",
-                "defaultForAz": false,
-                "mapPublicIpOnLaunch": false,
-                "state": "available",
-                "subnetId": "subnet-40471b25",
-                "tags": [
-                    {
-                        "key": "Name",
-                        "value": "testsub"
-                    }
-                ],
-                "vpcId": "vpc-5d957e39"
-            },
-            {
-                "availabilityZone": "cn-north-1b",
-                "availableIpAddressCount": 123,
-                "cidrBlock": "10.0.10.0/25",
-                "defaultForAz": false,
-                "mapPublicIpOnLaunch": false,
-                "state": "available",
-                "subnetId": "subnet-3c88574b",
-                "tags": [
-                    {
-                        "key": "Name",
-                        "value": "all-sub-b"
-                    }
-                ],
-                "vpcId": "vpc-73ec0717"
-            },
-            {
-                "availabilityZone": "cn-north-1a",
-                "availableIpAddressCount": 4090,
-                "cidrBlock": "172.31.16.0/20",
-                "defaultForAz": true,
-                "mapPublicIpOnLaunch": true,
-                "state": "available",
-                "subnetId": "subnet-7eb9ea1b",
-                "tags": [],
-                "vpcId": "vpc-2a14fd4e"
-            },
-            {
-                "availabilityZone": "cn-north-1a",
-                "availableIpAddressCount": 123,
-                "cidrBlock": "10.0.10.128/25",
-                "defaultForAz": false,
-                "mapPublicIpOnLaunch": false,
-                "state": "available",
-                "subnetId": "subnet-78762a1d",
-                "tags": [
-                    {
-                        "key": "Name",
-                        "value": "all-sub-a"
-                    }
-                ],
-                "vpcId": "vpc-73ec0717"
-            }
-        ]
-    },
-    "success": true
+    "list": [
+        {
+            "availabilityZone": "cn-north-1b",
+            "availableIpAddressCount": 4091,
+            "cidrBlock": "172.31.0.0/20",
+            "defaultForAz": true,
+            "mapPublicIpOnLaunch": true,
+            "state": "available",
+            "subnetId": "subnet-c510c2b2",
+            "tags": [],
+            "vpcId": "vpc-2a14fd4e"
+        },
+        {
+            "availabilityZone": "cn-north-1a",
+            "availableIpAddressCount": 251,
+            "cidrBlock": "171.31.0.0/24",
+            "defaultForAz": false,
+            "mapPublicIpOnLaunch": false,
+            "state": "available",
+            "subnetId": "subnet-40471b25",
+            "tags": [
+                {
+                    "key": "Name",
+                    "value": "testsub"
+                }
+            ],
+            "vpcId": "vpc-5d957e39"
+        },
+        {
+            "availabilityZone": "cn-north-1b",
+            "availableIpAddressCount": 123,
+            "cidrBlock": "10.0.10.0/25",
+            "defaultForAz": false,
+            "mapPublicIpOnLaunch": false,
+            "state": "available",
+            "subnetId": "subnet-3c88574b",
+            "tags": [
+                {
+                    "key": "Name",
+                    "value": "all-sub-b"
+                }
+            ],
+            "vpcId": "vpc-73ec0717"
+        },
+        {
+            "availabilityZone": "cn-north-1a",
+            "availableIpAddressCount": 4090,
+            "cidrBlock": "172.31.16.0/20",
+            "defaultForAz": true,
+            "mapPublicIpOnLaunch": true,
+            "state": "available",
+            "subnetId": "subnet-7eb9ea1b",
+            "tags": [],
+            "vpcId": "vpc-2a14fd4e"
+        },
+        {
+            "availabilityZone": "cn-north-1a",
+            "availableIpAddressCount": 123,
+            "cidrBlock": "10.0.10.128/25",
+            "defaultForAz": false,
+            "mapPublicIpOnLaunch": false,
+            "state": "available",
+            "subnetId": "subnet-78762a1d",
+            "tags": [
+                {
+                    "key": "Name",
+                    "value": "all-sub-a"
+                }
+            ],
+            "vpcId": "vpc-73ec0717"
+        }
+    ],
+    "success": true,
+    total: 5
+});
+
+Mock.mock('api/v1.0/securitygroups?order=asc&offset=0&limit=10', 'get', {
+    "list": [
+        {
+            "description": "launch-wizard-2 created 2016-08-20T12:31:34.292+08:00",
+            "groupId": "sg-13073d76",
+            "groupName": "launch-wizard-2",
+            "ipPermissions": [
+                {
+                    "__type": "com.amazon.ec2ux.backend.master#IpPermission",
+                    "fromPort": 22,
+                    "groups": [],
+                    "ipProtocol": "tcp",
+                    "ipRanges": [
+                        "0.0.0.0/0"
+                    ],
+                    "prefixListIds": [],
+                    "toPort": 22
+                }
+            ],
+            "ipPermissionsEgress": [
+                {
+                    "__type": "com.amazon.ec2ux.backend.master#IpPermission",
+                    "groups": [],
+                    "ipProtocol": "-1",
+                    "ipRanges": [
+                        "0.0.0.0/0"
+                    ],
+                    "prefixListIds": []
+                }
+            ],
+            "ownerId": "258383858166",
+            "tags": [],
+            "vpcId": "vpc-2a14fd4e"
+        },
+        {
+            "description": "default VPC security group",
+            "groupId": "sg-3dc5fe58",
+            "groupName": "default",
+            "ipPermissions": [
+                {
+                    "__type": "com.amazon.ec2ux.backend.master#IpPermission",
+                    "groups": [
+                        {
+                            "groupId": "sg-3dc5fe58",
+                            "groupName": "default",
+                            "userId": "258383858166"
+                        }
+                    ],
+                    "ipProtocol": "-1",
+                    "ipRanges": [],
+                    "prefixListIds": []
+                }
+            ],
+            "ipPermissionsEgress": [
+                {
+                    "__type": "com.amazon.ec2ux.backend.master#IpPermission",
+                    "groups": [],
+                    "ipProtocol": "-1",
+                    "ipRanges": [
+                        "0.0.0.0/0"
+                    ],
+                    "prefixListIds": []
+                }
+            ],
+            "ownerId": "258383858166",
+            "tags": [],
+            "vpcId": "vpc-2a14fd4e"
+        },
+        {
+            "description": "launch-wizard-5 created 2016-08-27T21:55:02.839+08:00",
+            "groupId": "sg-977572f2",
+            "groupName": "all-flow",
+            "ipPermissions": [
+                {
+                    "__type": "com.amazon.ec2ux.backend.master#IpPermission",
+                    "groups": [],
+                    "ipProtocol": "-1",
+                    "ipRanges": [
+                        "0.0.0.0/0"
+                    ],
+                    "prefixListIds": []
+                }
+            ],
+            "ipPermissionsEgress": [
+                {
+                    "__type": "com.amazon.ec2ux.backend.master#IpPermission",
+                    "groups": [],
+                    "ipProtocol": "-1",
+                    "ipRanges": [
+                        "0.0.0.0/0"
+                    ],
+                    "prefixListIds": []
+                }
+            ],
+            "ownerId": "258383858166",
+            "tags": [],
+            "vpcId": "vpc-2a14fd4e"
+        }
+    ],
+    "total": 3
+
 });
