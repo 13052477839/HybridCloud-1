@@ -7,7 +7,7 @@ define(function (require, exports, module) {
         this.accountSequenceId;
         this.chosenImage;
         this.chosenFlavor;
-        this.chosenConfig;
+        this.chosenVolume;
     }
 
     module.exports = Create;
@@ -17,10 +17,11 @@ define(function (require, exports, module) {
     //=================================
     Create.prototype.init = function () {
         this.getAccountSequenceId();
-
         this.stepper();
         this.image();
         this.config();
+        this.tag();
+        this.securityGroup();
     };
 
     //=================================
@@ -51,11 +52,14 @@ define(function (require, exports, module) {
                 });
             },
             onStepClick: function (index, step) {
-                if (create.chosenImage) {
-                    $("#stepper").stepper('stepTo', index + 1);
-                } else {
+                if (typeof create.chosenImage == 'undefined') {
                     Util.notify('提示', '请先选择镜像！', 'warning');
+                    return;
                 }
+                if (index != 4 && $('#stepper ul li:eq(4)').is('.current') && !create.tagValid()) {
+                    return;
+                }
+                $("#stepper").stepper('stepTo', index + 1);
             }
         });
         $('#stepper li').map(function (index, domElement) {
@@ -120,6 +124,7 @@ define(function (require, exports, module) {
                             create.chosenImage = row;
                             create.chosenFlavor = '';
                             create.flavor();
+                            create.volume();
                             $('.step1-header b').text('您已选择了一个镜像:' + row.imageId);
                             $("#stepper").stepper('stepTo', 2);
                         });
@@ -127,6 +132,7 @@ define(function (require, exports, module) {
                     if (typeof create.chosenImage == 'undefined') {
                         create.chosenImage = row;
                         create.flavor();
+                        create.volume();
                         $('.step1-header b').text('您已选择了一个镜像:' + row.imageId);
                         $("#stepper").stepper('stepTo', 2);
                     }
@@ -340,7 +346,7 @@ define(function (require, exports, module) {
             },
             success: function (result) {
                 if (result.success) {
-                    vpcs = result.object.vpcs;
+                    vpcs = result.list;
                     var options;
                     vpcs = _.sortBy(vpcs, function (data) {
                         return -data.default;
@@ -364,7 +370,7 @@ define(function (require, exports, module) {
             },
             success: function (result) {
                 if (result.success) {
-                    subnets = result.object.subnets;
+                    subnets = result.list;
                     var options = '<option value="no-preference">无首选项(任何可用区的默认子网)</option>';
                     $.each(subnets, function (i, v) {
                         if (v.defaultForAz) {
@@ -475,23 +481,18 @@ define(function (require, exports, module) {
     Create.prototype.volume = function () {
         var create = this;
         $table = $('#volumeTable');
+
         $table.bootstrapTable($.extend(Util.gridUtilOptions(), {
-            url: API_URL.VOLUMES + '/p',
+            data: create.chosenImage.blockDeviceMappings,
             sidePagination: 'client',
             pagination: false,
             sortable: false,
             search: false,
-            ajaxOptions: {
-                beforeSend: function (xhr) {
-                    xhr.setRequestHeader('account-sequence-id', create.accountSequenceId);
-                }
+            showRefresh: false,
+            showColumns: false,
+            onCheck: function (row) {
+                create.chosenVolume = row;
             },
-            responseHandler: function (res) {
-                return res.blockDeviceMappings;
-            },
-            /*queryParams: function (params) {
-             return $.extend(params, {'is-public': false});
-             },*/
             columns: [
                 {
                     title: '卷类型',
@@ -513,10 +514,20 @@ define(function (require, exports, module) {
                     field: 'ebs.volumeType'
                 }, {
                     title: 'IOPS',
-                    field: ''
+                    field: 'iops',
+                    formatter: function (value, row, index) {
+                        if (value) {
+                            return value;
+                        } else {
+                            return '100 /3000'
+                        }
+                    }
                 }, {
                     title: '吞吐量(M/s)',
-                    field: ''
+                    field: '',
+                    formatter: function (value, row, index) {
+                        return '不适用';
+                    }
                 }, {
                     title: '终止时删除',
                     field: 'ebs.deleteOnTermination',
@@ -526,6 +537,83 @@ define(function (require, exports, module) {
                 }
             ]
 
+        }));
+    };
+
+    //=================================
+    // tag
+    //=================================
+    Create.prototype.tag = function () {
+        var create = this;
+        $('#tagTable tbody tr a').click(function () {
+            $(this).parents('tr').remove();
+        });
+        var tr = [
+            '<tr>',
+            '<td><input type="text" class="form-control"></td>',
+            '<td><input type="text" class="form-control"></td>',
+            '<td><a href="javascript: void(0);" data-toggle="tooltip" title="删除"><i class="fa fa-close mt7"></i></a></td>',
+            '</tr>'
+        ].join('');
+        $('#instance-create-tag-add').click(function () {
+            var $tr = $(tr).appendTo($('#tagTable tbody'));
+            $tr.find('a').click(function () {
+                $tr.remove();
+            })
+        });
+    };
+
+    //=================================
+    // tag valid
+    //=================================
+    Create.prototype.tagValid = function () {
+
+        var flag = true;
+        $('#tagTable tbody tr').map(function (i, v) {
+            var key = $(v).find('input:eq(0)').val();
+            if (key.trim() == '') {
+                Util.notify('校验提示！', '不能存在键值为空的标签实例！', 'alert');
+                flag = false;
+                return false;
+            }
+        });
+        return flag;
+
+    };
+
+    //=================================
+    // security group
+    //=================================
+    Create.prototype.securityGroup = function () {
+        var create = this;
+        var $table = $('#securityGroupTable');
+        $table.bootstrapTable($.extend(Util.gridUtilOptions(), {
+            url: API_URL.SECURITYGROUPS,
+            ajaxOptions: {
+                beforeSend: function (xhr) {
+                    xhr.setRequestHeader('account-sequence-id', create.accountSequenceId);
+                }
+            },
+            singleSelect: true,
+            clickToSelect: true,
+            dataField: 'object',
+            columns: [
+                {
+                    checkbox: true
+                },
+                {
+                    title: '安全组ID',
+                    field: 'groupId'
+                },
+                {
+                    title: '名称',
+                    field: 'groupName'
+                },
+                {
+                    title: '描述',
+                    field: 'description'
+                }
+            ]
         }));
     };
 

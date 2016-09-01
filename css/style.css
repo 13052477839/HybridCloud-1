@@ -497,7 +497,7 @@ a.flavor-type {
     text-align: center;
 }
 
-.page-header b{
+.page-header b {
     font-size: 16px;
     color: red;
 }
@@ -513,6 +513,7 @@ select {
     border-radius: 2px;
     background: url("../images/btn_droplist_normal.png") no-repeat right #ffffff !important;
 }
+
 select:focus {
     border: 1px solid #1898eb !important;
     border-right: 0 !important;
@@ -524,9 +525,85 @@ select:focus {
     color: #bbbbbb !important;
 }
 
-.network-interfaces tbody td{
+.network-interfaces tbody td {
     vertical-align: middle !important;
 }
-.step{
+
+.step {
     display: none;
+}
+
+.my-table {
+    margin-top: 10px;
+    border-color: #ededed;
+    border-width: 1px 0 0 0;
+    border-collapse: separate;
+}
+
+.my-table tr {
+    height: 36px;
+}
+
+.my-table th {
+    background-color: #eeeeee;
+    color: #333333;
+    font-size: 12px;
+    font-weight: normal;
+    border: solid 1px #e6e6e6;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.my-table td {
+    border-color: #e6e6e6;
+    border-style: solid;
+    border-width: 0 1px 1px 0;
+    color: #666666;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.my-table tbody tr:hover {
+    background-color: #e7f6ff;
+}
+
+.my-table tbody tr:hover td {
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    border-color: #c9e6f2;
+}
+
+.mt7 {
+    margin-top: 7px;
+}
+
+.ml10{
+    margin-left: 10px;
+}
+
+.btn-create{
+    border: 0;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    height: 30px;
+    min-width: 90px;
+    color: #ffffff;
+    background-color: #5cb85c;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: inline-block;
+    align-items: flex-end;
+    padding: 7px 12px;
+    text-align: center;
+}
+.btn-create:hover, .btn-create:focus{
+    background-color: #53ad53;
+    color: #ffffff;
+}
+
+.btn-create i{
+    margin-right: 12px;
 }

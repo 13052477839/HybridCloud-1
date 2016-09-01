@@ -72,7 +72,7 @@
                                             <label for="intance-create-config-number" class="col-sm-3 control-label">实例的数量</label>
                                             <div class="col-sm-8">
                                                 <input type="text" class="form-control"
-                                                       id="intance-create-config-number" name="maxCount"  value="1">
+                                                       id="intance-create-config-number" name="maxCount" value="1">
                                             </div>
                                         </div>
                                         <div class="form-group">
@@ -166,32 +166,106 @@
 
                         <div id="step5" class="step">
                             <h2 class="page-header step5-header" style="margin-top: 30px;">步骤5：标签实例 <b></b></h2>
-                            <div class="row instance-create-volume">
-                                <div class="col-md-12">
+                            <div class="row instance-create-tag">
+                                <div class="col-md-8">
+                                    <a class="btn-create" id="instance-create-tag-add" href="javascript: void(0);">
+                                        <i class="fa fa-plus"></i>
+                                        添加
+                                    </a>
+                                    <table id="tagTable" class="table table-hover my-table">
+                                        <thead>
+                                        <th>键</th>
+                                        <th>值</th>
+                                        <th></th>
+                                        </thead>
+                                        <tbody>
+                                        <td>
+                                            <input type="text" class="form-control" value="Name">
+                                        </td>
+                                        <td>
+                                            <input type="text" class="form-control">
+                                        </td>
+                                        <td>
+                                            <a href="javascript: void(0);" data-toggle="tooltip" title="删除">
+                                                <i class="fa fa-close mt7"></i>
+                                            </a>
+                                        </td>
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
                         </div>
 
                         <div id="step6" class="step">
                             <h2 class="page-header step6-header" style="margin-top: 30px;">步骤6：配置安全组 <b></b></h2>
-                            <div class="row instance-create-volume">
+                            <div class="row instance-create-securityGroup">
                                 <div class="col-md-12">
+                                    <table id="securityGroupTable"></table>
                                 </div>
                             </div>
                         </div>
 
                         <div id="step7" class="step">
                             <h2 class="page-header" style="margin-top: 30px;">步骤7：审核</h2>
-                            <div class="row instance-create-volume">
+                            <div class="row instance-create-submit">
                                 <div class="col-md-12">
+                                    <div class="box box-solid image">
+                                        <div class="box-header with-border">
+                                            <h3 class="box-title">镜像详细信息</h3>
+                                        </div>
+                                        <div class="box-body">
+                                            镜像详细信息
+                                        </div>
+                                    </div>
+                                    <div class="box box-solid flavor">
+                                        <div class="box-header with-border">
+                                            <h3 class="box-title">实例类型信息</h3>
+                                        </div>
+                                        <div class="box-body">
+                                            实例类型信息
+                                        </div>
+                                    </div>
+                                    <div class="box box-solid config">
+                                        <div class="box-header with-border">
+                                            <h3 class="box-title">实例配置信息</h3>
+                                        </div>
+                                        <div class="box-body">
+                                            实例配置信息
+                                        </div>
+                                    </div>
+                                    <div class="box box-solid volume">
+                                        <div class="box-header with-border">
+                                            <h3 class="box-title">存储</h3>
+                                        </div>
+                                        <div class="box-body">
+                                            存储
+                                        </div>
+                                    </div>
+                                    <div class="box box-solid tag">
+                                        <div class="box-header with-border">
+                                            <h3 class="box-title">标签</h3>
+                                        </div>
+                                        <div class="box-body">
+                                            标签
+                                        </div>
+                                    </div>
+                                    <div class="box box-solid securityGroup">
+                                        <div class="box-header with-border">
+                                            <h3 class="box-title">安全组</h3>
+                                        </div>
+                                        <div class="box-body">
+                                            安全组
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-
                     </div>
+
                 </div>
             </div>
         </div>
+    </div>
     </div>
 </section>
 
