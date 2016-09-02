@@ -934,15 +934,20 @@ define(function (require, exports, module) {
             };
             tags.push(tag);
         });
+        var security_groups = [];
+        $.each(create.chosenSecurityGroup, function (i, v) {
+            security_groups.push(v.groupId);
+        });
         var network_interfaces = [];
         if ($('#intance-create-config-subnet').val() != 'no-preference') {
             var subnetId = $('#intance-create-config-subnet').val();
             $('.network-interface-ip').map(function (i, v) {
 
                 var interface = {
-                    DeviceIndex: i,
-                    SubnetId: subnetId,
-                    AssociatePublicIpAddress: $('#intance-create-config-publicIp').val() == 'true' ? true : false
+                    deviceIndex: i,
+                    subnetId: subnetId,
+                    deleteOnTermination: true,
+                    securityGroupIds: security_groups
                 };
                 if ($(v).val().trim() != '') {
                     interface['PrivateIpAddress'] = $(v).val();
@@ -950,10 +955,6 @@ define(function (require, exports, module) {
                 network_interfaces.push(interface);
             });
         }
-        var security_groups = [];
-        $.each(create.chosenSecurityGroup, function (i, v) {
-            security_groups.push(v.groupId);
-        });
         var block_device_mappings = create.chosenImage.blockDeviceMappings;
         delete block_device_mappings[0].ebs['encrypted'];
         create.postData = {
@@ -968,6 +969,9 @@ define(function (require, exports, module) {
             network_interfaces: network_interfaces,
             block_device_mappings: block_device_mappings
         };
+        if(network_interfaces.length > 0){
+            delete create.postData['security_groups'];
+        }
     };
 
     //=================================
