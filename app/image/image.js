@@ -12,7 +12,7 @@ define(function (require, exports, module) {
     // init
     //==============================
     Image.prototype.init = function () {
-        this.accounts = JSON.parse(window.localStorage.accounts);
+        this.accounts = Util.getAccounts();
         this.imagePanel();
         this.imageTable();
 

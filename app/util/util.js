@@ -154,6 +154,19 @@ define(function (require) {
         return true;
     };
 
+    //====================================================
+    // get account
+    //====================================================
+    var getAccounts = function () {
+        var accounts = [] ;
+        $.each(JSON.parse(window.localStorage.accounts), function (i, v) {
+            if (v.status == 1) {
+                accounts.push(v);
+            }
+        });
+        return accounts;
+    };
+
     return {
         hashChange: hashChange,
         gridUtilOptions: gridUtilOptions,
@@ -163,6 +176,7 @@ define(function (require) {
         notify: notify,
         isLogin: isLogin,
         globalMask: globalMask,
-        ipValid: ipValid
+        ipValid: ipValid,
+        getAccounts: getAccounts
     }
 });

@@ -12,7 +12,7 @@ define(function (require, exports, module) {
     // init
     //==============================
     Instance.prototype.init = function () {
-        this.accounts = JSON.parse(window.localStorage.accounts);
+        this.accounts = Util.getAccounts();
         this.instancePanel();
         this.instanceTable();
 

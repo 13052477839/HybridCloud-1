@@ -84,6 +84,8 @@ define(function (require, exports, module) {
                         if (result.success) {
                             var object = result.object;
                             //window.localStorage.accessToken = object.token;
+                            window.localStorage.status = object.user.status;
+                            window.localStorage.roleId = object.user.roleId;
                             window.localStorage.userId = object.user.id;
                             window.localStorage.userName = object.user.name;
                             window.localStorage.accounts = JSON.stringify(object.user.accounts);
