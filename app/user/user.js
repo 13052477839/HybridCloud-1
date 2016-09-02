@@ -51,9 +51,20 @@ define(function (require, exports, module) {
                 title: '邮箱',
                 field: 'email'
             }, {
+                title: '角色',
+                field: 'roleId',
+                formatter: function (value, row, index) {
+                    if (value == 0) {
+                        return '普通用户';
+                    }
+                    if (value == 1) {
+                        return '管理员';
+                    }
+                }
+            }, {
                 title: '状态',
                 field: 'status',
-                formatter : function (value, row, index) {
+                formatter: function (value, row, index) {
                     if (value == 2) {
                         return '<span class="label label-danger">锁定</span>';
                     } else if (value == 1) {
@@ -62,7 +73,7 @@ define(function (require, exports, module) {
                         return value;
                     }
                 }
-            },{
+            }, {
                 title: '操作',
                 field: '',
                 //events: operateEvents,
@@ -94,10 +105,16 @@ define(function (require, exports, module) {
                         var accounts = result.object.accounts;
                         $.each(accounts, function (i, v) {
                             var status = '';
-                            switch(v.status){
-                                case 0: status = '<span class="label label-warning">待审核</span>';break;
-                                case 1: status = '<span class="label label-success">可用</span>';break;
-                                case 2: status = '<span class="label label-danger">禁用</span>';break;
+                            switch (v.status) {
+                                case 0:
+                                    status = '<span class="label label-warning">待审核</span>';
+                                    break;
+                                case 1:
+                                    status = '<span class="label label-success">可用</span>';
+                                    break;
+                                case 2:
+                                    status = '<span class="label label-danger">禁用</span>';
+                                    break;
                             }
                             $account = $('<div class="col-sm-5 account-detail"></div>').appendTo($detail.find('.account-detail-wrapper'));
                             $account.append('<div class="account-detail-title"><h4>账号' + (i + 1) + '</h4> ' + status + '</div>');
@@ -161,7 +178,7 @@ define(function (require, exports, module) {
     //==============================
     User.prototype.operateFormatter = function (value, row, index) {
         return [
-            '<a class="user-edit" href="#/user/edit/'+row.id+'" data-toggle="tooltip" title="编辑">',
+            '<a class="user-edit" href="#/user/edit/' + row.id + '" data-toggle="tooltip" title="编辑">',
             '<i class="glyphicon glyphicon-pencil"></i>',
             '</a>'
         ].join('');
@@ -180,28 +197,28 @@ define(function (require, exports, module) {
                     $('#dialog-confirm').modal('hide');
                     var lockFlag = true;
                     /*$.each(selections, function (i, v) {
-                        $.ajax({
-                            url: API_URL.USERS + '/' + v.id,
-                            type: 'delete',
-                            dataType: 'json',
-                            success: function (result) {
-                                if (result.success) {
+                     $.ajax({
+                     url: API_URL.USERS + '/' + v.id,
+                     type: 'delete',
+                     dataType: 'json',
+                     success: function (result) {
+                     if (result.success) {
 
-                                } else {
-                                    delFlag = false;
-                                    return false;
-                                }
-                            }
-                        });
-                    });
-                    if (delFlag) {
-                        Util.notify('成功！', '删除用户成功！', 'success');
-                        setTimeout(function () {
-                            $('#userTable').bootstrapTable('refresh');
-                        }, 2000);
-                    } else {
-                        Util.alertDialog('删除失败');
-                    }*/
+                     } else {
+                     delFlag = false;
+                     return false;
+                     }
+                     }
+                     });
+                     });
+                     if (delFlag) {
+                     Util.notify('成功！', '删除用户成功！', 'success');
+                     setTimeout(function () {
+                     $('#userTable').bootstrapTable('refresh');
+                     }, 2000);
+                     } else {
+                     Util.alertDialog('删除失败');
+                     }*/
 
                 });
             }

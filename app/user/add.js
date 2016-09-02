@@ -5,6 +5,7 @@ define(function (require, exports, module) {
         this.type = type;
         this.accountNumber = 0;
         this.id;
+        this.roleId;
     }
 
     module.exports = Add;
@@ -204,6 +205,7 @@ define(function (require, exports, module) {
             cellphone: $('input[name="cellphone"]').val(),
             email: $('input[name="email"]').val(),
             status: $('input[name="status"]').prop('checked') ? 1 : 2,
+            roleId: $('input[name="roleId"]').prop('checked') ? 1 : 0,
             accounts: []
         };
         var accountWrappers = $('.account-wrapper');
@@ -290,6 +292,7 @@ define(function (require, exports, module) {
             cellphone: $('input[name="cellphone"]').val(),
             email: $('input[name="email"]').val(),
             status: $('input[name="status"]').prop('checked') ? 1 : 2,
+            roleId: add.roleId,
             accounts: []
         };
         var accountWrappers = $('.account-wrapper');
@@ -307,8 +310,8 @@ define(function (require, exports, module) {
                 type: $(v).find('input[name="accounts.type"]').val(),
                 alias: $(v).find('input[name="accounts.alias"]').val(),
                 /*id: $(v).find('input[name="accounts.id"]').val(),
-                name: $(v).find('input[name="accounts.name"]').val(),
-                password: $(v).find('input[name="accounts.password"]').val(),*/
+                 name: $(v).find('input[name="accounts.name"]').val(),
+                 password: $(v).find('input[name="accounts.password"]').val(),*/
                 awsAccessKeyId: $(v).find('input[name="accounts.awsAccessKeyId"]').val(),
                 awsSecretAccessKey: $(v).find('input[name="accounts.awsSecretAccessKey"]').val()
             };
@@ -379,6 +382,7 @@ define(function (require, exports, module) {
             cellphone: $('input[name="cellphone"]').val(),
             email: $('input[name="email"]').val(),
             status: 1,
+            roleId: add.roleId,
             accounts: []
         };
         var accountWrappers = $('.account-wrapper');
@@ -392,13 +396,13 @@ define(function (require, exports, module) {
                 valid = false;
                 return false;
             }
-            if ($(v).find('input[name="accounts.awsAccessKeyId"]').val().trim() == ''){
+            if ($(v).find('input[name="accounts.awsAccessKeyId"]').val().trim() == '') {
                 $('#global-mask').hide();
                 Util.alertDialog('账号' + $(v).attr('id').substr(7) + '的AccessKeyId不能为空！');
                 valid = false;
                 return false;
             }
-            if ($(v).find('input[name="accounts.awsSecretAccessKey"]').val().trim() == ''){
+            if ($(v).find('input[name="accounts.awsSecretAccessKey"]').val().trim() == '') {
                 $('#global-mask').hide();
                 Util.alertDialog('账号' + $(v).attr('id').substr(7) + '的SecretAccessKey不能为空！');
                 valid = false;
@@ -408,8 +412,8 @@ define(function (require, exports, module) {
                 type: $(v).find('input[name="accounts.type"]').val(),
                 alias: $(v).find('input[name="accounts.alias"]').val(),
                 /*id: $(v).find('input[name="accounts.id"]').val(),
-                name: $(v).find('input[name="accounts.name"]').val(),
-                password: $(v).find('input[name="accounts.password"]').val(),*/
+                 name: $(v).find('input[name="accounts.name"]').val(),
+                 password: $(v).find('input[name="accounts.password"]').val(),*/
                 awsAccessKeyId: $(v).find('input[name="accounts.awsAccessKeyId"]').val(),
                 awsSecretAccessKey: $(v).find('input[name="accounts.awsSecretAccessKey"]').val(),
                 status: 0
@@ -485,6 +489,7 @@ define(function (require, exports, module) {
             if (key == 'password') {
                 $('#passwordConfirm').val(data[key]);
             }
+            add.roleId = data['roleId'];
         }
         if (data.accounts.length > 0) {
             $.each(data.accounts, function (i, v) {
