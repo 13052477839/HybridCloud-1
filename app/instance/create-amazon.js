@@ -443,7 +443,7 @@ define(function (require, exports, module) {
                     '<table class="table table-hover table-condensed table-bordered">',
                     '<thead><tr><th>设备</th><th>网络接口</th><th>子网</th><th>主要IP</th><th></th></tr></thead>',
                     '<tbody>',
-                    '<tr><td>eh0</td><td>新网络接口</td><td>' + subnetId + '</td><td><input type="text" class="network-interface-ip" placeholder="自动分配"></td><td><a href="javascript:void(0);" class="network-interface-add"><i class="fa fa-plus"></i></a></td></tr>',
+                    '<tr><td>eth0</td><td>新网络接口</td><td>' + subnetId + '</td><td><input type="text" class="network-interface-ip" placeholder="自动分配"></td><td><a href="javascript:void(0);" class="network-interface-add"><i class="fa fa-plus"></i></a></td></tr>',
                     '</tbody>',
                     '</table>',
                     '</div>',
@@ -452,8 +452,8 @@ define(function (require, exports, module) {
                 ].join('');
                 $(this).parent().parent().after(table);
                 $('.network-interface-add').unbind().click(function () {
-                    var index = parseInt($('.network-interfaces').find('tbody tr:last td:eq(0)').text().substr(2)) + 1;
-                    var $tr = $('<tr><td>eh' + index + '</td><td>新网络接口</td><td>' + subnetId + '</td><td><input type="text" class="network-interface-ip" placeholder="自动分配"></td><td><a href="javascript:void(0);" class="network-interface-minus"><i class="fa fa-minus"></i></a></td></tr>').appendTo($('.network-interfaces table tbody'));
+                    var index = parseInt($('.network-interfaces').find('tbody tr:last td:eq(0)').text().substr(3)) + 1;
+                    var $tr = $('<tr><td>eth' + index + '</td><td>新网络接口</td><td>' + subnetId + '</td><td><input type="text" class="network-interface-ip" placeholder="自动分配"></td><td><a href="javascript:void(0);" class="network-interface-minus"><i class="fa fa-minus"></i></a></td></tr>').appendTo($('.network-interfaces table tbody'));
                     $tr.find('.network-interface-minus').click(function () {
                         $tr.remove();
                         if ($('.network-interfaces tbody tr').length == 1) {
@@ -940,6 +940,7 @@ define(function (require, exports, module) {
             $('.network-interface-ip').map(function (i, v) {
 
                 var interface = {
+                    DeviceIndex: i,
                     SubnetId: subnetId,
                     AssociatePublicIpAddress: $('#intance-create-config-publicIp').val() == 'true' ? true : false
                 };
@@ -994,7 +995,12 @@ define(function (require, exports, module) {
                     data: JSON.stringify(create.postData),
                     dataType: 'json',
                     success: function (result) {
-                        console.log(result);
+                        if (result.success) {
+                            window.location.hash = '#/instance';
+                            Util.notify('成功！', '启动云主机成功！', 'success');
+                        } else {
+                            Util.alertDialog(result.message);
+                        }
                     }
                 })
             } else {
