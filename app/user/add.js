@@ -205,7 +205,7 @@ define(function (require, exports, module) {
             cellphone: $('input[name="cellphone"]').val(),
             email: $('input[name="email"]').val(),
             status: $('input[name="status"]').prop('checked') ? 1 : 2,
-            roleId: $('input[name="roleId"]').prop('checked') ? 1 : 0,
+            roleId: $('input[name="roleId"]').prop('checked') ? 1 : 2,
             accounts: []
         };
         var accountWrappers = $('.account-wrapper');

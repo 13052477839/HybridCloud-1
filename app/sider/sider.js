@@ -40,7 +40,7 @@ define(function (require, exports, module) {
                     '<li><a href="#/user"><i class="user"></i><span>用户</span></a></li>'
                 ].join('');
                 break;
-            case '0':
+            case '2':
                 menu = [
                     '<li class="header">云资源</li>',
                     '<li><a href="#/overview"><i class="overview"></i><span>总览</span></a></li>',

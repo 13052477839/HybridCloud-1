@@ -54,7 +54,7 @@ define(function (require, exports, module) {
                 title: '角色',
                 field: 'roleId',
                 formatter: function (value, row, index) {
-                    if (value == 0) {
+                    if (value == 2) {
                         return '普通用户';
                     }
                     if (value == 1) {
