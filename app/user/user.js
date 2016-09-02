@@ -149,6 +149,7 @@ define(function (require, exports, module) {
                             url: API_URL.USERS + '/' + v.id,
                             type: 'delete',
                             dataType: 'json',
+                            async: false,
                             success: function (result) {
                                 if (result.success) {
 
@@ -161,9 +162,7 @@ define(function (require, exports, module) {
                     });
                     if (delFlag) {
                         Util.notify('成功！', '删除用户成功！', 'success');
-                        setTimeout(function () {
-                            $('#userTable').bootstrapTable('refresh');
-                        }, 2000);
+                        $('#userTable').bootstrapTable('refresh');
                     } else {
                         Util.alertDialog('删除失败');
                     }
@@ -188,6 +187,7 @@ define(function (require, exports, module) {
     // lock user
     //==============================
     User.prototype.lock = function () {
+        var user = this;
         $('#btn-user-lock').click(function () {
             var selections = $('#userTable').bootstrapTable('getSelections');
             if (selections.length == 0) {
@@ -195,31 +195,12 @@ define(function (require, exports, module) {
             } else {
                 Util.confirmDialog('确认锁定所选用户账号吗？', function () {
                     $('#dialog-confirm').modal('hide');
-                    var lockFlag = true;
-                    /*$.each(selections, function (i, v) {
-                     $.ajax({
-                     url: API_URL.USERS + '/' + v.id,
-                     type: 'delete',
-                     dataType: 'json',
-                     success: function (result) {
-                     if (result.success) {
-
-                     } else {
-                     delFlag = false;
-                     return false;
-                     }
-                     }
-                     });
-                     });
-                     if (delFlag) {
-                     Util.notify('成功！', '删除用户成功！', 'success');
-                     setTimeout(function () {
-                     $('#userTable').bootstrapTable('refresh');
-                     }, 2000);
-                     } else {
-                     Util.alertDialog('删除失败');
-                     }*/
-
+                    if (user.changeStatus(selections, 2)) {
+                        Util.notify('成功！', '锁定用户成功！', 'success');
+                        $('#userTable').bootstrapTable('refresh');
+                    } else {
+                        Util.alertDialog('锁定用户失败！');
+                    }
                 });
             }
         });
@@ -229,6 +210,7 @@ define(function (require, exports, module) {
     // unlock user
     //==============================
     User.prototype.unlock = function () {
+        var user = this;
         $('#btn-user-unlock').click(function () {
             var selections = $('#userTable').bootstrapTable('getSelections');
             if (selections.length == 0) {
@@ -237,32 +219,37 @@ define(function (require, exports, module) {
                 Util.confirmDialog('确认激活所选用户账号吗？', function () {
                     $('#dialog-confirm').modal('hide');
                     var unlockFlag = true;
-                    /*$.each(selections, function (i, v) {
-                     $.ajax({
-                     url: API_URL.USERS + '/' + v.id,
-                     type: 'delete',
-                     dataType: 'json',
-                     success: function (result) {
-                     if (result.success) {
-
-                     } else {
-                     delFlag = false;
-                     return false;
-                     }
-                     }
-                     });
-                     });
-                     if (delFlag) {
-                     Util.notify('成功！', '删除用户成功！', 'success');
-                     setTimeout(function () {
-                     $('#userTable').bootstrapTable('refresh');
-                     }, 2000);
-                     } else {
-                     Util.alertDialog('删除失败');
-                     }*/
-
+                    if (user.changeStatus(selections, 1)) {
+                        Util.notify('成功！', '激活用户成功！', 'success');
+                        $('#userTable').bootstrapTable('refresh');
+                    } else {
+                        Util.alertDialog('激活用户失败！');
+                    }
                 });
             }
         });
+    };
+
+    //==============================
+    // change user status
+    //==============================
+    User.prototype.changeStatus = function (selections, status) {
+        var flag = true;
+        $.each(selections, function (i, v) {
+            $.ajax({
+                url: API_URL.USERS + '/' + v.id + '/' + status,
+                type: 'put',
+                dataType: 'json',
+                async: false,
+                success: function (result) {
+                    if (result.success) {
+                    } else {
+                        flag = false;
+                        return false;
+                    }
+                }
+            });
+        });
+        return flag;
     };
 });
