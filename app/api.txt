@@ -187,21 +187,21 @@ public class PadingResult{
           ],
           "network_interfaces": [
             {
-              "NetworkInterfaceId": "111222333",
-              "DeviceIndex": 0,
+              //"NetworkInterfaceId": "111222333",
+             // "DeviceIndex": 0,
               "SubnetId": "subnet-78762a1d",
-              "Description": "api-test-interface",
+              //"Description": "api-test-interface",
               "PrivateIpAddress": "10.0.10.100",
-              "DeleteOnTermination": true,
+              //"DeleteOnTermination": true,
               "AssociatePublicIpAddress": true
             }
           ],        // network_interfaces和subnet_id private_ip_address组合二选一
-          "subnet_id": "subnet-78762a1d",
-          "private_ip_address": "10.0.10.201",
-          "iam_role": {
-              "arn":"arn",
-              "name":"role"
-          },
+          //"subnet_id": "subnet-78762a1d",
+          //"private_ip_address": "10.0.10.201",
+          //"iam_role": {
+           //   "arn":"arn",
+          //    "name":"role"
+         // },
           "block_device_mappings": [
             {
               "VirtualName": "ephemeral0",

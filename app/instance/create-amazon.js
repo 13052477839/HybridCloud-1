@@ -8,6 +8,7 @@ define(function (require, exports, module) {
         this.chosenImage;
         this.chosenFlavor;
         this.chosenSecurityGroup = [];
+        this.postData;
     }
 
     module.exports = Create;
@@ -22,6 +23,7 @@ define(function (require, exports, module) {
         this.config();
         this.tag();
         this.securityGroup();
+        this.submit();
     };
 
     //=================================
@@ -59,8 +61,15 @@ define(function (require, exports, module) {
                 if (index != 4 && $('#stepper ul li:eq(4)').is('.current') && !create.tagValid()) {
                     return;
                 }
-                if (index != 2 && $('#stepper ul li:eq(2)').is('.current') && !create.ipValid()) {
-                    return;
+                if (index != 2 && $('#stepper ul li:eq(2)').is('.current')) {
+                    $('#instance-create-config-form').bootstrapValidator('validate');
+                    if (!$('#instance-create-config-form').data('bootstrapValidator').isValid()) {
+                        Util.notify('校验提示！', '配置信息填写有误！', 'alert');
+                        return;
+                    }
+                    if (!create.ipValid()) {
+                        return;
+                    }
                 }
                 if (index != 5 && $('#stepper ul li:eq(5)').is('.current') && create.chosenSecurityGroup.length == 0) {
                     Util.notify('校验提示！', '必须至少选择一个安全组！', 'alert');
@@ -70,6 +79,7 @@ define(function (require, exports, module) {
                     create.check('config');
                     create.check('tag');
                     create.check('securityGroup');
+                    create.generatePostData();
                 }
                 $("#stepper").stepper('stepTo', index + 1);
             }
@@ -500,7 +510,7 @@ define(function (require, exports, module) {
             if ($(v).val().trim() != '') {
                 var ip = $(v).val().split('.');
                 var subnetcidr = $('#intance-create-config-subnet').find('option:selected').attr('data-cidr').split('.');
-                if (subnetcidr[0] != ip[0] || subnetcidr[1] != ip[1] || !Util.ipValid($(v).val())) {
+                if (subnetcidr[0] != ip[0] || subnetcidr[1] != ip[1] || subnetcidr[2] != ip[2] || !Util.ipValid($(v).val())) {
                     flag = false;
                     Util.notify('校验提示！', '网络接口IP格式有误或不在子网中！', 'alert');
                     return false;
@@ -912,11 +922,84 @@ define(function (require, exports, module) {
     };
 
     //=================================
+    // generate post data
+    //=================================
+    Create.prototype.generatePostData = function () {
+        var create = this;
+        var tags = [];
+        $('#tagTable tbody tr').map(function (i, v) {
+            var tag = {
+                key: $(v).find('input:eq(0)').val(),
+                value: $(v).find('input:eq(1)').val()
+            };
+            tags.push(tag);
+        });
+        var network_interfaces = [];
+        if ($('#intance-create-config-subnet').val() != 'no-preference') {
+            var subnetId = $('#intance-create-config-subnet').val();
+            $('.network-interface-ip').map(function (i, v) {
+
+                var interface = {
+                    SubnetId: subnetId,
+                    AssociatePublicIpAddress: $('#intance-create-config-publicIp').val() == 'true' ? true : false
+                };
+                if ($(v).val().trim() != '') {
+                    interface['PrivateIpAddress'] = $(v).val();
+                }
+                network_interfaces.push(interface);
+            });
+        }
+        var security_groups = [];
+        $.each(create.chosenSecurityGroup, function (i, v) {
+            security_groups.push(v.groupId);
+        });
+        var block_device_mappings = create.chosenImage.blockDeviceMappings;
+        delete block_device_mappings[0].ebs['encrypted'];
+        create.postData = {
+            image_id: create.chosenImage.imageId,
+            instance_type: create.chosenFlavor.typeName,
+            max_count: parseInt($('#intance-create-config-number').val()),
+            security_groups: security_groups,
+            shutdown_behavior: $('#intance-create-config-shutdownBehavior').val(),
+            api_termination: $('#intance-create-config-shutdownGuard').is('checked') ? true : false,
+            monitor: $('#intance-create-config-cloudWatch').is('checked') ? true : false,
+            tags: tags,
+            network_interfaces: network_interfaces,
+            block_device_mappings: block_device_mappings
+        };
+    };
+
+    //=================================
     // operateEvents
     //=================================
     window.operateEvents = {
         'click .btn-image': function (e, value, row, index) {
             $($(this).attr('data-table')).find('table').bootstrapTable('check', index);
         }
-    }
+    };
+
+    //=================================
+    // submit
+    //=================================
+    Create.prototype.submit = function () {
+        var create = this;
+        $('#instance-create-submit').click(function () {
+            if (create.postData) {
+                $.ajax({
+                    url: API_URL.INSTANCES,
+                    beforeSend: function (xhr) {
+                        xhr.setRequestHeader('account-sequence-id', create.accountSequenceId);
+                    },
+                    type: 'post',
+                    data: JSON.stringify(create.postData),
+                    dataType: 'json',
+                    success: function (result) {
+                        console.log(result);
+                    }
+                })
+            } else {
+                Util.notify('检验提示！', '启动信息不完整或有误，请修改！', 'alert');
+            }
+        });
+    };
 });
